@@ -8,7 +8,7 @@ import HandlePressable from './HandlePressable';
 class HomeVideosgalleryItemOne extends React.PureComponent {
   render() {
     let decode = require('html-entities-decoder');
-    const defaultImage = require('../Assets/Images/no_image.jpeg');
+    const defaultImage = require('../Assets/Images/noimage.png');
     const imageUrl = this.props?.item?.web_featured_image
       ? {uri: this.props?.item?.web_featured_image}
       : defaultImage;

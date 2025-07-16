@@ -15,6 +15,7 @@ import {
   commonstyles,
   whitecolor,
   gllery_background,
+  bluecolor,
 } from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import {HeaderStyle} from '../styles/Header.Styles';
@@ -145,7 +146,7 @@ const PhotoArticle = ({navigation, route}) => {
           />
         ) : (
           <View style={{paddingTop: 20}}>
-            <ActivityIndicator size={'large'} color={'pink'}/>
+            <ActivityIndicator size={'large'} color={bluecolor}/>
           </View>
         )}
          {/* Published view */}

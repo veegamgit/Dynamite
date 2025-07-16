@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
-import {BaseUrl, CategoryUrl, Viral} from '../../utilities/urls';
+import {BaseUrl, CategoryUrl, National} from '../../utilities/urls';
 
-export const GET_VIRAL = 'GET_VIRAL';
-export const GET_VIRAL_SUCCESS = 'GET_VIRAL_SUCCESS';
-export const GET_VIRAL_ERROR = 'GET_VIRAL_ERROR';
+export const GET_NATIONAL = 'GET_NATIONAL';
+export const GET_NATIONAL_SUCCESS = 'GET_NATIONAL_SUCCESS';
+export const GET_NATIONAL_ERROR = 'GET_NATIONAL_ERROR';
 
-export const getViralAction = () => {
+export const getNationalAction = () => {
   try {
     return async dispatch => {
       dispatch({
-        type: GET_VIRAL,
+        type: GET_NATIONAL,
       });
-      const result = await fetch(BaseUrl + CategoryUrl + Viral, {
+      const result = await fetch(BaseUrl + CategoryUrl + National, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -21,12 +21,12 @@ export const getViralAction = () => {
       if (json) {
 
         dispatch({
-          type: GET_VIRAL_SUCCESS,
+          type: GET_NATIONAL_SUCCESS,
           payload: json,
         });
       } else {
         dispatch({
-          type: GET_VIRAL_ERROR,
+          type: GET_NATIONAL_ERROR,
         });
       }
     };

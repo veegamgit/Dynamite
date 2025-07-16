@@ -40,7 +40,6 @@ class ShortsComponent extends React.PureComponent {
 
         const apiDate = item?.date;
         const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
-        console.log(imageUrl, 'imageUrl');
 
         return (
             <View style={styles.wrapper}>

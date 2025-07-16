@@ -15,6 +15,7 @@ import {
 
 import {
   commonstyles,
+  whitecolor,
 } from '../styles/commonstyles';
 import HomeUI from '../components/HomeUI';
 import SliderUI from '../components/SliderUI';
@@ -22,9 +23,17 @@ import HomeUINew from '../components/HomeUINew';
 import getSliderAction from '../redux/actions/getSliderAction';
 import HomeVideosgalleryItemOne from '../components/HomeVideosgalleryItemOne';
 import HomeVideosgalleryItemTwo from '../components/HomeVideosgalleryItemTwo';
-import HomePhotogalleryItemTwo from '../components/HomePhotogalleryItemTwo';
-import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
-import { Automobile, BaseUrl, Business, Carrer, CategoryUrl, Elections, Entertainment, India, Lifestyle, Maharashtra, Religion, Special, Sports, Technology, Travel, Viral, World } from '../utilities/urls';
+
+import {
+  BaseUrl, Business, CategoryUrl, Elections, Entertainment,
+  Lifestyle, Uttarpradesh,
+  Special, Sports, Technology, National, Uttrakhand,
+  International,
+  Bureaucracy,
+  Politics,
+  Jobs,
+  Crime
+} from '../utilities/urls';
 import getVideoAction from '../redux/actions/getVideoAction';
 import TopNews from '../components/TopNews';
 import Ripple from 'react-native-material-ripple';
@@ -34,29 +43,28 @@ import { GotoTop } from '../components/GotoTop';
 
 const Home = ({ navigation }) => {
   const scrollViewRef = useRef(null);
-  const [indiaData, setIndiaData] = useState(null);
+  const [uttrakhandData, setUttrakhandData] = useState(null);
   const [loading, setLoading] = useState(null);
-  const [maharashtraData, setMaharashtraData] = useState(null);
+  const [uttarpradeshData, setUttarpradeshData] = useState(null);
   const [electionsData, setElectionsData] = useState(null);
-  const [worldData, setWorldData] = useState(null);
+  const [internationalData, setInternationalData] = useState(null);
   const [sportsData, setSportsData] = useState(null);
   const [lifestyleData, setLifestyleData] = useState(null);
   const [specialData, setSpecialData] = useState(null);
   const [moviesData, setMoviesData] = useState(null);
-  const [viralData, setViralData] = useState(null);
+  const [nationalData, setNationalData] = useState(null);
   const [businessData, setBusinessData] = useState(null);
-  const [automobileData, setAutomobileData] = useState(null);
+  const [bureaucracyData, setBureaucracyData] = useState(null);
   const [technologyData, setTechnologyData] = useState(null);
-  const [religionData, setReligionData] = useState(null);
-  const [careerData, setCareerData] = useState(null);
-  const [travelData, setTravelData] = useState(null);
+  const [politicsData, setPoliticsData] = useState(null);
+  const [jobsData, setJobsData] = useState(null);
+  const [crimeData, setCrimeData] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [showGoToTop, setShowGoToTop] = useState(false);
 
   const dispatch = useDispatch();
   const sliderData = useSelector(state => state.sliderReducer.sliderData);
   const videosData = useSelector(state => state.videoReducer.videosData);
-  const photosData = useSelector(state => state.photosGalleryReducer.photosData);
 
   const handleScroll = (event) => {
     const offsetY = event.nativeEvent.contentOffset.y;
@@ -67,67 +75,77 @@ const Home = ({ navigation }) => {
     scrollViewRef.current?.scrollTo({ y: 0, animated: true });
   };
 
-  const getIndiaAction = async () => {
+
+  const getNationalAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + India);
+      const response = await fetch(BaseUrl + CategoryUrl + National);
       const responseJson = await response.json();
-      setIndiaData(responseJson);
+      setNationalData(responseJson);
     } catch (error) {
-      console.error('Error fetching India data:', error);
+      console.error('Error fetching getNationalNationalAction data:', error);
     }
   };
-  const getMaharashtraAction = async () => {
+  const getUttarpradeshAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + Maharashtra);
+      const response = await fetch(BaseUrl + CategoryUrl + Uttarpradesh);
       const responseJson = await response.json();
-      setMaharashtraData(responseJson);
+      setUttarpradeshData(responseJson);
     } catch (error) {
-      console.error('Error fetching maharashtra data in home:', error);
+      console.error('Error fetching Uttarpradesh data in home:', error);
     }
   };
-  const getElectionsAction = async () => {
+  const getBureaucracyAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + Elections);
+      const response = await fetch(BaseUrl + CategoryUrl + Bureaucracy);
       const responseJson = await response.json();
-      setElectionsData(responseJson);
+      setBureaucracyData(responseJson);
     } catch (error) {
-      console.error('Error fetching Elections data:', error);
+      console.error('Error fetching bureaucracy data:', error);
     }
   };
-  const getWorldAction = async () => {
+  const getInternationalAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + World);
+      const response = await fetch(BaseUrl + CategoryUrl + International);
       const responseJson = await response.json();
-      setWorldData(responseJson);
+      setInternationalData(responseJson);
     } catch (error) {
-      console.error('Error fetching World data:', error);
+      console.error('Error fetching international data:', error);
     }
   };
-  const getSportsAction = async () => {
+  const getPoliticsAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + Sports);
+      const response = await fetch(BaseUrl + CategoryUrl + Politics);
       const responseJson = await response.json();
-      setSportsData(responseJson);
+      setPoliticsData(responseJson);
     } catch (error) {
-      console.error('Error fetching Sports data:', error);
+      console.error('Error fetching politics data:', error);
     }
   };
-  const getLifestyleAction = async () => {
+  const getUttrakhandAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + Lifestyle);
+      const response = await fetch(BaseUrl + CategoryUrl + Uttrakhand);
       const responseJson = await response.json();
-      setLifestyleData(responseJson);
+      setUttrakhandData(responseJson);
     } catch (error) {
-      console.error('Error fetching Lifestyle data:', error);
+      console.error('Error fetching Uttrakhand data:', error);
     }
   };
-  const getSpecialAction = async () => {
+  const getJobsAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + Special);
+      const response = await fetch(BaseUrl + CategoryUrl + Jobs);
       const responseJson = await response.json();
-      setSpecialData(responseJson);
+      setJobsData(responseJson);
     } catch (error) {
-      console.error('Error fetching Special data:', error);
+      console.error('Error fetching jobs data:', error);
+    }
+  };
+  const getCrimeAction = async () => {
+    try {
+      const response = await fetch(BaseUrl + CategoryUrl + Crime);
+      const responseJson = await response.json();
+      setCrimeData(responseJson);
+    } catch (error) {
+      console.error('Error fetching crime data:', error);
     }
   };
   const getMoviesAction = async () => {
@@ -139,15 +157,6 @@ const Home = ({ navigation }) => {
       console.error('Error fetching getMoviesAction data:', error);
     }
   };
-  const getViralAction = async () => {
-    try {
-      const response = await fetch(BaseUrl + CategoryUrl + Viral);
-      const responseJson = await response.json();
-      setViralData(responseJson);
-    } catch (error) {
-      console.error('Error fetching getViralAction data:', error);
-    }
-  };
   const getBusinessAction = async () => {
     try {
       const response = await fetch(BaseUrl + CategoryUrl + Business);
@@ -157,13 +166,13 @@ const Home = ({ navigation }) => {
       console.error('Error fetching getBusinessAction data:', error);
     }
   };
-  const getAutomobileAction = async () => {
+  const getSportsAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + Automobile);
+      const response = await fetch(BaseUrl + CategoryUrl + Sports);
       const responseJson = await response.json();
-      setAutomobileData(responseJson);
+      setSportsData(responseJson);
     } catch (error) {
-      console.error('Error fetching getAutomobileAction data:', error);
+      console.error('Error fetching Sports data:', error);
     }
   };
   const getTechnologyAction = async () => {
@@ -175,75 +184,41 @@ const Home = ({ navigation }) => {
       console.error('Error fetching getTechnologyAction data:', error);
     }
   };
-  const getReligionAction = async () => {
-    try {
-      const response = await fetch(BaseUrl + CategoryUrl + Religion);
-      const responseJson = await response.json();
-      setReligionData(responseJson);
-    } catch (error) {
-      console.error('Error fetching getReligionAction data:', error);
-    }
-  };
-  const getCareerAction = async () => {
-    try {
-      const response = await fetch(BaseUrl + CategoryUrl + Carrer);
-      const responseJson = await response.json();
-      setCareerData(responseJson);
-    } catch (error) {
-      console.error('Error fetching getCareerAction data:', error);
-    }
-  };
-  const getTravelAction = async () => {
-    try {
-      const response = await fetch(BaseUrl + CategoryUrl + Travel);
-      const responseJson = await response.json();
-      setTravelData(responseJson);
-    } catch (error) {
-      console.error('Error fetching getTravelAction data:', error);
-    }
-  };
 
   const onRefresh = () => {
     setRefreshing(true);
     dispatch(getSliderAction());
     dispatch(getVideoAction());
-    dispatch(getPhotoGalleryAction());
-    getIndiaAction();
-    getMaharashtraAction();
-    getElectionsAction();
-    getWorldAction();
-    getSportsAction();
-    getLifestyleAction();
-    getSpecialAction();
+    getNationalAction();
+    getUttarpradeshAction();
+    getUttrakhandAction();
+    getInternationalAction();
+    getBureaucracyAction();
+    getPoliticsAction();
+    getJobsAction();
+    getCrimeAction();
     getMoviesAction();
-    getViralAction();
     getBusinessAction();
-    getAutomobileAction();
+    getSportsAction();
     getTechnologyAction();
-    getReligionAction();
-    getCareerAction();
-    getTravelAction();
     setTimeout(() => setRefreshing(false), 3000);
   };
 
   useEffect(() => {
-    getIndiaAction();
-    getMaharashtraAction();
-    getElectionsAction();
-    getWorldAction();
-    getSportsAction();
-    getLifestyleAction();
-    getSpecialAction();
+    getNationalAction();
+    getUttarpradeshAction();
+    getUttrakhandAction();
+    getInternationalAction();
+    getBureaucracyAction();
+    getPoliticsAction();
+    getJobsAction();
+    getCrimeAction();
     getMoviesAction();
-    getViralAction();
     getBusinessAction();
-    getAutomobileAction();
+    getSportsAction();
     getTechnologyAction();
-    getReligionAction();
-    getCareerAction();
-    getTravelAction();
-
   }, []);
+
   const videoGalleryitemOne = ({ item, index }) => (
     <HomeVideosgalleryItemOne
       item={item}
@@ -260,14 +235,7 @@ const Home = ({ navigation }) => {
       index={index}
     />
   );
-  const photoGalleryItemTwo = ({ item, index }) => (
-    <HomePhotogalleryItemTwo
-      item={item}
-      propsdata={photosData?.data}
-      navigation={navigation}
-      index={index}
-    />
-  );
+
   const newsliderdata = Array.isArray(sliderData?.data) ? sliderData?.data : [];
 
   return (
@@ -288,14 +256,14 @@ const Home = ({ navigation }) => {
         <Trending />
 
         {/* Breaking News */}
-        <TopNews navigation={navigation} />
+        {/* <TopNews navigation={navigation} /> */}
 
         {/* Slider */}
         {/* <View style={{ paddingLeft: 12, paddingTop: 12 }}> */}
         <SliderUI
           data={newsliderdata}
           navigation={navigation}
-          categoryName="दिन की खबरें"
+          categoryName="बड़ी खबर"
           navigationScreen="Latest"
 
         />
@@ -307,27 +275,99 @@ const Home = ({ navigation }) => {
         </View>
 
 
-        {/* Viral */}
+        {/* National */}
         <HomeUINew
-          categoryName="वायरल"
-          data={viralData?.data}
-          navigationScreen="Viral"
+          categoryName="राष्ट्रीय"
+          data={nationalData?.data}
+          navigationScreen="National"
+          navigation={navigation}
+        />
+        {/* uttar-pradesh */}
+        <HomeUINew
+          categoryName="उत्तर प्रदेश"
+          data={uttarpradeshData?.data}
+          navigationScreen="uttar-pradesh"
           navigation={navigation}
         />
 
-        {/* Special */}
+        {/* Uttrakhand */}
         <HomeUI
-          categoryName="नवभारत विशेष"
-          data={specialData?.data}
-          navigationScreen="special-coverage"
+          categoryName="उत्तराखंड"
+          data={uttrakhandData?.data}
+          navigationScreen="uttrakhand"
+          navigation={navigation}
+        />
+        {/* international */}
+        <HomeUINew
+          categoryName="अंतर्राष्ट्रीय"
+          data={internationalData?.data}
+          navigationScreen="international"
           navigation={navigation}
         />
 
+        {/* bureaucracy */}
+        <HomeUINew
+          categoryName="ब्यूरोक्रेसी"
+          data={bureaucracyData?.data}
+          navigationScreen="bureaucracy"
+          navigation={navigation}
+        />
+        {/* politics */}
+        <HomeUI
+          categoryName="राजनीति"
+          data={politicsData?.data}
+          navigationScreen="politics"
+          navigation={navigation}
+        />
+        {/* jobs */}
+        <HomeUINew
+          categoryName="नौकरी"
+          data={jobsData?.data}
+          navigationScreen="jobs"
+          navigation={navigation}
+        />
+        {/* crime */}
+        <HomeUINew
+          categoryName="क्राइम"
+          data={crimeData?.data}
+          navigationScreen="crime"
+          navigation={navigation}
+        />
+
+        {/* Movies */}
+        <HomeUI
+          categoryName="मनोरंजन"
+          data={moviesData?.data}
+          navigationScreen="entertainment"
+          navigation={navigation}
+        />
+        {/* Business */}
+        <HomeUINew
+          categoryName="बिज़नेस"
+          data={businessData?.data}
+          navigationScreen="Business"
+          navigation={navigation}
+        />
+        {/* Sports */}
+        <HomeUINew
+          categoryName="खेल"
+          data={sportsData?.data}
+          navigationScreen="Sports"
+          navigation={navigation}
+        />
+
+        {/* Technology */}
+        <HomeUI
+          categoryName="टेक्नॉलजी"
+          data={technologyData?.data}
+          navigationScreen="Technology"
+          navigation={navigation}
+        />
         {/* videos Gallery */}
         {/* videos gallery  text */}
         <View style={commonstyles.homeVideoview}>
           <View style={commonstyles.homegallerycategoryView}>
-            <View style={commonstyles.homeOnetextView}>
+            <View style={{}}>
               <Text style={commonstyles.homevideocategorytext}>वीडियो</Text>
             </View>
             <View style={{ marginRight: 5 }}>
@@ -335,7 +375,9 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate('Videos');
                 }}>
-                <Image style={commonstyles.actionIconSize} source={require('../Assets/Images/next_white.png')} />
+                {/* <Image style={commonstyles.actionIconSize} source={require('../Assets/Images/next_white.png')} /> */}
+                <Text style={{ color: whitecolor, fontWeight: '500', fontSize: 16 }}>और पढ़ें</Text>
+
               </Ripple>
             </View>
           </View>
@@ -359,124 +401,6 @@ const Home = ({ navigation }) => {
             </View></> : <ActivityIndicator size={"large"} style={{ paddingVertical: 12 }} />}
         </View>
 
-        {/* Movies */}
-        <HomeUI
-          categoryName="मनोरंजन"
-          data={moviesData?.data}
-          navigationScreen="entertainment"
-          navigation={navigation}
-        />
-
-        {/* Sports */}
-        <HomeUI
-          categoryName="खेल"
-          data={sportsData?.data}
-          navigationScreen="Sports"
-          navigation={navigation}
-        />
-
-        {/* Photo Gallery */}
-        {/* photo gallery  Cards*/}
-        <View style={commonstyles.homeVideoview}>
-          <View style={commonstyles.homegallerycategoryView}>
-            <View style={commonstyles.homeOnetextView}>
-              <Text style={commonstyles.homevideocategorytext}>फोटो</Text>
-            </View>
-            <Ripple
-              onPress={() => {
-                navigation.push('Photos');
-              }}>
-              <Image style={commonstyles.actionIconSize} source={require('../Assets/Images/next_white.png')} />
-            </Ripple>
-          </View>
-          {/* photo gallery  Cards*/}
-          <View style={{ paddingLeft: 12, marginTop: 5 }}>
-            {photosData?.data?.length > 0 ? <FlatList
-              persistentScrollbar
-              data={photosData?.data}
-              showsHorizontalScrollIndicator={true}
-              horizontal={true}
-              renderItem={photoGalleryItemTwo}
-            /> : <ActivityIndicator size={'large'} style={{ paddingVertical: 12 }} />}
-          </View>
-        </View>
-
-        {/* lifestyle */}
-        <HomeUINew
-          categoryName="लाइफ़स्टाइल"
-          data={lifestyleData?.data}
-          navigationScreen="Lifestyle"
-          navigation={navigation}
-        />
-
-        {/* Technology */}
-        <HomeUI
-          categoryName="टेक्नॉलजी"
-          data={technologyData?.data}
-          navigationScreen="Technology"
-          navigation={navigation}
-        />
-
-        {/* India */}
-        <HomeUI
-          categoryName="देश"
-          data={indiaData?.data}
-          navigationScreen="india"
-          navigation={navigation}
-        />
-
-        {/* Maharashtra */}
-        <HomeUINew
-          categoryName="महाराष्ट्र"
-          data={maharashtraData?.data}
-          navigationScreen="Maharashtra"
-          navigation={navigation}
-        />
-
-        {/* world */}
-        <HomeUINew
-          categoryName="विदेश"
-          data={worldData?.data}
-          navigationScreen="World"
-          navigation={navigation}
-        />
-
-        {/* Business */}
-        <HomeUI
-          categoryName="बिज़नेस"
-          data={businessData?.data}
-          navigationScreen="Business"
-          navigation={navigation}
-        />
-        {/* Automobile */}
-        <HomeUINew
-          categoryName="ऑटोमोबाइल"
-          data={automobileData?.data}
-          navigationScreen="Automobile"
-          navigation={navigation}
-        />
-
-        {/* Religion */}
-        <HomeUINew
-          categoryName="धर्म"
-          data={religionData?.data}
-          navigationScreen="Religion"
-          navigation={navigation}
-        />
-        {/* Career */}
-        <HomeUI
-          categoryName="करियर"
-          data={careerData?.data}
-          navigationScreen="Career"
-          navigation={navigation}
-        />
-        {/* Travel */}
-        <HomeUINew
-          categoryName="टूर एंड ट्रैवल"
-          data={travelData?.data}
-          navigationScreen="Travel"
-          navigation={navigation}
-        />
       </ScrollView>
       {showGoToTop && (
         <GotoTop handleClick={scrollToTop} />

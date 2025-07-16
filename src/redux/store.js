@@ -19,7 +19,6 @@ import electionsReducer from './reducers/electionsReducer';
 import worldReducer from './reducers/worldReducer';
 import lifestyleReducer from './reducers/lifestyleReducer';
 import travelReducer from './reducers/travelReducer';
-import viralReducer from './reducers/viralReducer';
 import careerReducer from './reducers/careerReducer';
 import religionReducer from './reducers/religionReducer';
 import technologyReducer from './reducers/technologyReducer';
@@ -28,12 +27,16 @@ import specialReducer from './reducers/specialReducer';
 import ganeshReducer from './reducers/ganeshReducer';
 import trendingReducer from './reducers/trendingReducer';
 
+import nationalReducer from './reducers/nationalReducer';
+
 
 
 const rootReducer = combineReducers({
-    tab: tabReducer, sliderReducer,automobileReducer,electionsReducer,worldReducer,
+    tab: tabReducer, sliderReducer,nationalReducer,
+    
+    automobileReducer,electionsReducer,worldReducer,
     sportsReducer, businessReducer, relatedReducer,lifestyleReducer,travelReducer,
-    photosGalleryReducer, maharashtraReducer,viralReducer,careerReducer,
+    photosGalleryReducer, maharashtraReducer,careerReducer,
     videoReducer, indiaReducer,religionReducer,technologyReducer,moviesReducer,
     articleDetailReducer, webstoriesReducer,specialReducer,
     topMenuDataReducer, categoryReducer,ganeshReducer, trendingReducer

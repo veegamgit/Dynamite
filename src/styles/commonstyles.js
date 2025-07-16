@@ -332,10 +332,11 @@ export const commonstyles = StyleSheet.create({
     paddingBottom: 12,
   },
   galleryArticlecategorytext: {
-    color: blackcolor,
+    color: bluecolor,
     fontSize: 20,
     paddingLeft: 10,
     fontFamily: 'Mukta-Bold',
+    fontWeight: '700',
   },
   latestTxtTag: {
     color: blackcolor,
@@ -448,12 +449,12 @@ export const commonstyles = StyleSheet.create({
     marginBottom: 12,
   },
   Category: {
-    color: blackcolor,
+    color: bluecolor,
     fontFamily: 'Mukta-Bold',
     fontSize: 20,
-    marginLeft: 12,
+    // marginLeft: 12,
     lineHeight: 32,
-    // fontWeight: '700',
+    fontWeight: '700',
   },
   homeNextImage: {
     right: 4,
@@ -815,8 +816,8 @@ export const commonstyles = StyleSheet.create({
   },
   DetailTimeMainView: {
     flexDirection: 'row',
-    borderLeftColor: bluecolor,
-    borderLeftWidth: 6,
+    // borderLeftColor: bluecolor,
+    // borderLeftWidth: 6,
     justifyContent: 'space-between',
     paddingLeft: 6,
     alignItems: 'center',
@@ -872,7 +873,7 @@ export const commonstyles = StyleSheet.create({
   shareIcon: { width: 16, height: 16 },
   iconPress: { padding: 4, borderRadius: 12 },
   actionIconSize: { width: 22, height: 22 },
-  seealltext:{color:blackcolor,fontWeight:'500'},
+  seealltext:{color:bluecolor,fontWeight:'500',fontSize:16},
   iconRipple: { padding: 12 },
   noNextArticles: {
     fontSize: 16,

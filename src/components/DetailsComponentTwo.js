@@ -17,7 +17,7 @@ const DetailsComponentTwo = ({ item, navigation, propsdata }) => {
       .catch((error) => console.log(error));
   };
 
-  const defaultImage = require('../Assets/Images/no_image.jpeg');
+  const defaultImage = require('../Assets/Images/noimage.png');
   const imageUrl = item?.web_featured_image
     ? { uri: item?.web_featured_image }
     : defaultImage;

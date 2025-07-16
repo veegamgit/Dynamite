@@ -30,7 +30,7 @@ export const TopicItems = ({navigation, tags, categoryName}) => {
 
   return (
     <View style={styles.tagContainer}>
-      <View style={[commonstyles.homeOnetextView, commonstyles.sectionTitle]}>
+      <View style={[commonstyles.sectionTitle]}>
         <Text style={commonstyles.Category}>Topics</Text>
       </View>
       {loading ? (

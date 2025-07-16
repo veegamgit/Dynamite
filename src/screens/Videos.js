@@ -40,7 +40,7 @@ const Videos = ({navigation, videosData, videosLoading,categoryName}) => {
       <SafeAreaView style={commonstyles.container}>
         <View
           style={[
-            commonstyles.homeOnetextView,
+            
             {marginLeft: 12, marginVertical: 8},
           ]}>
           <Text style={commonstyles.galleryArticlecategorytext}>

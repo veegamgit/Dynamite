@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 // staging
 // Live
-export const BaseUrl = 'https://navbharatlive.com/wp-json/navbharatlive/v1/';
+export const BaseUrl = 'https://hindi.dynamitenews.com/wp-json/dynamite/v1/';
+export const BaseUrlEnglish = 'https://www.dynamitenews.com/wp-json/dynamite/v1/'
 // export const BaseUrl = 'https://betahindi.dynamitenews.com/wp-json/dynamite/v1/';
 
 export const ShareUrl = 'https://navbharatlive.com/';
@@ -19,21 +20,22 @@ export const authorUrl = 'author-posts';
 export const trendingUrl = 'trending';
 
 // categories
-export const India = 'india';
-export const Maharashtra = 'maharashtra';
+export const National = 'national';
+export const Uttarpradesh = 'uttar-pradesh';
+export const Uttrakhand = 'uttrakhand';
+export const International = 'international';
+export const Bureaucracy = 'bureaucracy';
+export const Politics = 'politics';
+export const Jobs = 'jobs';
+export const Crime ='crime';
+
 export const Elections = 'elections';
-export const World = 'world';
 export const Sports = 'sports';
 export const Lifestyle = 'lifestyle';
-export const Special = 'special-coverage';
+export const Special = 'special-news';
 export const Movies = 'movies';
-export const Viral = 'viral';
 export const Business = 'business';
-export const Automobile = 'automobile';
 export const Technology = 'technology';
-export const Religion = 'religion';
-export const Carrer = 'career';
-export const Travel ='travel';
 export const Videos = 'videos';
 export const Photos = 'photos'
 export const Ganesh = 'ganesh-chaturthi';

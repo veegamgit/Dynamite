@@ -26,7 +26,7 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
     setLoadingMore(true);
     try {
       const category = route.params?.isCategoryClicked ? route.params?.url : item?.url;
-      const url = `https://www.navbharatlive.com/wp-json/navbharatlive/v1/category-posts?category=${category}&limit=${limit}&offset=${offset}`;
+      const url = `https://hindi.dynamitenews.com/wp-json/dynamite/v1/category-posts?category=${category}&limit=${limit}&offset=${offset}`;
 
       const response = await fetch(url);
       const jsonData = await response.json();

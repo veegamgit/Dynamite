@@ -209,11 +209,11 @@ export const NewWebStories = React.memo(() => {
 
   return (
     <>
-      <View style={commonstyles.homeOnetextView}>
+      <View style={{}}>
         <Text style={commonstyles.Category}>वेब स्टोरीज़</Text>
       </View>
       {loading ? (
-        <ActivityIndicator size={'large'} color={'pink'} />
+        <ActivityIndicator size={'large'} color={bluecolor} />
       ) : (
         <FlatList
           data={storiesData}

@@ -136,7 +136,7 @@ const Details = ({ navigation, route }) => {
       .catch(error => console.log(error));
   };
 
-  const defaultImage = require('../Assets/Images/no_image.jpeg');
+  const defaultImage = require('../Assets/Images/noimage.png');
   const imageUrl = firstArticle?.web_featured_image
     ? { uri: firstArticle?.web_featured_image }
     : defaultImage;
@@ -380,7 +380,7 @@ const Details = ({ navigation, route }) => {
         <TopicItems navigation={navigation} tags={tags} categoryName={firstArticle?.category_name} />
 
         {/* Next Article */}
-        <View
+        {/* <View
           style={{
             borderBottomColor: graycolor,
             borderBottomWidth: 2,
@@ -408,12 +408,12 @@ const Details = ({ navigation, route }) => {
               No Next Articles
             </Text>
           )}
-        </View>
+        </View> */}
 
         {/* Related News */}
         <View>
-          <View style={[commonstyles.homeOnetextView, commonstyles.sectionTitle]}>
-            <Text style={commonstyles.Category}>सम्बंधित ख़बरें</Text>
+          <View style={[commonstyles.sectionTitle]}>
+            <Text style={commonstyles.Category}>Related News</Text>
           </View>
           <View style={{ paddingHorizontal: 12 }}>
             <FlatList

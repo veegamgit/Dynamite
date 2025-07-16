@@ -6,6 +6,7 @@ import {
   whitecolor,
   Header_text,
   dark_blue,
+  bluecolor,
 } from '../styles/commonstyles';
 
 export const HeaderStyle = StyleSheet.create({
@@ -71,7 +72,7 @@ export const HeaderStyle = StyleSheet.create({
     marginTop: 5,
   },
   subHeaderheading: {
-    color: blackcolor,
+    color: bluecolor,
     fontSize: 20,
     flexWrap: 'wrap',
     textAlign: 'center',

@@ -4,7 +4,7 @@ import {
   GET_MAHARSHTRA,
   GET_MAHARSHTRA_SUCCESS,
   GET_MAHARSHTRA_ERROR,
-} from '../actions/getMaharashtraAction';
+} from '../actions/getUttarpradeshAction';
 
 const initialState = {
   maharashtraData: [],

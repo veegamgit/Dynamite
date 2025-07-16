@@ -8,7 +8,7 @@ import moment from 'moment';
 
 class HomeComponentFour extends React.PureComponent {
   render() {
-    const defaultImage = require('../Assets/Images/no_image.jpeg');
+    const defaultImage = require('../Assets/Images/noimage.png');
     const imageUrl = this.props?.item?.web_featured_image
       ? {uri: this.props?.item?.web_featured_image}
       : defaultImage;

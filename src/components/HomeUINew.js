@@ -9,7 +9,7 @@ import {
   Image,
   ActivityIndicator
 } from 'react-native';
-import { blackcolor, commonstyles } from '../styles/commonstyles';
+import { blackcolor, bluecolor, commonstyles } from '../styles/commonstyles';
 import HomeComponentFour from './HomeComponentFour';
 import HomeComponentThree from './HomeComponentThree';
 import Ripple from 'react-native-material-ripple';
@@ -43,7 +43,7 @@ function HomeUINew(props) {
       <View style={{ paddingHorizontal: 12, marginTop: 16 }}>
         {/* Category text */}
         <View style={commonstyles.homecategoryView}>
-          <View style={commonstyles.homeOnetextView}>
+          <View style={{}}>
             <Text style={commonstyles.Category}>{props?.categoryName}</Text>
           </View>
           <Ripple
@@ -54,12 +54,12 @@ function HomeUINew(props) {
                   isCategoryClicked: true
                 })
               }}>
-              <Image
+              {/* <Image
                 style={commonstyles.actionIconSize}
                 source={require('../Assets/Images/next.png')}
-              />
+              /> */}
               {/* <View style={{}}> */}
-            {/* <Text style={commonstyles.seealltext}>See All</Text> */}
+            <Text style={commonstyles.seealltext}>और पढ़ें</Text>
           {/* </View> */}
             </Ripple>
         </View>
@@ -89,7 +89,7 @@ function HomeUINew(props) {
             })}
             renderItem={renderItemTwo}
           />
-        </View> : <ActivityIndicator size={'large'} color={'pink'}style={{paddingVertical: 12}} />}
+        </View> : <ActivityIndicator size={'large'} color={bluecolor}style={{paddingVertical: 12}} />}
       </View>
     </SafeAreaView>
   );

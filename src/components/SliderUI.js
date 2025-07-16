@@ -8,7 +8,7 @@ import {
     ActivityIndicator,
     Image,
 } from 'react-native';
-import { commonstyles } from '../styles/commonstyles';
+import { bluecolor, commonstyles } from '../styles/commonstyles';
 import Ripple from 'react-native-material-ripple';
 import HomeComponentOne from './HomeComponentOne';
 import HomeComponentTwo from './HomeComponentTwo';
@@ -38,8 +38,8 @@ function SliderUI(props) {
         <SafeAreaView styles={commonstyles.container}>
 
             <View style={{ paddingHorizontal: 12, marginTop: 16 }}>
-                <View style={[commonstyles.homeOnetextView,{marginBottom: 8}]}>
-                    <Text style={commonstyles.Category}>दिन की खबरें</Text>
+                <View style={{marginBottom: 8}}>
+                    <Text style={commonstyles.Category}>बड़ी खबर</Text>
                 </View>
                          
 
@@ -69,7 +69,7 @@ function SliderUI(props) {
                         })}
                         renderItem={renderItemTwo}
                     />
-                </View> : <ActivityIndicator size={'large'} color={'pink'}style={{ paddingVertical: 12 }} />}
+                </View> : <ActivityIndicator size={'large'} color={bluecolor}style={{ paddingVertical: 12 }} />}
             </View>
         </SafeAreaView>
     );
