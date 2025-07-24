@@ -79,8 +79,8 @@ export const HeaderStyle = StyleSheet.create({
     fontWeight: 'bold',
   },
   HeadTitleImg: {
-    height: 50,
-    width: 100,
+    height: 70,
+    width: 130,
   },
   headerLeftView: {
     justifyContent: 'center',

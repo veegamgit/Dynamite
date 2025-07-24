@@ -1,4 +1,4 @@
-package com.dynamite
+package com.altware.dynamitenews;
 
 import android.app.Application
 import com.facebook.react.PackageList

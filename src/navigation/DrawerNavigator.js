@@ -48,40 +48,40 @@ const DrawerNavigator = () => {
           headerStyle: {
             backgroundColor: whitecolor,
           },
-          headerRight: () => (
-            <View style={HeaderStyle.HeadRightView}>
-              <HandlePressable
-                style={{
-                  flexDirection: 'row', borderRadius: 5, justifyContent: 'center',
-                  alignItems: 'center', paddingHorizontal: 10, paddingVertical: 4, backgroundColor: bluecolor
-                }}
-                onPress={toggleDropdown}>
-                <Image
-                  style={[HeaderStyle.HeadRightpaperImg]}
-                  source={require('../Assets/Images/translate.png')}
-                />
-                <Text style={{
-                  color: whitecolor, fontSize: 12, fontWeight: '700',
-                  fontFamily: 'Mukta-SemiBold', marginLeft: 5, marginRight: 5
-                }}>{selectedLanguage}</Text>
-                <Image
-                  style={[HeaderStyle.HeadRightarrowImg]}
-                  source={require('../Assets/Images/arrow-down.png')}
-                />
-              </HandlePressable>
-              {showDropdown && (
-        <View style={styles.dropdown}>
-          <TouchableOpacity onPress={() => handleLanguageSelect('हिंदी')}>
-            <Text style={styles.dropdownItem}>हिंदी</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleLanguageSelect('ENGLISH')}>
-            <Text style={styles.dropdownItem}>ENGLISH</Text>
-          </TouchableOpacity>
+      //     headerRight: () => (
+      //       <View style={HeaderStyle.HeadRightView}>
+      //         <HandlePressable
+      //           style={{
+      //             flexDirection: 'row', borderRadius: 5, justifyContent: 'center',
+      //             alignItems: 'center', paddingHorizontal: 10, paddingVertical: 4, backgroundColor: bluecolor
+      //           }}
+      //           onPress={toggleDropdown}>
+      //           <Image
+      //             style={[HeaderStyle.HeadRightpaperImg]}
+      //             source={require('../Assets/Images/translate.png')}
+      //           />
+      //           <Text style={{
+      //             color: whitecolor, fontSize: 12, fontWeight: '700',
+      //             fontFamily: 'Mukta-SemiBold', marginLeft: 5, marginRight: 5
+      //           }}>{selectedLanguage}</Text>
+      //           <Image
+      //             style={[HeaderStyle.HeadRightarrowImg]}
+      //             source={require('../Assets/Images/arrow-down.png')}
+      //           />
+      //         </HandlePressable>
+      //         {showDropdown && (
+      //   <View style={styles.dropdown}>
+      //     <TouchableOpacity onPress={() => handleLanguageSelect('हिंदी')}>
+      //       <Text style={styles.dropdownItem}>हिंदी</Text>
+      //     </TouchableOpacity>
+      //     <TouchableOpacity onPress={() => handleLanguageSelect('ENGLISH')}>
+      //       <Text style={styles.dropdownItem}>ENGLISH</Text>
+      //     </TouchableOpacity>
           
-        </View>
-      )}
-            </View>
-          ),
+      //   </View>
+      // )}
+      //       </View>
+      //     ),
           headerLeft: () => (
             <View style={HeaderStyle.headerLeftView}>
               <HandlePressable

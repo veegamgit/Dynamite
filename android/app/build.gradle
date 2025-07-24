@@ -74,9 +74,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.dynamite"
+    namespace "com.altware.dynamitenews"
     defaultConfig {
-        applicationId "com.dynamite"
+        applicationId "com.altware.dynamitenews"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

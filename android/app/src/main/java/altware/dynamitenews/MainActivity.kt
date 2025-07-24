@@ -1,4 +1,4 @@
-package com.dynamite
+package com.altware.dynamitenews;
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

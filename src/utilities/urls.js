@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-// staging
 // Live
 export const BaseUrl = 'https://hindi.dynamitenews.com/wp-json/dynamite/v1/';
 export const BaseUrlEnglish = 'https://www.dynamitenews.com/wp-json/dynamite/v1/'

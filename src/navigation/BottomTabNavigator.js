@@ -156,7 +156,7 @@ const BottomTabNavigator = () => {
         }}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name="LNStack"
         component={LNStackScreen}
         listeners={({ navigation }) => ({
@@ -183,7 +183,7 @@ const BottomTabNavigator = () => {
           tabBarActiveTintColor: bluecolor,
           tabBarInactiveTintColor: whitecolor,
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Shorts"
         component={ShortsScreen}
@@ -220,7 +220,7 @@ const BottomTabNavigator = () => {
           )
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="PTStack"
         component={PhotoStackScreen}
         listeners={({ navigation }) => ({
@@ -247,7 +247,7 @@ const BottomTabNavigator = () => {
           tabBarActiveTintColor: bluecolor,
           tabBarInactiveTintColor: whitecolor,
         }}
-      />
+      /> */}
       <Tab.Screen
         name="VDStack"
         component={VideoStackScreen}

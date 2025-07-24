@@ -60,7 +60,7 @@ function SliderUI(props) {
                     <FlatList
                         showsHorizontalScrollIndicator={false}
                         persistentScrollbar={false}
-                        data={newdata?.slice(1, 5)}
+                        data={newdata?.slice(1, -1)}
                         onEndReachedThreshold={50}
                         getItemLayout={(data, index) => ({
                             length: 40,
