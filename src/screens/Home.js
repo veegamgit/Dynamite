@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState, useRef} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {
   View,
@@ -13,10 +13,7 @@ import {
   RefreshControl,
 } from 'react-native';
 
-import {
-  commonstyles,
-  whitecolor,
-} from '../styles/commonstyles';
+import {commonstyles, whitecolor} from '../styles/commonstyles';
 import HomeUI from '../components/HomeUI';
 import SliderUI from '../components/SliderUI';
 import HomeUINew from '../components/HomeUINew';
@@ -25,23 +22,32 @@ import HomeVideosgalleryItemOne from '../components/HomeVideosgalleryItemOne';
 import HomeVideosgalleryItemTwo from '../components/HomeVideosgalleryItemTwo';
 
 import {
-  BaseUrl, Business, CategoryUrl, Elections, Entertainment,
-  Lifestyle, Uttarpradesh,
-  Special, Sports, Technology, National, Uttrakhand,
+  BaseUrl,
+  Business,
+  CategoryUrl,
+  Elections,
+  Entertainment,
+  Lifestyle,
+  Uttarpradesh,
+  Special,
+  Sports,
+  Technology,
+  National,
+  Uttrakhand,
   International,
   Bureaucracy,
   Politics,
   Jobs,
-  Crime
+  Crime,
 } from '../utilities/urls';
 import getVideoAction from '../redux/actions/getVideoAction';
 import TopNews from '../components/TopNews';
 import Ripple from 'react-native-material-ripple';
 import Trending from '../components/Trending';
-import { NewWebStories } from '../components/NewWebStories';
-import { GotoTop } from '../components/GotoTop';
+import {NewWebStories} from '../components/NewWebStories';
+import {GotoTop} from '../components/GotoTop';
 
-const Home = ({ navigation }) => {
+const Home = ({navigation}) => {
   const scrollViewRef = useRef(null);
   const [uttrakhandData, setUttrakhandData] = useState(null);
   const [loading, setLoading] = useState(null);
@@ -66,15 +72,14 @@ const Home = ({ navigation }) => {
   const sliderData = useSelector(state => state.sliderReducer.sliderData);
   const videosData = useSelector(state => state.videoReducer.videosData);
 
-  const handleScroll = (event) => {
+  const handleScroll = event => {
     const offsetY = event.nativeEvent.contentOffset.y;
     setShowGoToTop(offsetY > 300);
   };
 
   const scrollToTop = () => {
-    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+    scrollViewRef.current?.scrollTo({y: 0, animated: true});
   };
-
 
   const getNationalAction = async () => {
     try {
@@ -219,7 +224,7 @@ const Home = ({ navigation }) => {
     getTechnologyAction();
   }, []);
 
-  const videoGalleryitemOne = ({ item, index }) => (
+  const videoGalleryitemOne = ({item, index}) => (
     <HomeVideosgalleryItemOne
       item={item}
       propsdata={videosData?.data}
@@ -227,7 +232,7 @@ const Home = ({ navigation }) => {
       index={index}
     />
   );
-  const videoGalleryitemTwo = ({ item, index }) => (
+  const videoGalleryitemTwo = ({item, index}) => (
     <HomeVideosgalleryItemTwo
       item={item}
       propsdata={videosData?.data}
@@ -239,9 +244,9 @@ const Home = ({ navigation }) => {
   const newsliderdata = Array.isArray(sliderData?.data) ? sliderData?.data : [];
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{flex: 1}}>
       <ScrollView
-        style={[commonstyles.scroll, { flex: 1, position: 'relative' }]}
+        style={[commonstyles.scroll, {flex: 1, position: 'relative'}]}
         ref={scrollViewRef}
         onScroll={handleScroll}
         scrollEventThrottle={16}
@@ -249,9 +254,7 @@ const Home = ({ navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         {/* Spinner */}
-        <Spinner
-          visible={loading}
-        />
+        <Spinner visible={loading} />
         {/* Trending */}
         <Trending />
 
@@ -265,15 +268,13 @@ const Home = ({ navigation }) => {
           navigation={navigation}
           categoryName="बड़ी खबर"
           navigationScreen="Latest"
-
         />
         {/* </View> */}
 
         {/* <WebStories /> */}
-        <View style={{ paddingLeft: 12, paddingTop: 12 }}>
+        <View style={{paddingLeft: 12, paddingTop: 12}}>
           <NewWebStories />
         </View>
-
 
         {/* National */}
         <HomeUINew
@@ -343,7 +344,7 @@ const Home = ({ navigation }) => {
         />
         {/* Business */}
         <HomeUINew
-          categoryName="बिज़नेस"
+          categoryName="बिजनेस"
           data={businessData?.data}
           navigationScreen="Business"
           navigation={navigation}
@@ -358,7 +359,7 @@ const Home = ({ navigation }) => {
 
         {/* Technology */}
         <HomeUI
-          categoryName="टेक्नॉलजी"
+          categoryName="टेक्नोलॉजी"
           data={technologyData?.data}
           navigationScreen="Technology"
           navigation={navigation}
@@ -370,41 +371,45 @@ const Home = ({ navigation }) => {
             <View style={{}}>
               <Text style={commonstyles.homevideocategorytext}>वीडियो</Text>
             </View>
-            <View style={{ marginRight: 5 }}>
+            <View style={{marginRight: 5}}>
               <Ripple
                 onPress={() => {
                   navigation.navigate('Videos');
                 }}>
                 {/* <Image style={commonstyles.actionIconSize} source={require('../Assets/Images/next_white.png')} /> */}
-                <Text style={{ color: whitecolor, fontWeight: '500', fontSize: 16 }}>और पढ़ें</Text>
-
+                <Text
+                  style={{color: whitecolor, fontWeight: '500', fontSize: 16}}>
+                  और पढ़ें
+                </Text>
               </Ripple>
             </View>
           </View>
 
           {/* videos gallery  Cards*/}
-          {videosData?.data?.length ? <>
-            <FlatList
-              data={videosData?.data?.slice(0, 1)}
-              showsHorizontalScrollIndicator={false}
-              renderItem={videoGalleryitemOne}
-              style={{ paddingHorizontal: 12, marginTop: 4 }}
-            />
-            <View style={{ paddingLeft: 12 }}>
+          {videosData?.data?.length ? (
+            <>
               <FlatList
-                persistentScrollbar
-                data={videosData?.data?.slice(1, 10)}
-                showsHorizontalScrollIndicator={true}
-                horizontal={true}
-                renderItem={videoGalleryitemTwo}
+                data={videosData?.data?.slice(0, 1)}
+                showsHorizontalScrollIndicator={false}
+                renderItem={videoGalleryitemOne}
+                style={{paddingHorizontal: 12, marginTop: 4}}
               />
-            </View></> : <ActivityIndicator size={"large"} style={{ paddingVertical: 12 }} />}
+              <View style={{paddingLeft: 12}}>
+                <FlatList
+                  persistentScrollbar
+                  data={videosData?.data?.slice(1, 10)}
+                  showsHorizontalScrollIndicator={true}
+                  horizontal={true}
+                  renderItem={videoGalleryitemTwo}
+                />
+              </View>
+            </>
+          ) : (
+            <ActivityIndicator size={'large'} style={{paddingVertical: 12}} />
+          )}
         </View>
-
       </ScrollView>
-      {showGoToTop && (
-        <GotoTop handleClick={scrollToTop} />
-      )}
+      {showGoToTop && <GotoTop handleClick={scrollToTop} />}
     </SafeAreaView>
   );
 };

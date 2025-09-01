@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -7,27 +7,23 @@ import {
   FlatList,
   Platform,
   Dimensions,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
-import {
-  blackcolor,
-  commonstyles,
-  graycolor,
-} from '../styles/commonstyles';
+import {blackcolor, commonstyles, graycolor} from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
-import { HeaderStyle } from '../styles/Header.Styles';
+import {HeaderStyle} from '../styles/Header.Styles';
 import moment from 'moment';
 import DetailsComponentTwo from '../components/DetailsComponentTwo';
 import DetailsComponentOne from '../components/DetailsComponentOne';
-import { BaseUrl, DetailsUrl, RelatedUrl } from '../utilities/urls';
+import {BaseUrl, DetailsUrl, RelatedUrl} from '../utilities/urls';
 import FastImage from 'react-native-fast-image';
-import { decode } from 'html-entities';
-import { ScrollView } from 'react-native-gesture-handler';
-import { TopicItems } from '../components/TopicItems';
+import {decode} from 'html-entities';
+import {ScrollView} from 'react-native-gesture-handler';
+import {TopicItems} from '../components/TopicItems';
 import Ripple from 'react-native-material-ripple';
 import HandlePressable from '../components/HandlePressable';
 
-const Details = ({ navigation, route }) => {
+const Details = ({navigation, route}) => {
   const [detailsData, setDetailsData] = useState([]);
   const Scrollref = useRef();
   const [fontSize, setFontSize] = useState(18);
@@ -87,14 +83,14 @@ const Details = ({ navigation, route }) => {
     }
   };
 
-  const renderItemOne = ({ item }) => (
+  const renderItemOne = ({item}) => (
     <DetailsComponentOne
       item={item}
       propsdata={detailsData}
       navigation={navigation}
     />
   );
-  const renderItemTwo = ({ item }) => (
+  const renderItemTwo = ({item}) => (
     <DetailsComponentTwo
       item={item}
       propsdata={relatedData?.data}
@@ -115,7 +111,7 @@ const Details = ({ navigation, route }) => {
   }, []);
 
   const goToTop = () => {
-    Scrollref.current.scrollTo({ x: 0, y: 0, animated: true });
+    Scrollref.current.scrollTo({x: 0, y: 0, animated: true});
   };
   useEffect(() => {
     goToTop();
@@ -138,7 +134,7 @@ const Details = ({ navigation, route }) => {
 
   const defaultImage = require('../Assets/Images/noimage.png');
   const imageUrl = firstArticle?.web_featured_image
-    ? { uri: firstArticle?.web_featured_image }
+    ? {uri: firstArticle?.web_featured_image}
     : defaultImage;
 
   const handleWebViewRequest = request => {
@@ -191,7 +187,7 @@ const Details = ({ navigation, route }) => {
   let source1 = source?.replace('lazyload', 'text/javascript');
 
   const apiDate = firstArticle?.date;
-  const formattedDate = moment(apiDate).format("MMM DD, YYYY | hh:mm A");
+  const formattedDate = moment(apiDate).format('MMM DD, YYYY | hh:mm A');
 
   const authorName = firstArticle?.author_slug;
 
@@ -203,22 +199,20 @@ const Details = ({ navigation, route }) => {
     }
   };
 
-  const handleTouchStart = (e) => {
+  const handleTouchStart = e => {
     e.preventDefault();
   };
 
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.DetailsHeader}>
-        <Ripple
-          onPress={handleGoBack}
-          style={commonstyles.iconRipple}>
+        <Ripple onPress={handleGoBack} style={commonstyles.iconRipple}>
           <Image
             source={require('../Assets/Images/arrow.png')}
             style={commonstyles.actionIconSize}
           />
         </Ripple>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Ripple onPress={toggleFontSize} style={commonstyles.iconRipple}>
             <Image
               style={commonstyles.actionIconSize}
@@ -240,24 +234,25 @@ const Details = ({ navigation, route }) => {
             borderBottomWidth: 2,
             paddingBottom: 12,
           }}>
-          <View style={{ paddingHorizontal: 12, paddingTop: 10 }}>
-            <Text
-              style={commonstyles.categoryText}>
+          <View style={{paddingHorizontal: 12, paddingTop: 10}}>
+            <Text style={commonstyles.categoryText}>
               {decode(firstArticle?.title?.rendered)}
             </Text>
-            <View
-              style={commonstyles.DetailTimeMainView}>
-              <Ripple onPress={() => {
-                navigation.push('Author', {
-                  url: authorName,
-                  screenName: 'latest',
-                })
-              }}>
+            <View style={commonstyles.DetailTimeMainView}>
+              <Ripple
+                onPress={() => {
+                  navigation.push('Author', {
+                    url: authorName,
+                    screenName: 'latest',
+                  });
+                }}>
                 <Text style={commonstyles.detailauthor}>
                   BY {firstArticle?.author_name}
                 </Text>
               </Ripple>
-              <Text style={commonstyles.detailTime}>Updated on: {formattedDate}</Text>
+              <Text style={commonstyles.detailTime}>
+                Updated on: {formattedDate}
+              </Text>
             </View>
           </View>
 
@@ -268,14 +263,18 @@ const Details = ({ navigation, route }) => {
           />
 
           <View>
-            {renderWebView &&
+            {renderWebView && (
               <AutoHeightWebView
                 javaScriptEnabled={true}
                 scalesPageToFit={false}
                 allowsFullscreenVideo={true}
                 overScrollMode="never"
                 onTouchStart={handleTouchStart}
-                style={{ marginHorizontal: 12, width: Dimensions.get('window').width - 24, opacity: 0.99 }}
+                style={{
+                  marginHorizontal: 12,
+                  width: Dimensions.get('window').width - 24,
+                  opacity: 0.99,
+                }}
                 customStyle={`
     iframe[title]{
       font-size: 16px;
@@ -346,8 +345,11 @@ const Details = ({ navigation, route }) => {
       p strong, span, p span { font-family: 'Faustina', sans-serif; }
       p, li { font-family: 'Faustina', sans-serif; line-height: 1.4; padding: 0px; color: #000; font-weight: 500; font-size: ${fontSize}px; }
     </style>
+        <script async src="https://www.instagram.com/embed.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   `,
-                  baseUrl: Platform.OS === 'android' ? 'https://twitter.com' : '',
+                  baseUrl:
+                    Platform.OS === 'android' ? 'https://twitter.com' : '',
                 }}
                 scrollEnabled={false}
                 onShouldStartLoadWithRequest={handleWebViewRequest}
@@ -361,15 +363,15 @@ const Details = ({ navigation, route }) => {
               `}
                 viewportContent={'width=device-width, user-scalable=no'}
               />
-            }
-
+            )}
           </View>
           {/* Published view */}
-          <View style={{
-            marginLeft: 12,
-            flexDirection: 'row',
-            marginTop: 10
-          }}>
+          <View
+            style={{
+              marginLeft: 12,
+              flexDirection: 'row',
+              marginTop: 10,
+            }}>
             <Text style={commonstyles.publishedtext}>Published on: </Text>
 
             <Text style={commonstyles.detailTime}>{formattedDate}</Text>
@@ -377,7 +379,11 @@ const Details = ({ navigation, route }) => {
         </View>
 
         {/* Topics */}
-        <TopicItems navigation={navigation} tags={tags} categoryName={firstArticle?.category_name} />
+        <TopicItems
+          navigation={navigation}
+          tags={tags}
+          categoryName={firstArticle?.category_name}
+        />
 
         {/* Next Article */}
         {/* <View
@@ -415,7 +421,7 @@ const Details = ({ navigation, route }) => {
           <View style={[commonstyles.sectionTitle]}>
             <Text style={commonstyles.Category}>Related News</Text>
           </View>
-          <View style={{ paddingHorizontal: 12 }}>
+          <View style={{paddingHorizontal: 12}}>
             <FlatList
               data={relatedData?.data}
               renderItem={renderItemTwo}

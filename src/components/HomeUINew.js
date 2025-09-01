@@ -7,17 +7,17 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Image,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
-import { blackcolor, bluecolor, commonstyles } from '../styles/commonstyles';
+import {blackcolor, bluecolor, commonstyles} from '../styles/commonstyles';
 import HomeComponentFour from './HomeComponentFour';
 import HomeComponentThree from './HomeComponentThree';
 import Ripple from 'react-native-material-ripple';
 
 function HomeUINew(props) {
-  const { navigation, categoryName } = props;
+  const {navigation, categoryName} = props;
 
-  const renderItemOne = ({ item }) => (
+  const renderItemOne = ({item}) => (
     <HomeComponentThree
       item={item}
       propsdata={props?.data}
@@ -26,7 +26,7 @@ function HomeUINew(props) {
     />
   );
 
-  const renderItemTwo = ({ item }) => (
+  const renderItemTwo = ({item}) => (
     <HomeComponentFour
       item={item}
       propsdata={props?.data}
@@ -40,56 +40,64 @@ function HomeUINew(props) {
 
   return (
     <SafeAreaView styles={commonstyles.container}>
-      <View style={{ paddingHorizontal: 12, marginTop: 16 }}>
+      <View style={{paddingHorizontal: 12, marginTop: 16}}>
         {/* Category text */}
         <View style={commonstyles.homecategoryView}>
           <View style={{}}>
             <Text style={commonstyles.Category}>{props?.categoryName}</Text>
           </View>
           <Ripple
-              onPress={() => {
-                navigation.push(props?.categoryName, {
-                  url: props?.navigationScreen,
-                  title: props?.categoryName,
-                  isCategoryClicked: true
-                })
-              }}>
-              {/* <Image
+            onPress={() => {
+              navigation.navigate(props?.categoryName, {
+                url: props?.navigationScreen,
+                title: props?.categoryName,
+                isCategoryClicked: true,
+              });
+            }}>
+            {/* <Image
                 style={commonstyles.actionIconSize}
                 source={require('../Assets/Images/next.png')}
               /> */}
-              {/* <View style={{}}> */}
+            {/* <View style={{}}> */}
             <Text style={commonstyles.seealltext}>और पढ़ें</Text>
-          {/* </View> */}
-            </Ripple>
+            {/* </View> */}
+          </Ripple>
         </View>
-        {newdata.length > 0 ? <View style={commonstyles.homeCategoryflatView}>
-          <FlatList
-            data={newdata.slice(0, 1)}
-            showsHorizontalScrollIndicator={false}
-            persistentScrollbar={false}
-            numColumns={1}
-            onEndReachedThreshold={50}
-            getItemLayout={(data, index) => ({
-              length: 40,
-              offset: 40 * index,
-              index,
-            })}
-            renderItem={renderItemOne}
+        {newdata.length > 0 ? (
+          <View style={commonstyles.homeCategoryflatView}>
+            <FlatList
+              data={newdata.slice(0, 1)}
+              showsHorizontalScrollIndicator={false}
+              persistentScrollbar={false}
+              numColumns={1}
+              onEndReachedThreshold={50}
+              getItemLayout={(data, index) => ({
+                length: 40,
+                offset: 40 * index,
+                index,
+              })}
+              renderItem={renderItemOne}
+            />
+            <FlatList
+              showsHorizontalScrollIndicator={true}
+              persistentScrollbar={false}
+              horizontal={true}
+              data={newdata.slice(1, 10)}
+              getItemLayout={(data, index) => ({
+                length: 40,
+                offset: 40 * index,
+                index,
+              })}
+              renderItem={renderItemTwo}
+            />
+          </View>
+        ) : (
+          <ActivityIndicator
+            size={'large'}
+            color={bluecolor}
+            style={{paddingVertical: 12}}
           />
-          <FlatList
-            showsHorizontalScrollIndicator={true}
-            persistentScrollbar={false}
-            horizontal={true}
-            data={newdata.slice(1, 10)}
-            getItemLayout={(data, index) => ({
-              length: 40,
-              offset: 40 * index,
-              index,
-            })}
-            renderItem={renderItemTwo}
-          />
-        </View> : <ActivityIndicator size={'large'} color={bluecolor}style={{paddingVertical: 12}} />}
+        )}
       </View>
     </SafeAreaView>
   );

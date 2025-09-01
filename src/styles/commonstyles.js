@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { StyleSheet, Dimensions } from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 // export const blackcolor = '#000000';
 export const off_white = '#F6F6F6';
 export const whitecolor = '#ffffff';
@@ -142,7 +142,7 @@ export const commonstyles = StyleSheet.create({
   },
   DetailsCompOneView: {
     width: 200,
-    marginBottom: 12
+    marginBottom: 12,
   },
   categoryoneTextView: {
     width: '100%',
@@ -158,7 +158,7 @@ export const commonstyles = StyleSheet.create({
     borderLeftColor: bluecolor,
     borderLeftWidth: 6,
   },
-  DetailsShareimage: { width: 30, height: 30 },
+  DetailsShareimage: {width: 30, height: 30},
   DetailsShareview: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -166,7 +166,12 @@ export const commonstyles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  detailauthor: { color: blackcolor, fontFamily: 'Mukta-SemiBold', fontSize: 14, marginRight: 12 },
+  detailauthor: {
+    color: blackcolor,
+    fontFamily: 'Mukta-SemiBold',
+    fontSize: 14,
+    marginRight: 12,
+  },
   categoryText: {
     fontSize: 22,
     lineHeight: 34,
@@ -197,18 +202,18 @@ export const commonstyles = StyleSheet.create({
     width: 80,
     marginLeft: 'auto',
   },
-  imgview: { marginRight: 8, marginTop: 4 },
-  shareimage: { height: 18, width: 18, color: Dark_Gray, resizeMode: 'contain' },
-  shareview: { marginRight: 15 },
-  sharetext: { color: Dark_Gray, fontSize: 16, fontWeight: '500' },
-  settingimg: { width: 20, height: 20, color: blackcolor },
+  imgview: {marginRight: 8, marginTop: 4},
+  shareimage: {height: 18, width: 18, color: Dark_Gray, resizeMode: 'contain'},
+  shareview: {marginRight: 15},
+  sharetext: {color: Dark_Gray, fontSize: 16, fontWeight: '500'},
+  settingimg: {width: 20, height: 20, color: blackcolor},
   settingtext: {
     color: blackcolor,
     fontSize: 16,
     marginLeft: 16,
     fontWeight: '600',
   },
-  scroll: { backgroundColor: whitecolor },
+  scroll: {backgroundColor: whitecolor},
   TextView: {
     flexDirection: 'row',
     flex: 2,
@@ -230,10 +235,10 @@ export const commonstyles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Mukta-SemiBold',
   },
-  catecomp2mainView: { borderBottomColor: medium_gray, borderBottomWidth: 2 },
-  catecomp2Tochable: { flexDirection: 'row', display: 'flex' },
+  catecomp2mainView: {borderBottomColor: medium_gray, borderBottomWidth: 2},
+  catecomp2Tochable: {flexDirection: 'row', display: 'flex'},
 
-  cateview: { marginTop: 7, flex: 0.7 },
+  cateview: {marginTop: 7, flex: 0.7},
   CategoryOneview: {},
   CategoryOneImg: {
     height: 200,
@@ -286,8 +291,8 @@ export const commonstyles = StyleSheet.create({
     height: '100%',
     backgroundColor: whitecolor,
   },
-  spinnerView: { justifyContent: 'center', alignItems: 'center', flex: 1 },
-  spinnerText: { fontSize: 16, textAlign: 'center', color: blackcolor },
+  spinnerView: {justifyContent: 'center', alignItems: 'center', flex: 1},
+  spinnerText: {fontSize: 16, textAlign: 'center', color: blackcolor},
   loader: {
     marginTop: 10,
     alignItems: 'center',
@@ -311,7 +316,7 @@ export const commonstyles = StyleSheet.create({
     fontSize: 22,
     fontFamily: 'Mandali-Bold',
   },
-  latestMainView: { width: Dimensions.get('window').width, margin: 5 },
+  latestMainView: {width: Dimensions.get('window').width, margin: 5},
   latestsubView: {
     backgroundColor: whitecolor,
     height: 155,
@@ -476,7 +481,7 @@ export const commonstyles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
   },
@@ -485,8 +490,8 @@ export const commonstyles = StyleSheet.create({
     height: screenHeight * 0.12,
     borderRadius: 10,
   },
-  cateView: { flexDirection: 'row', marginLeft: 5, width: '100%' },
-  cateImage: { width: 120, height: 80, borderRadius: 6 },
+  cateView: {flexDirection: 'row', marginLeft: 5, width: '100%'},
+  cateImage: {width: 120, height: 80, borderRadius: 6},
   latestText: {
     color: blackcolor,
     fontFamily: 'Mukta-SemiBold',
@@ -494,11 +499,11 @@ export const commonstyles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
   },
-  latesttime: { color: whitecolor, fontSize: 12 },
-  Homecomp3time: { color: blackcolor, fontSize: 12 },
+  latesttime: {color: whitecolor, fontSize: 12},
+  Homecomp3time: {color: blackcolor, fontSize: 12},
 
-  HomeTwotime: { color: Dark_graycolor, fontSize: 12 },
-  CategoryOnetime: { color: blackcolor, fontSize: 12 },
+  HomeTwotime: {color: Dark_graycolor, fontSize: 12},
+  CategoryOnetime: {color: blackcolor, fontSize: 12},
   CategoryOnetimeview: {
     flexDirection: 'row',
     paddingLeft: 7,
@@ -512,7 +517,7 @@ export const commonstyles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
   },
@@ -525,7 +530,7 @@ export const commonstyles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
     borderBottomColor: graycolor,
@@ -543,7 +548,7 @@ export const commonstyles = StyleSheet.create({
     width: '100%',
     borderRadius: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
   },
@@ -556,7 +561,7 @@ export const commonstyles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 2,
     borderBottomColor: graycolor,
@@ -655,9 +660,9 @@ export const commonstyles = StyleSheet.create({
     width: '100%',
   },
   Detailslargecard: {
-    height: 230,
+    height: 216,
     width: '100%',
-    resizeMode: 'cover',
+    backgroundColor: blackcolor,
   },
   shortsTime: {
     color: blackcolor,
@@ -687,8 +692,8 @@ export const commonstyles = StyleSheet.create({
     flex: 1,
     marginRight: 12,
   },
-  cateflist: { paddingHorizontal: 12 },
-  photoflist: { paddingHorizontal: 12 },
+  cateflist: {paddingHorizontal: 12},
+  photoflist: {paddingHorizontal: 12},
 
   videoImg: {
     width: Dimensions.get('window').width * 0.3,
@@ -696,7 +701,7 @@ export const commonstyles = StyleSheet.create({
     borderRadius: 10,
     resizeMode: 'stretch',
   },
-  categoryView: { flex: 1.7, flexDirection: 'row' },
+  categoryView: {flex: 1.7, flexDirection: 'row'},
   homeCategoryflatView: {
     position: 'relative',
   },
@@ -723,8 +728,8 @@ export const commonstyles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
-  prevView: { flex: 0.25, height: 30, justifyContent: 'center', marginLeft: 10 },
-  nextView: { flex: 0.2, height: 30, justifyContent: 'center', marginRight: 10 },
+  prevView: {flex: 0.25, height: 30, justifyContent: 'center', marginLeft: 10},
+  nextView: {flex: 0.2, height: 30, justifyContent: 'center', marginRight: 10},
   relatedText: {
     color: '#000',
     fontSize: 20,
@@ -759,8 +764,8 @@ export const commonstyles = StyleSheet.create({
     position: 'relative',
     top: 25,
   },
-  categoryMview: { flexDirection: 'row', bottom: 5, flex: 1 },
-  moreview: { alignContent: 'flex-end', alignItems: 'flex-end' },
+  categoryMview: {flexDirection: 'row', bottom: 5, flex: 1},
+  moreview: {alignContent: 'flex-end', alignItems: 'flex-end'},
   moretext: {
     fontFamily: 'RobotoCondensed-Regular',
     fontSize: 18,
@@ -795,7 +800,7 @@ export const commonstyles = StyleSheet.create({
     borderRadius: 5,
     resizeMode: 'contain',
   },
-  horotextView: { flex: 2 },
+  horotextView: {flex: 2},
   horotext: {
     color: blackcolor,
     fontFamily: 'Mandali-Bold',
@@ -847,7 +852,7 @@ export const commonstyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  settingmediaimg: { width: 25, height: 25 },
+  settingmediaimg: {width: 25, height: 25},
   settingmediatext: {
     color: blackcolor,
     fontSize: 16,
@@ -862,7 +867,7 @@ export const commonstyles = StyleSheet.create({
   noMoreText: {
     fontSize: 14,
     color: blackcolor,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   articleTimeStamp: {
     flexDirection: 'row',
@@ -870,18 +875,18 @@ export const commonstyles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 4,
   },
-  shareIcon: { width: 16, height: 16 },
-  iconPress: { padding: 4, borderRadius: 12 },
-  actionIconSize: { width: 22, height: 22 },
-  seealltext:{color:bluecolor,fontWeight:'500',fontSize:16},
-  iconRipple: { padding: 12 },
+  shareIcon: {width: 16, height: 16},
+  iconPress: {padding: 4, borderRadius: 12},
+  actionIconSize: {width: 22, height: 22},
+  seealltext: {color: bluecolor, fontWeight: '500', fontSize: 16},
+  iconRipple: {padding: 12},
   noNextArticles: {
     fontSize: 16,
     color: blackcolor,
     textAlign: 'center',
-    marginBottom: 13
+    marginBottom: 13,
   },
-  articleContainer: { paddingLeft: 12, flex: 1, alignItems: 'flex-start' },
+  articleContainer: {paddingLeft: 12, flex: 1, alignItems: 'flex-start'},
   loadMoreBtn: {
     alignSelf: 'center',
     marginVertical: 12,
