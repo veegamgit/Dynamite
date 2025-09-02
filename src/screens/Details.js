@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   Dimensions,
   StyleSheet,
 } from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import {blackcolor, commonstyles, graycolor} from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import {HeaderStyle} from '../styles/Header.Styles';
@@ -33,6 +34,12 @@ const Details = ({navigation, route}) => {
   const [firstArticle, setFirstArticle] = useState(null);
   const [articleId, setArticleId] = useState(route.params?.item?.id);
   const [tags, setTags] = useState([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      Scrollref.current.scrollTo({x: 0, y: 0, animated: true});
+    }, []),
+  );
 
   useEffect(() => {
     getDetailArticleAction(articleId);
