@@ -1,3 +1,4 @@
+import {makeRequest} from '../../utilities/api';
 import {BaseUrl, trendingUrl} from '../../utilities/urls';
 
 export const GET_TRENDING_LOADING = 'GET_TRENDING_LOADING';
@@ -10,17 +11,13 @@ const getTrendingAction = () => {
       dispatch({
         type: GET_TRENDING_LOADING,
       });
-      const result = await fetch(BaseUrl + trendingUrl, {
+      const result = await makeRequest(trendingUrl, {
         method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       });
-      const json = await result.json();
-      if (json) {
+      if (result.menu_items.length > 0) {
         dispatch({
           type: GET_TRENDING_SUCCESS,
-          payload: json,
+          payload: result,
         });
       } else {
         dispatch({
@@ -30,9 +27,9 @@ const getTrendingAction = () => {
     };
   } catch (error) {
     dispatch({
-        type: GET_TRENDING_ERROR,
-        payload: error
-      });
+      type: GET_TRENDING_ERROR,
+      payload: error,
+    });
   }
 };
 export default getTrendingAction;

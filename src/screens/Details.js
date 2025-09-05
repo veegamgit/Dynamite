@@ -23,6 +23,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {TopicItems} from '../components/TopicItems';
 import Ripple from 'react-native-material-ripple';
 import HandlePressable from '../components/HandlePressable';
+import {useApi} from '../utilities/api';
 
 const Details = ({navigation, route}) => {
   const [detailsData, setDetailsData] = useState([]);
@@ -34,6 +35,7 @@ const Details = ({navigation, route}) => {
   const [firstArticle, setFirstArticle] = useState(null);
   const [articleId, setArticleId] = useState(route.params?.item?.id);
   const [tags, setTags] = useState([]);
+  const {request} = useApi();
 
   useFocusEffect(
     useCallback(() => {
@@ -73,7 +75,7 @@ const Details = ({navigation, route}) => {
   // Function to fetch the details of the article
   const getDetailArticleAction = async artId => {
     try {
-      const response = await fetch(BaseUrl + DetailsUrl + '?id=' + artId);
+      const response = await (BaseUrl + DetailsUrl + '?id=' + artId);
       const responseJson = await response.json();
       setDetailArticleData(responseJson);
     } catch (error) {
