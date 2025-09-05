@@ -8,6 +8,7 @@ import {
   Platform,
   Dimensions,
   StyleSheet,
+  Linking,
 } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import {blackcolor, commonstyles, graycolor} from '../styles/commonstyles';
@@ -164,16 +165,18 @@ const Details = ({navigation, route}) => {
       return false;
     }
 
-    if (url.includes('navbharatlive.com')) {
-      // Extract the category name from the URL
-      const match = url.match(/navbharatlive\.com\/([^\/]+)/);
-      if (match && match[1]) {
-        const categoryName = match[1];
+    if (url.includes('dynamitenews.com')) {
+      const match = url.match(/dynamitenews\.com\/([^\/]+)/);
+      if (match && match[2]) {
+        const categoryName = match[2];
         navigation.navigate('CategoryScreen', {
           isCategoryClicked: true,
           url: categoryName,
         });
       }
+      return false;
+    } else {
+      Linking.openURL(url);
       return false;
     }
     return true;
@@ -209,7 +212,6 @@ const Details = ({navigation, route}) => {
   const handleTouchStart = e => {
     e.preventDefault();
   };
-
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.DetailsHeader}>
