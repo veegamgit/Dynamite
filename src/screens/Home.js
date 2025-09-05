@@ -46,6 +46,8 @@ import Ripple from 'react-native-material-ripple';
 import Trending from '../components/Trending';
 import {NewWebStories} from '../components/NewWebStories';
 import {GotoTop} from '../components/GotoTop';
+import {useApi} from '../utilities/api';
+import {useLanguage} from '../utilities/languageContext';
 
 const Home = ({navigation}) => {
   const scrollViewRef = useRef(null);
@@ -67,8 +69,10 @@ const Home = ({navigation}) => {
   const [crimeData, setCrimeData] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [showGoToTop, setShowGoToTop] = useState(false);
+  const {language, setLanguage} = useLanguage('en');
 
   const dispatch = useDispatch();
+  const {request} = useApi();
   const sliderData = useSelector(state => state.sliderReducer.sliderData);
   const videosData = useSelector(state => state.videoReducer.videosData);
 
@@ -83,9 +87,8 @@ const Home = ({navigation}) => {
 
   const getNationalAction = async () => {
     try {
-      const response = await fetch(BaseUrl + CategoryUrl + National);
-      const responseJson = await response.json();
-      setNationalData(responseJson);
+      const response = await request(CategoryUrl + National, {method: 'GET'});
+      setNationalData(response);
     } catch (error) {
       console.error('Error fetching getNationalNationalAction data:', error);
     }
@@ -222,7 +225,7 @@ const Home = ({navigation}) => {
     getBusinessAction();
     getSportsAction();
     getTechnologyAction();
-  }, []);
+  }, [language]);
 
   const videoGalleryitemOne = ({item, index}) => (
     <HomeVideosgalleryItemOne

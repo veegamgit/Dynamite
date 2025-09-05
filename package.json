@@ -33,6 +33,7 @@
     "react-native": "0.73.6",
     "react-native-autoheight-webview": "^1.6.4",
     "react-native-eject": "^0.2.0",
+    "react-native-element-dropdown": "^2.12.4",
     "react-native-fast-image": "^8.6.1",
     "react-native-floating-action": "^1.22.0",
     "react-native-gesture-handler": "^2.8.0",
