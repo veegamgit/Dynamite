@@ -154,10 +154,7 @@ export const commonstyles = StyleSheet.create({
     lineHeight: 26,
     marginTop: 12,
   },
-  homeOnetextView: {
-    borderLeftColor: bluecolor,
-    borderLeftWidth: 6,
-  },
+  homeOnetextView: {},
   DetailsShareimage: {width: 30, height: 30},
   DetailsShareview: {
     flexDirection: 'row',
@@ -339,7 +336,6 @@ export const commonstyles = StyleSheet.create({
   galleryArticlecategorytext: {
     color: bluecolor,
     fontSize: 20,
-    paddingLeft: 10,
     fontFamily: 'Mukta-Bold',
     fontWeight: '700',
   },

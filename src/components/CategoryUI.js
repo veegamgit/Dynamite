@@ -57,7 +57,7 @@ function CategoryUI({
           size="small"
           color={blackcolor}
         />
-      )
+      );
     }
 
     if (!hasMore) {
@@ -80,11 +80,10 @@ function CategoryUI({
 
   const renderItem = ({item}) =>
     item.type === 'one' ? renderItemOne({item}) : renderItemTwo({item});
-
   return (
     <SafeAreaView styles={commonstyles.container}>
       {!isTopNavigation && (
-        <View style={HeaderStyle.DetailsHeader}>
+        <View style={styles.pageHeader}>
           <Ripple
             onPress={() => navigation.goBack()}
             style={commonstyles.iconRipple}>
@@ -93,20 +92,26 @@ function CategoryUI({
               style={commonstyles.actionIconSize}
             />
           </Ripple>
+          <Text style={commonstyles.galleryArticlecategorytext}>
+            {title.charAt(0).toUpperCase() + title.slice(1)}
+          </Text>
         </View>
       )}
       <ScrollView style={commonstyles.scroll}>
         <Trending />
-        <View style={{padding: 12, ...!isTopNavigation && { paddingBottom: 60 } }}>
+        <View
+          style={{padding: 12, ...(!isTopNavigation && {paddingBottom: 60})}}>
           <FlatList
             data={combinedData}
-            ListHeaderComponent={() => (
-              <View style={[commonstyles.homeOnetextView, {marginBottom: 10}]}>
-                <Text style={commonstyles.galleryArticlecategorytext}>
-                  {title.charAt(0).toUpperCase() + title.slice(1)}
-                </Text>
-              </View>
-            )}
+            ListHeaderComponent={() =>
+              isTopNavigation ? (
+                <View style={{marginBottom: 10}}>
+                  <Text style={commonstyles.galleryArticlecategorytext}>
+                    {title.charAt(0).toUpperCase() + title.slice(1)}
+                  </Text>
+                </View>
+              ) : null
+            }
             renderItem={renderItem}
             keyExtractor={item =>
               item.id?.toString() || Math.random().toString()
@@ -134,6 +139,11 @@ const styles = StyleSheet.create({
     color: whitecolor,
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  pageHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: whitecolor,
   },
 });
 
