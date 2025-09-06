@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {useDispatch, useSelector} from 'react-redux';
 import Details from '../../screens/Details';
 import PhotoArticle from '../../screens/PhotoArticle';
 import VideoArticle from '../../screens/VideoArticle';
@@ -22,20 +22,20 @@ import Topics from '../../screens/Topics';
 
 const Stack = createStackNavigator();
 
-const HomeStackNavigator = ({ menuData }) => {
+const HomeStackNavigator = ({menuData}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTopMenuDataAction());
   }, [dispatch]);
 
-  menuData = useSelector((state) => state.topMenuDataReducer.topMenuData) || [];
+  menuData = useSelector(state => state.topMenuDataReducer.topMenuData) || [];
 
   const mergedArray = [];
-  menuData.forEach((item) => {
+  menuData.forEach(item => {
     if (item.subItems) {
       mergedArray.push(item);
-      item.subItems.forEach((subItem) => {
+      item.subItems.forEach(subItem => {
         mergedArray.push({
           ...subItem,
         });
@@ -50,14 +50,17 @@ const HomeStackNavigator = ({ menuData }) => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Home"
-    >
+      initialRouteName="Home">
       {mergedArray.length > 0 ? (
         mergedArray.map((item, index) => (
           <Stack.Screen
-            key={item.title}
-            name={index === 0 ? 'Home' : item.title}
-            component={index === 0 ? TopTabNavigator : () => <CategoryScreen item={item} />}
+            key={item.id ? `${item.id}` : `${item.title}-${index}`}
+            name={index === 0 ? 'Home' : `${item.title}-${index}`}
+            component={
+              index === 0
+                ? TopTabNavigator
+                : () => <CategoryScreen item={item} />
+            }
           />
         ))
       ) : (
