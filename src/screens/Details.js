@@ -147,6 +147,7 @@ const Details = ({navigation, route}) => {
 
   const handleWebViewRequest = request => {
     const url = request?.url;
+    console.log('WebView URL:', url);
 
     if (url.includes('post_id=')) {
       let postId = url.split('post_id=')[1];
@@ -165,17 +166,22 @@ const Details = ({navigation, route}) => {
       return false;
     }
 
+    // if (url.includes('dynamitenews.com')) {
+    //   const match = url.match(/dynamitenews\.com\/([^\/]+)/);
+    //   console.log('Matched URL:', match);
+    //   if (match && match[2]) {
+    //     const categoryName = match[2];
+    //     navigation.navigate('CategoryScreen', {
+    //       isCategoryClicked: true,
+    //       url: categoryName,
+    //     });
+    //   }
+    //   return false;
+    // } else {
+    //   Linking.openURL(url);
+    //   return false;
+    // }
     if (url.includes('dynamitenews.com')) {
-      const match = url.match(/dynamitenews\.com\/([^\/]+)/);
-      if (match && match[2]) {
-        const categoryName = match[2];
-        navigation.navigate('CategoryScreen', {
-          isCategoryClicked: true,
-          url: categoryName,
-        });
-      }
-      return false;
-    } else {
       Linking.openURL(url);
       return false;
     }
