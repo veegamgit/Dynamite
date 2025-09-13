@@ -677,11 +677,11 @@ export const commonstyles = StyleSheet.create({
   },
   detailTime: {
     color: Dark_graycolor,
-    fontSize: 11,
+    fontSize: 12,
   },
   publishedtext: {
     color: blackcolor,
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: 'Mandali-Bold',
     fontWeight: '800',
   },

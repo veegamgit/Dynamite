@@ -7,6 +7,7 @@ import AuthorComponent from '../components/AuthorComponent';
 import {blackcolor, commonstyles} from '../styles/commonstyles';
 import {BaseUrl, authorUrl} from '../utilities/urls';
 import Ripple from 'react-native-material-ripple';
+import {useTranslation} from 'react-i18next';
 
 const PhotoAuthorListItem = React.lazy(() =>
   import('../components/PhotoAuthorListItem'),
@@ -17,6 +18,7 @@ const VideoAuthorListItem = React.lazy(() =>
 
 const AuthorScreen = ({title}) => {
   const navigation = useNavigation();
+  const {t} = useTranslation();
   const route = useRoute();
   const [parentData, setParentData] = useState([]); // State to hold fetched posts data
   const [authorData, setAuthorData] = useState(null); // State to hold author data
@@ -113,16 +115,14 @@ const AuthorScreen = ({title}) => {
     }
 
     if (!hasMore) {
-      return (
-        <Text style={commonstyles.noMoreText}>No more data available</Text>
-      );
+      return <Text style={commonstyles.noMoreText}>{t('nomoredata')}</Text>;
     }
 
     return (
       <Ripple
         style={commonstyles.loadMoreBtn}
         onPress={() => fetchAuthorData(true)}>
-        <Text style={commonstyles.loadMoreBtnTxt}>Load More</Text>
+        <Text style={commonstyles.loadMoreBtnTxt}>{t('loadmore')}</Text>
       </Ripple>
     );
   };

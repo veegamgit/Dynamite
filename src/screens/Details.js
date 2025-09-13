@@ -24,8 +24,10 @@ import {TopicItems} from '../components/TopicItems';
 import Ripple from 'react-native-material-ripple';
 import HandlePressable from '../components/HandlePressable';
 import {useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 
 const Details = ({navigation, route}) => {
+  const {t} = useTranslation();
   const [detailsData, setDetailsData] = useState([]);
   const Scrollref = useRef();
   const [fontSize, setFontSize] = useState(18);
@@ -299,7 +301,7 @@ const Details = ({navigation, route}) => {
                 </Text>
               </Ripple>
               <Text style={commonstyles.detailTime}>
-                Updated on: {formattedDate}
+                {t('updatedon')}: {formattedDate}
               </Text>
             </View>
           </View>
@@ -420,7 +422,7 @@ const Details = ({navigation, route}) => {
               flexDirection: 'row',
               marginTop: 10,
             }}>
-            <Text style={commonstyles.publishedtext}>Published on: </Text>
+            <Text style={commonstyles.publishedtext}>{t('publishedon')}: </Text>
 
             <Text style={commonstyles.detailTime}>{formattedDate}</Text>
           </View>
@@ -467,7 +469,7 @@ const Details = ({navigation, route}) => {
         {/* Related News */}
         <View>
           <View style={[commonstyles.sectionTitle]}>
-            <Text style={commonstyles.Category}>Related News</Text>
+            <Text style={commonstyles.Category}>{t('relatednews')}</Text>
           </View>
           <View style={{paddingHorizontal: 12}}>
             <FlatList

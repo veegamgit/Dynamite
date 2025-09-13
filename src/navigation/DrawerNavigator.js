@@ -23,6 +23,7 @@ import getLatestNewsAction from '../redux/actions/getLatestNewsAction';
 import getVideoAction from '../redux/actions/getVideoAction';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
+import i18next from 'i18next';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,6 +32,9 @@ const DrawerNavigator = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('हिंदी');
   const isChangingLanguage = useSelector(
     state => state.languageReducer.isChangingLanguage,
+  );
+  const currentLanguage = useSelector(
+    state => state.languageReducer.selectedLanguage,
   );
 
   const reloadAppData = useCallback(async () => {
@@ -62,6 +66,11 @@ const DrawerNavigator = () => {
     // Reload all data with new language
     reloadAppData();
   };
+
+  const companyLogo =
+    currentLanguage === 'हिंदी'
+      ? require('../Assets/Images/logo_hn.png')
+      : require('../Assets/Images/logo_en.png');
 
   return (
     <>
@@ -102,7 +111,7 @@ const DrawerNavigator = () => {
             headerTitle: () => (
               <Image
                 style={HeaderStyle.HeadTitleImg}
-                source={require('../Assets/Images/logo_hn.png')}
+                source={companyLogo}
                 resizeMode="contain"
               />
             ),
@@ -124,6 +133,9 @@ const DrawerNavigator = () => {
                   valueField="value"
                   value={selectedLanguage}
                   onChange={item => {
+                    i18next.changeLanguage(
+                      item.value === 'हिंदी' ? 'hi' : 'en',
+                    );
                     handleLanguageSelect(item.label);
                   }}
                   iconColor={whitecolor}

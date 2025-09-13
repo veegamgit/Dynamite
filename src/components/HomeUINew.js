@@ -13,9 +13,11 @@ import {blackcolor, bluecolor, commonstyles} from '../styles/commonstyles';
 import HomeComponentFour from './HomeComponentFour';
 import HomeComponentThree from './HomeComponentThree';
 import Ripple from 'react-native-material-ripple';
+import {useTranslation} from 'react-i18next';
 
 function HomeUINew(props) {
   const {navigation, categoryName} = props;
+  const {t} = useTranslation();
 
   const renderItemOne = ({item}) => (
     <HomeComponentThree
@@ -43,9 +45,7 @@ function HomeUINew(props) {
       <View style={{paddingHorizontal: 12, marginTop: 16}}>
         {/* Category text */}
         <View style={commonstyles.homecategoryView}>
-          <View style={{}}>
-            <Text style={commonstyles.Category}>{props?.categoryName}</Text>
-          </View>
+          <Text style={commonstyles.Category}>{props?.categoryName}</Text>
           <Ripple
             onPress={() => {
               navigation.navigate(props?.categoryName, {
@@ -59,7 +59,7 @@ function HomeUINew(props) {
                 source={require('../Assets/Images/next.png')}
               /> */}
             {/* <View style={{}}> */}
-            <Text style={commonstyles.seealltext}>और पढ़ें</Text>
+            <Text style={commonstyles.seealltext}>{t('seeall')}</Text>
             {/* </View> */}
           </Ripple>
         </View>

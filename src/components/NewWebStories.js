@@ -30,8 +30,10 @@ import {decode} from 'html-entities';
 import LinearGradient from 'react-native-linear-gradient';
 import {TouchableOpacity} from 'react-native';
 const {width, height} = Dimensions.get('window');
+import {useTranslation} from 'react-i18next';
 
 export const NewWebStories = React.memo(() => {
+  const {t} = useTranslation();
   const [storiesData, setStoriesData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [storyViewModal, setStoryViewModal] = useState(false);
@@ -206,9 +208,7 @@ export const NewWebStories = React.memo(() => {
 
   return (
     <>
-      <View style={{}}>
-        <Text style={commonstyles.Category}>वेब स्टोरीज़</Text>
-      </View>
+      <Text style={commonstyles.Category}>{t('webStories')}</Text>
       {loading ? (
         <ActivityIndicator size={'large'} color={bluecolor} />
       ) : (

@@ -12,9 +12,11 @@ import {bluecolor, commonstyles} from '../styles/commonstyles';
 import HomeComponentOne from '../components/HomeComponentOne';
 import HomeComponentTwo from './HomeComponentTwo';
 import Ripple from 'react-native-material-ripple';
+import {useTranslation} from 'react-i18next';
 
 function HomeUI(props) {
   const {navigation, categoryName} = props;
+  const {t} = useTranslation();
 
   const renderItemOne = ({item}) => (
     <HomeComponentOne
@@ -52,7 +54,7 @@ function HomeUI(props) {
               });
             }}>
             {/* <Image style={commonstyles.actionIconSize} source={require('../Assets/Images/next.png')} /> */}
-            <Text style={commonstyles.seealltext}>और पढ़ें</Text>
+            <Text style={commonstyles.seealltext}>{t('seeall')}</Text>
           </Ripple>
         </View>
 
