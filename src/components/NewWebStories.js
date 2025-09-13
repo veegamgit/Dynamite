@@ -106,7 +106,6 @@ export const NewWebStories = React.memo(() => {
               stroy_link: item.link,
               swipeText: null,
             };
-            console.log('slideObj', slideObj);
             return slideObj;
           }),
         };

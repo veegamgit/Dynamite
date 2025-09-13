@@ -44,12 +44,27 @@ const Details = ({navigation, route}) => {
     }, []),
   );
 
-  useEffect(() => {
-    getDetailArticleAction(articleId);
-    getRelatedAction(articleId);
-  }, [articleId, currentLanguage]);
+  // Store initial language when component mounts
+  const initialLanguageRef = useRef(currentLanguage);
 
   useEffect(() => {
+    // If language has changed from initial language, navigate back
+    if (initialLanguageRef.current !== currentLanguage) {
+      navigation.goBack();
+      return;
+    }
+
+    getDetailArticleAction(articleId);
+    getRelatedAction(articleId);
+  }, [articleId, currentLanguage, navigation]);
+
+  useEffect(() => {
+    // If language has changed from initial language, navigate back
+    if (initialLanguageRef.current !== currentLanguage) {
+      navigation.goBack();
+      return;
+    }
+
     fetchSingleArticleObj();
   }, [route, currentLanguage]);
 
@@ -75,6 +90,11 @@ const Details = ({navigation, route}) => {
 
   // Function to fetch the details of the article
   const getDetailArticleAction = async artId => {
+    // Don't fetch if language has changed
+    if (initialLanguageRef.current !== currentLanguage) {
+      return;
+    }
+
     try {
       const response = await fetch(BaseUrl + DetailsUrl + '?id=' + artId);
       const responseJson = await response.json();
@@ -83,7 +103,13 @@ const Details = ({navigation, route}) => {
       console.error('Error fetching article details:', error);
     }
   };
+
   const getRelatedAction = async artId => {
+    // Don't fetch if language has changed
+    if (initialLanguageRef.current !== currentLanguage) {
+      return;
+    }
+
     try {
       const response = await fetch(BaseUrl + RelatedUrl + '?id=' + artId);
       const responseJson = await response.json();
@@ -149,7 +175,6 @@ const Details = ({navigation, route}) => {
 
   const handleWebViewRequest = request => {
     const url = request?.url;
-    console.log('WebView URL:', url);
 
     if (url.includes('post_id=')) {
       let postId = url.split('post_id=')[1];
@@ -220,6 +245,12 @@ const Details = ({navigation, route}) => {
   const handleTouchStart = e => {
     e.preventDefault();
   };
+
+  // If language has changed, don't render anything
+  if (initialLanguageRef.current !== currentLanguage) {
+    return null;
+  }
+
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.DetailsHeader}>
