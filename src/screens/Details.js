@@ -7,11 +7,10 @@ import {
   FlatList,
   Platform,
   Dimensions,
-  StyleSheet,
   Linking,
 } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
-import {blackcolor, commonstyles, graycolor} from '../styles/commonstyles';
+import {commonstyles, graycolor} from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import {HeaderStyle} from '../styles/Header.Styles';
 import moment from 'moment';
@@ -24,6 +23,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {TopicItems} from '../components/TopicItems';
 import Ripple from 'react-native-material-ripple';
 import HandlePressable from '../components/HandlePressable';
+import {useSelector} from 'react-redux';
 
 const Details = ({navigation, route}) => {
   const [detailsData, setDetailsData] = useState([]);
@@ -35,7 +35,9 @@ const Details = ({navigation, route}) => {
   const [firstArticle, setFirstArticle] = useState(null);
   const [articleId, setArticleId] = useState(route.params?.item?.id);
   const [tags, setTags] = useState([]);
-
+  const currentLanguage = useSelector(
+    state => state.languageReducer.selectedLanguage,
+  );
   useFocusEffect(
     useCallback(() => {
       Scrollref.current.scrollTo({x: 0, y: 0, animated: true});
@@ -45,11 +47,11 @@ const Details = ({navigation, route}) => {
   useEffect(() => {
     getDetailArticleAction(articleId);
     getRelatedAction(articleId);
-  }, [articleId]);
+  }, [articleId, currentLanguage]);
 
   useEffect(() => {
     fetchSingleArticleObj();
-  }, [route]);
+  }, [route, currentLanguage]);
 
   useEffect(() => {
     if (

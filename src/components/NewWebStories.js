@@ -14,6 +14,7 @@ import {
   SafeAreaView,
   Linking,
 } from 'react-native';
+import {useSelector} from 'react-redux';
 import {
   blackcolor,
   commonstyles,
@@ -29,31 +30,24 @@ import {decode} from 'html-entities';
 import LinearGradient from 'react-native-linear-gradient';
 import {TouchableOpacity} from 'react-native';
 const {width, height} = Dimensions.get('window');
+
 export const NewWebStories = React.memo(() => {
   const [storiesData, setStoriesData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [storyViewModal, setStoryViewModal] = useState(false);
   const [currentUserIndex, setCurrentUserIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  //const rotateAnim = useRef(new Animated.Value(0)).current;
   const storyTextAnim = new Animated.Value(0);
   const storyContentAnim = new Animated.Value(0);
   const storyImageScale = useRef(new Animated.Value(1.5)).current;
   const progressAnim = useRef(new Animated.Value(0)).current;
+  const currentLanguage = useSelector(
+    state => state.languageReducer.selectedLanguage,
+  );
 
   useEffect(() => {
     fetchWebStories();
-  }, []);
-
-  // const animateCubeTurn = () => {
-  //   //rotateAnim.setValue(0); // Reset before animation
-  //   Animated.timing(rotateAnim, {
-  //     toValue: 1,
-  //     duration: 1000, // Adjust speed here
-  //     easing: Easing.out(Easing.ease), // Smooth start and stop
-  //     useNativeDriver: true,
-  //   }).start();
-  // };
+  }, [currentLanguage]);
 
   Animated.timing(storyTextAnim, {
     toValue: 1,

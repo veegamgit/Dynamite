@@ -1,151 +1,171 @@
-import React, { useState ,useEffect} from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View, Text, Image, Linking } from 'react-native';
-import { HeaderStyle } from '../styles/Header.Styles';
-import { blackcolor, bluecolor, commonstyles, whitecolor } from '../styles/commonstyles';
+import React, {useState, useCallback} from 'react';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {View, Image, ActivityIndicator, Modal} from 'react-native';
+import {HeaderStyle} from '../styles/Header.Styles';
+import {
+  blackcolor,
+  bluecolor,
+  commonstyles,
+  whitecolor,
+} from '../styles/commonstyles';
 import SideMenu from '../screens/SideMenu';
-import { useSelector } from 'react-redux';
-import BottomTabNavigator from './BottomTabNavigator';;
+import BottomTabNavigator from './BottomTabNavigator';
 import HandlePressable from '../components/HandlePressable';
-import { StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import {StyleSheet} from 'react-native';
+import {Dropdown} from 'react-native-element-dropdown';
+import {
+  setLanguage,
+  completeLanguageChange,
+} from '../redux/actions/languageActions';
+import {useDispatch, useSelector} from 'react-redux';
+import getSliderAction from '../redux/actions/getSliderAction';
+import getLatestNewsAction from '../redux/actions/getLatestNewsAction';
+import getVideoAction from '../redux/actions/getVideoAction';
+import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
+import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
-  const [notificationImage, setNotificationImage] = useState(require('../Assets/Images/notification_white.png'));
-
-  // Assuming you have access to sliderData from your Redux store
-  const sliderData = useSelector(state => state.sliderData);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const dispatch = useDispatch();
   const [selectedLanguage, setSelectedLanguage] = useState('हिंदी');
+  const isChangingLanguage = useSelector(
+    state => state.languageReducer.isChangingLanguage,
+  );
 
-  const toggleDropdown = () => setShowDropdown(prev => !prev);
-
-  const handleLanguageSelect = (lang: string) => {
-    setSelectedLanguage(lang);
-    setShowDropdown(false);
-  };
-  useEffect(() => {
-    if (sliderData && sliderData.length > 0) {
-      const latestArticles = sliderData.slice(0, 10);
-      const isNewArticle = latestArticles.some(article => article.isNew);
-      if (isNewArticle) {
-        setNotificationImage(require('../Assets/Images/notification.png'));
-      } else {
-        setNotificationImage(require('../Assets/Images/notification_white.png'));
-      }
+  const reloadAppData = useCallback(async () => {
+    try {
+      // Reload all main data
+      await Promise.all([
+        dispatch(getSliderAction()),
+        dispatch(getLatestNewsAction()),
+        dispatch(getVideoAction()),
+        dispatch(getPhotoGalleryAction()),
+        dispatch(getTopMenuDataAction()),
+      ]);
+    } finally {
+      // Complete the language change process
+      dispatch(completeLanguageChange());
     }
-  }, [sliderData]);
+  }, [dispatch]);
+
+  // Set initial language and load data
+  React.useEffect(() => {
+    dispatch(setLanguage('hindi'));
+    reloadAppData();
+  }, [dispatch, reloadAppData]);
+
+  const handleLanguageSelect = async lang => {
+    setSelectedLanguage(lang);
+    // Set the language in Redux store and update BaseUrl
+    await dispatch(setLanguage(lang === 'हिंदी' ? 'हिंदी' : 'English'));
+    // Reload all data with new language
+    reloadAppData();
+  };
 
   return (
-    <Drawer.Navigator
-      drawerContent={props => <SideMenu {...props} />} useLegacyImplementation={false}>
-      <Drawer.Screen
-        name="Home"
-        component={BottomTabNavigator}
-        options={({ navigation }) => ({
-          headerStyle: {
-            backgroundColor: whitecolor,
-          },
-      //     headerRight: () => (
-      //       <View style={HeaderStyle.HeadRightView}>
-      //         <HandlePressable
-      //           style={{
-      //             flexDirection: 'row', borderRadius: 5, justifyContent: 'center',
-      //             alignItems: 'center', paddingHorizontal: 10, paddingVertical: 4, backgroundColor: bluecolor
-      //           }}
-      //           onPress={toggleDropdown}>
-      //           <Image
-      //             style={[HeaderStyle.HeadRightpaperImg]}
-      //             source={require('../Assets/Images/translate.png')}
-      //           />
-      //           <Text style={{
-      //             color: whitecolor, fontSize: 12, fontWeight: '700',
-      //             fontFamily: 'Mukta-SemiBold', marginLeft: 5, marginRight: 5
-      //           }}>{selectedLanguage}</Text>
-      //           <Image
-      //             style={[HeaderStyle.HeadRightarrowImg]}
-      //             source={require('../Assets/Images/arrow-down.png')}
-      //           />
-      //         </HandlePressable>
-      //         {showDropdown && (
-      //   <View style={styles.dropdown}>
-      //     <TouchableOpacity onPress={() => handleLanguageSelect('हिंदी')}>
-      //       <Text style={styles.dropdownItem}>हिंदी</Text>
-      //     </TouchableOpacity>
-      //     <TouchableOpacity onPress={() => handleLanguageSelect('ENGLISH')}>
-      //       <Text style={styles.dropdownItem}>ENGLISH</Text>
-      //     </TouchableOpacity>
-          
-      //   </View>
-      // )}
-      //       </View>
-      //     ),
-          headerLeft: () => (
-            <View style={HeaderStyle.headerLeftView}>
-              <HandlePressable
-                onPress={() => {
-                  navigation.toggleDrawer();
-                }}
-                style={commonstyles.iconRipple}>
-                <Image
-                  style={HeaderStyle.HeadRightImg}
-                  source={require('../Assets/Images/menu.png')}
+    <>
+      <Modal
+        transparent={true}
+        visible={isChangingLanguage}
+        animationType="fade">
+        <View style={styles.loaderModal}>
+          <View style={styles.loaderContainer}>
+            <ActivityIndicator size="large" color={bluecolor} />
+          </View>
+        </View>
+      </Modal>
+      <Drawer.Navigator
+        drawerContent={props => <SideMenu {...props} />}
+        useLegacyImplementation={false}>
+        <Drawer.Screen
+          name="Home"
+          component={BottomTabNavigator}
+          options={({navigation}) => ({
+            headerStyle: {
+              backgroundColor: whitecolor,
+            },
+            headerLeft: () => (
+              <View style={HeaderStyle.headerLeftView}>
+                <HandlePressable
+                  onPress={() => {
+                    navigation.toggleDrawer();
+                  }}
+                  style={commonstyles.iconRipple}>
+                  <Image
+                    style={HeaderStyle.HeadRightImg}
+                    source={require('../Assets/Images/menu.png')}
+                  />
+                </HandlePressable>
+              </View>
+            ),
+            headerTitle: () => (
+              <Image
+                style={HeaderStyle.HeadTitleImg}
+                source={require('../Assets/Images/logo_hn.png')}
+                resizeMode="contain"
+              />
+            ),
+            headerRight: () => (
+              <>
+                <Dropdown
+                  style={styles.dropdown}
+                  selectedTextStyle={{color: whitecolor, fontSize: 14}}
+                  itemTextStyle={{
+                    color: blackcolor,
+                    fontSize: 14,
+                    height: 'auto',
+                  }}
+                  data={[
+                    {label: 'हिंदी', value: 'हिंदी'},
+                    {label: 'English', value: 'English'},
+                  ]}
+                  labelField="label"
+                  valueField="value"
+                  value={selectedLanguage}
+                  onChange={item => {
+                    handleLanguageSelect(item.label);
+                  }}
+                  iconColor={whitecolor}
+                  dropdownPosition="bottom"
+                  renderLeftIcon={() => (
+                    <Image
+                      source={require('../Assets/Images/translate.png')}
+                      style={{width: 16, height: 16, marginRight: 6}}
+                    />
+                  )}
                 />
-              </HandlePressable>
-            </View>
-          ),
-          headerTitle: () => (
-            <Image
-              style={HeaderStyle.HeadTitleImg}
-              source={require('../Assets/Images/logo_hn.png')}
-              resizeMode="contain"
-            />
-          ),
-        })}
-      />
-    </Drawer.Navigator>
-
+              </>
+            ),
+          })}
+        />
+      </Drawer.Navigator>
+    </>
   );
 };
 
 export default DrawerNavigator;
+
 const styles = StyleSheet.create({
-  container: { position: 'relative' },
-  button: {
-    flexDirection: 'row',
-    borderRadius: 5,
+  dropdown: {
+    width: 100,
+    height: 30,
+    backgroundColor: bluecolor,
+    color: whitecolor,
+    borderRadius: 8,
+    marginRight: 12,
+    padding: 4,
+  },
+  loaderModal: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    backgroundColor: '#007bff',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  icon: { width: 18, height: 18 },
-  buttonText: {
-    color: '#fff',
-    fontSize: 12,
-    fontWeight: '700',
-    fontFamily: 'Mukta-SemiBold',
-    marginHorizontal: 5,
-  },
-  arrow: { width: 12, height: 12 },
-
-  dropdown: {
-    position: 'absolute',
-    top: 40, // height of the button + margin
-    right: 0,
-    backgroundColor: '#fff',
-    borderRadius: 6,
-    elevation: 5,
-    padding: 8,
-    zIndex: 999,
-  },
-  dropdownItem: {
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    fontSize: 14,
-    color: '#000',
+  loaderContainer: {
+    backgroundColor: whitecolor,
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
   },
 });

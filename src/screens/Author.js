@@ -1,12 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useRoute, useNavigation} from '@react-navigation/native';
-import {
-  FlatList,
-  View,
-  Image,
-  ActivityIndicator,
-  Text,
-} from 'react-native';
+import {FlatList, View, Image, ActivityIndicator, Text} from 'react-native';
 import {HeaderStyle} from '../styles/Header.Styles';
 import CategoryComponentTwo from '../components/CategoryComponentTwo';
 import AuthorComponent from '../components/AuthorComponent';
@@ -14,8 +8,12 @@ import {blackcolor, commonstyles} from '../styles/commonstyles';
 import {BaseUrl, authorUrl} from '../utilities/urls';
 import Ripple from 'react-native-material-ripple';
 
-const PhotoAuthorListItem = React.lazy(() => import('../components/PhotoAuthorListItem'));
-const VideoAuthorListItem = React.lazy(() => import('../components/VideoAuthorListItem'));
+const PhotoAuthorListItem = React.lazy(() =>
+  import('../components/PhotoAuthorListItem'),
+);
+const VideoAuthorListItem = React.lazy(() =>
+  import('../components/VideoAuthorListItem'),
+);
 
 const AuthorScreen = ({title}) => {
   const navigation = useNavigation();
@@ -28,8 +26,6 @@ const AuthorScreen = ({title}) => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const limit = 10;
-  
-  
 
   useEffect(() => {
     fetchAuthorData();
@@ -37,28 +33,30 @@ const AuthorScreen = ({title}) => {
 
   const fetchAuthorData = async (isLoadMore = false) => {
     if (loadingMore || (!hasMore && isLoadMore)) return;
-  
+
     if (isLoadMore) {
       setLoadingMore(true);
     } else {
       setLoading(true);
     }
-  
+
     try {
       const author = route.params?.url?.split(' ').join('');
       const currentOffset = isLoadMore ? parentData.length : 0;
       const url = `${BaseUrl}${authorUrl}?author-name=${author}&limit=${limit}&offset=${currentOffset}`;
-  
+
       const response = await fetch(url);
       const jsonData = await response.json();
-  
+
       if (jsonData?.posts?.length > 0) {
-        setParentData(prev => isLoadMore ? [...prev, ...jsonData.posts] : jsonData.posts);
+        setParentData(prev =>
+          isLoadMore ? [...prev, ...jsonData.posts] : jsonData.posts,
+        );
         setHasMore(jsonData.posts.length === limit);
       } else {
         setHasMore(false);
       }
-  
+
       if (jsonData?.author) {
         setAuthorData(jsonData.author);
       } else {
@@ -71,7 +69,6 @@ const AuthorScreen = ({title}) => {
       setLoadingMore(false);
     }
   };
-  
 
   const renderAuthor = ({item}) => {
     const {screenName} = route.params;
@@ -92,7 +89,7 @@ const AuthorScreen = ({title}) => {
           navigation={navigation}
           categoryName={title}
         />
-      )
+      );
     } else {
       return (
         <CategoryComponentTwo
@@ -104,29 +101,31 @@ const AuthorScreen = ({title}) => {
       );
     }
   };
-    const renderLoadMoreButton = () => {
-      if (loadingMore) {
-        return (
-          <ActivityIndicator
-            style={{marginVertical: 22}}
-            size="small"
-            color={blackcolor}
-          />
-        );
-      }
-  
-      if (!hasMore) {
-        return (
-          <Text style={commonstyles.noMoreText}>No more data available</Text>
-        );
-      }
-  
+  const renderLoadMoreButton = () => {
+    if (loadingMore) {
       return (
-        <Ripple style={commonstyles.loadMoreBtn} onPress={() => fetchAuthorData(true)}>
-          <Text style={commonstyles.loadMoreBtnTxt}>Load More</Text>
-        </Ripple>
+        <ActivityIndicator
+          style={{marginVertical: 22}}
+          size="small"
+          color={blackcolor}
+        />
       );
-    };
+    }
+
+    if (!hasMore) {
+      return (
+        <Text style={commonstyles.noMoreText}>No more data available</Text>
+      );
+    }
+
+    return (
+      <Ripple
+        style={commonstyles.loadMoreBtn}
+        onPress={() => fetchAuthorData(true)}>
+        <Text style={commonstyles.loadMoreBtnTxt}>Load More</Text>
+      </Ripple>
+    );
+  };
 
   if (loading) {
     return (
@@ -138,7 +137,8 @@ const AuthorScreen = ({title}) => {
     return (
       <>
         <View style={HeaderStyle.DetailsHeader}>
-          <Ripple onPress={() => navigation.goBack()}
+          <Ripple
+            onPress={() => navigation.goBack()}
             style={commonstyles.iconRipple}>
             <Image
               source={require('../Assets/Images/arrow.png')}

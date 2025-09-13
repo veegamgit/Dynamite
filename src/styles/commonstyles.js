@@ -23,6 +23,7 @@ export const commonstyles = StyleSheet.create({
   HomeThreeCategoryview: {
     borderBottomColor: graycolor,
     borderBottomWidth: 1,
+    paddingBottom: 10,
   },
   homecategoryView: {
     justifyContent: 'space-between',

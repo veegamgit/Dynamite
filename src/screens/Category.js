@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import CategoryUI from '../components/CategoryUI';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import {useRoute, useNavigation} from '@react-navigation/native';
+import {BaseUrl, CategoryUrl} from '../utilities/urls';
 
-const CategoryScreen = ({ item, isTopNavigation }) => {
+const CategoryScreen = ({item, isTopNavigation}) => {
   const navigation = useNavigation();
   const route = useRoute();
   const [parentData, setParentData] = useState([]);
@@ -13,8 +14,8 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
   const limit = 10;
 
   useEffect(() => {
-    if(route.params.isTagDeepLinkClicked){
-      fetchTagData()
+    if (route.params.isTagDeepLinkClicked) {
+      fetchTagData();
     } else {
       fetchParentData();
     }
@@ -25,15 +26,17 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
 
     setLoadingMore(true);
     try {
-      const category = route.params?.isCategoryClicked ? route.params?.url : item?.url;
-      const url = `https://hindi.dynamitenews.com/wp-json/dynamite/v1/category-posts?category=${category}&limit=${limit}&offset=${offset}`;
+      const category = route.params?.isCategoryClicked
+        ? route.params?.url
+        : item?.url;
+      const url = `${BaseUrl}${CategoryUrl}?category=${category}&limit=${limit}&offset=${offset}`;
 
       const response = await fetch(url);
       const jsonData = await response.json();
 
       if (jsonData.status === 'success' && jsonData.data?.length > 0) {
-        setParentData((prevData) => [...prevData, ...jsonData.data]);
-        setOffset((prevOffset) => prevOffset + limit);
+        setParentData(prevData => [...prevData, ...jsonData.data]);
+        setOffset(prevOffset => prevOffset + limit);
       } else {
         setHasMore(false);
       }
@@ -55,8 +58,8 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
       const jsonData = await response.json();
 
       if (jsonData.status === 'success' && jsonData.data?.length > 0) {
-        setParentData((prevData) => [...prevData, ...jsonData.data]);
-        setPage((prevPage) => prevPage + 1);
+        setParentData(prevData => [...prevData, ...jsonData.data]);
+        setPage(prevPage => prevPage + 1);
       } else {
         setHasMore(false);
       }
@@ -67,7 +70,6 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
     }
   };
 
-  
   return (
     <CategoryUI
       data={parentData}
@@ -75,11 +77,13 @@ const CategoryScreen = ({ item, isTopNavigation }) => {
       title={item?.title || route.params.url}
       categoryName={item?.title}
       isTopNavigation={isTopNavigation}
-      loadMore={route.params.isTagDeepLinkClicked ? fetchTagData : fetchParentData}
+      loadMore={
+        route.params.isTagDeepLinkClicked ? fetchTagData : fetchParentData
+      }
       loadingMore={loadingMore}
       hasMore={hasMore}
     />
-  )
+  );
 };
 
 export default CategoryScreen;

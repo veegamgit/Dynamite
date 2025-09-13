@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {memo} from 'react';
 import {
   Text,
   View,
@@ -103,4 +103,4 @@ function HomeUINew(props) {
   );
 }
 
-export default HomeUINew;
+export default memo(HomeUINew);
