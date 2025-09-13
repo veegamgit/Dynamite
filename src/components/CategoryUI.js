@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
 import {
   Text,
   View,
@@ -18,9 +17,9 @@ import {
 } from '../styles/commonstyles';
 import CategoryComponentTwo from './CategoryComponentTwo';
 import CategoryComponentOne from './CategoryComponentOne';
-import {HeaderStyle} from '../styles/Header.Styles';
 import Ripple from 'react-native-material-ripple';
 import Trending from '../components/Trending';
+import {useTranslation} from 'react-i18next';
 
 function CategoryUI({
   navigation,
@@ -31,6 +30,7 @@ function CategoryUI({
   hasMore,
   loadMore,
 }) {
+  const {t} = useTranslation();
   const renderItemOne = ({item}) => (
     <CategoryComponentOne
       item={item}
@@ -61,14 +61,12 @@ function CategoryUI({
     }
 
     if (!hasMore) {
-      return (
-        <Text style={commonstyles.noMoreText}>No more data available</Text>
-      );
+      return <Text style={commonstyles.noMoreText}>{t('nomoredata')}</Text>;
     }
 
     return (
       <Ripple style={styles.loadMoreBtn} onPress={loadMore}>
-        <Text style={styles.loreMoreBtnTxt}>Load More</Text>
+        <Text style={styles.loreMoreBtnTxt}>{t('loadmore')}</Text>
       </Ripple>
     );
   };

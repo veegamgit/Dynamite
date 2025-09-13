@@ -5,9 +5,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import {sideMenuStyle} from '../styles/SideMenuStyles';
 import {blackcolor, graycolor} from '../styles/commonstyles';
+import {useTranslation} from 'react-i18next';
 
 const SideMenu = ({navigation}) => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
+  const currentLanguage = useSelector(
+    state => state.languageReducer.selectedLanguage,
+  );
 
   useEffect(() => {
     dispatch(getTopMenuDataAction());
@@ -41,13 +46,18 @@ const SideMenu = ({navigation}) => {
     }
   };
 
+  const companyLogo =
+    currentLanguage === 'हिंदी'
+      ? require('../Assets/Images/logo_hn.png')
+      : require('../Assets/Images/logo_en.png');
+
   return (
     <SafeAreaView style={sideMenuStyle.areaView}>
       <View style={sideMenuStyle.MainView}>
         <View style={sideMenuStyle.logoView}>
           <Image
             style={sideMenuStyle.logoText}
-            source={require('../Assets/Images/logo_hn.png')}
+            source={companyLogo}
             resizeMode="contain"
           />
         </View>
@@ -87,7 +97,7 @@ const SideMenu = ({navigation}) => {
                   style={sideMenuStyle.icon}
                 />
               )}
-              label="Settings"
+              label={t('settings')}
               labelStyle={sideMenuStyle.text}
               onPress={() => {
                 navigation.navigate('Settings');
@@ -95,7 +105,7 @@ const SideMenu = ({navigation}) => {
             />
             <DrawerItem
               style={sideMenuStyle.item}
-              label="App Version 1.0.0"
+              label={t('appversion') + ' 1.0.0'}
               labelStyle={{
                 color: blackcolor,
                 fontSize: 12,

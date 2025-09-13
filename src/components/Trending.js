@@ -18,19 +18,23 @@ import getTrendingAction from '../redux/actions/getTrendingAction';
 import Ripple from 'react-native-material-ripple';
 import {useNavigation} from '@react-navigation/native';
 import TrendIcon from '../Assets/Images/trend.png';
+import {useTranslation} from 'react-i18next';
 
 const Trending = React.memo(() => {
   const [trendLength, setTrendLength] = useState(0);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {trendingData, error} = useSelector(state => state.trendingReducer);
+  const {t} = useTranslation();
+  const language = useSelector(state => state.languageReducer.selectedLanguage);
+
   function callback() {
     setTrendLength(trendingData.menu_items?.length);
   }
   useEffect(() => {
     dispatch(getTrendingAction());
     callback();
-  }, []);
+  }, [language]);
 
   const trendRederItem = ({item, index}) => {
     return (
@@ -50,7 +54,7 @@ const Trending = React.memo(() => {
   return (
     <View style={styles.treningContainer}>
       <Image source={TrendIcon} style={styles.trendIcon} resizeMode="contain" />
-      <Text style={styles.trendHeading}>In Trends:</Text>
+      <Text style={styles.trendHeading}>{t('intrends')}:</Text>
       {trendingData.menu_items?.length > 0 ? (
         <FlatList
           data={trendingData?.menu_items}

@@ -1,97 +1,406 @@
 /* eslint-disable prettier/prettier */
-import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  ScrollView,
-  SafeAreaView,
-} from 'react-native';
+import React, {Component} from 'react';
+import {Text, View, ScrollView, SafeAreaView} from 'react-native';
 import SubHeader from '../../components/SubHeader';
-import {
-  commonstyles,
-} from '../../styles/commonstyles';
-import { ContactStyles } from '../../styles/contactScreenStyles';
+import {commonstyles} from '../../styles/commonstyles';
+import {ContactStyles} from '../../styles/contactScreenStyles';
+import {useTranslation} from 'react-i18next';
 
-export default class Terms extends Component {
-  render() {
-    return (
-      <SafeAreaView styles={commonstyles.container}>
-        <SubHeader
-          title={'Terms & Conditions '}
-          leftBtnClick={() => this.props.navigation.goBack()}
-          isBook={false}
-
-        />
-        <ScrollView>
-          <View style={ContactStyles.mainView}>
-            <View style={ContactStyles.subView}>
-
-              <Text style={ContactStyles.content}>
-                These Terms of Use govern your use of the websites, content and community services offered through https://www.dynamitenews.com (“Website / Site / Service”). You (the user) agree to access the Site, subject to the terms and conditions of use as set out here.
-                {"\n"}These terms of use (Terms) constitute a legally binding agreement between you and DYNAMITE NEWS NETWORK PRIVATE LIMITED (hereinafter referred to as “DNNPL” or “the Company”) regarding your use of the website i.e http://www.dynamitenews.com (“the Website/Site”) and any services offered by the company including but not limited to delivery of content via the Site, any mobile or internet connected device or otherwise (“the Service”). “User” or “You” means any person who access or avail this Site/Service of the Company for the purpose of hosting, publishing, sharing, transacting, displaying or uploading information or views and includes other persons jointly participating in using the Site/Service of the Company. By accessing the Site or Service, you agree to be legally bound by these Terms, which shall take effect immediately on your first use of the Site/Service. If you do not agree to be legally bound by all the following terms please do not access and/or use.
-                {"\n"}You hereby represent and warrant to the Company that you are at least eighteen (18) years of age or above and are capable of entering, performing and adhering to these Terms and that you agree to be bound by the following terms and conditions. While individuals under the age of 18 may utilize the Service of the site, they shall do so only with the involvement, guidance and approval of their parents and / or legal guardians. If required by the Company, you agree to register prior to uploading any content and / or comment and any other use of this Site/Service and provide your details including but not limited to complete name, age, email address, residential address, contact number.
-                {"\n"}DNNPL may add to or change or update these Terms of Use, from time to time entirely at its own discretion. You are responsible for checking these Terms of Use periodically to remain in compliance with these terms. Your use of the Site after any amendment to the Terms of Use shall constitute your acceptance of these terms and you also agree to be bound by any such changes/revisions. DNNPL reserves the right to suspend / cancel, or discontinue any or all channels, products or service at any time without notice , make modifications and alterations in any or all of the content, products and services contained on the site without prior notice. DNNPL reserves the right to charge subscription and / or membership fees from a user, by giving reasonable prior notice, in respect of any product, service or any other aspect of this Site.
-              </Text>
-              <Text style={ContactStyles.title}>
-                Copyright and Trademarks
-              </Text>
-              <Text style={ContactStyles.content}>
-                Unless otherwise stated, copyright and all intellectual property rights in all material presented on the Site (including but not limited to text, audio, video or graphical images), trademarks and logos appearing on this Site are the property of DYNAMITE NEWS NETWORK PRIVATE LIMITED, its parent, affiliates and associates and are protected under applicable Indian laws. You agree not to use any framing techniques to enclose any trademark or logo or other proprietary information of DNNPL; or remove, conceal or obliterate any copyright or other proprietary notice or any credit-line or date-line on other mark or source identifier included on the Site / Service, including without limitation, the size, color, location or style of all proprietary marks. Any infringement shall be vigorously defended and pursued to the fullest extent permitted by law.
-              </Text>
-              <Text style={ContactStyles.title}>
-                Limited Permission to Copy
-              </Text>
-              <Text style={ContactStyles.content}>
-                DNNPL grants you permission to only access and make personal use of the Site and You agree not to, directly or indirectly download or modify / alter / change / amend / vary / transform / revise / translate / copy / publish / distribute or otherwise disseminate any content on DNNPL’s Site / Service, or any portion of it; or delete or fail to display any promotional taglines included in the Site / Service either directly or indirectly, except with the express consent of DNNPL. However, you may print or download extracts from these pages for your personal / individual, non-commercial use only. You must not retain any copies of these pages saved to disk or to any other storage medium except for the purposes of using the same for subsequent viewing purposes or to print extracts for personal / individual use.
-                {"\n"}DNNPL forbids you from any attempts to resell or put to commercial use any part of the Site; any collection and use of any product listings, descriptions, or prices; any derivative use of the Site or its contents; any downloading or copying of account information for the benefit of any other merchant; any renting, leasing, or otherwise transferring rights to the Site / Service; displaying the name, logo, trademark or other identifier of another person (except for dynamitenews.com or you) in such a manner as to give the viewer the impression that such other person is a publisher or distributor of the Service on the Site, or any data gathering or extraction tools; or any use of meta tags. You may not (whether directly or through the use of any software program) create a database in electronic or structured manual form by regularly or systematically downloading and storing all or any part of the pages from this site. No part of the Site may be reproduced or transmitted to or stored in any other web site, nor may any of its pages or part thereof be disseminated in any electronic or non-electronic form, nor included in any public or private electronic retrieval system or service without prior written permission.
-
-              </Text>
-              <Text style={ContactStyles.title}>
-                Individual Registration, Access and Exchange of Information
-              </Text>
-              <Text style={ContactStyles.content}>
-                For certain services, registration by the visitor may be required. To register for these services you have to open an account by completing the registration process (i.e. by providing us with current, complete and accurate information as prompted by the applicable registration form). You also will choose a password and a user name. You are entirely responsible for maintaining the confidentiality of your password and account. By registering, you agree to the following terms in addition to any other specific terms which shall be posted at an appropriate location of the Site. Each registration is for a single individual user only.                {"\n"}
-                {"\n"}To access these services, you will be asked to enter your individual User Name and Password, as chosen by you during your registration. Therefore, we do not permit any of the following: – Any other person sharing your account and Password; Any part of the Site being cached in proxy servers and accessed by individuals who have not registered with DNNPL as users of the Site; or Access through a single account and Password being made available to multiple users on a network. If DNNPL reasonably believe that an account and Password is being used / misused in any manner, DNNPL shall reserve the right to cancel access rights immediately without notice, and block access to all users from that IP address.
-                {"\n"}Furthermore, you are entirely responsible for any and all activities that occur under your account. You agree to notify DNNPL immediately of any unauthorized use of your account or any other breach of security. DNNPL will not be liable for any loss that you may incur as a result of someone else using your password or account. However, you could be held liable for losses incurred by DNNPL or another party due to someone else using your account or password.
-              </Text>
-              <Text style={ContactStyles.title}>
-                No unlawful or prohibited use              </Text>
-              <Text style={ContactStyles.content}>
-                As a condition of your use of the Services, you will not use the Services for any purpose that is unlawful or prohibited by these terms, conditions, and notices. You may not use the Services in any manner that could damage, disable, overburden, or impair any DNNPL’s server, or the network(s) connected to any DNNPL server, or interfere with any other party’s use and enjoyment of any Services. You may not attempt to gain unauthorized access to any Services, other accounts, computer systems or to any of the Services, through hacking, password mining or any other means. You may not obtain or attempt to obtain any materials or information through any means not intentionally made available through the Services.
-
-              </Text>
-              <Text style={ContactStyles.title}>
-                Material Posted/transmitted on DNNPL’s Site              </Text>
-              <Text style={ContactStyles.content}>
-                All information, data, text, software, music, sound, photographs, graphics, video, messages or other materials (“Content”), whether publicly or privately transmitted / posted, is the sole responsibility of the person from where such content is originated (the Originator). By Posting any material which contain images, photographs, pictures or that are otherwise graphical in whole or in part (“Images”), you warrant and represent that (a) you are the copyright owner of such Images, or that the copyright owner of such Images has granted you permission to use such Images or any content and/or images contained in such Images consistent with the manner and purpose of your use and as otherwise permitted by these Terms of Use and the Services, (b) you have the rights necessary to grant the licenses and sublicenses described in these Terms of Use, and (c) that each person depicted in such Images, if any, has provided consent to the use of the Images as set forth in these Terms of Use, including, by way of limitation, the distribution, public display and reproduction of such Images. You represent that you have valid rights and title in any and all Content/Images that you submit on the Site, that you have not infringed on any IPR belonging to any party and further that you will indemnify DNNPL or its affiliates for all claims arising out of any content that you post on the Site. DNNPL accepts no responsibility for the said Content / Images. However, you understand that all Content / Images posted by you becomes the property of DNNPL and you agree to grant/assign to DNNPL and its affiliates, a non-exclusive, royalty free, perpetual, irrevocable and sub-licenseable right to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, perform and display such Content / Images (in whole or part) worldwide and/or to incorporate it in other works in any form, media, or technology now known or later developed throughout the world”. Exchange of Information qua CHAT & other Community Services You represent that you are a responsible adult (18 years or above) and you shall be solely responsible for all Content/Images that you upload post or otherwise transmit.. DNNPL endeavours to provide a web platform for various community interactions for persons to interact and exchange views with each other. The content posted on such services is by general public therefore the accuracy, integrity or quality of such content cannot be guaranteed. You understand that by using such services, you may be exposed to objectionable matter. By using the facility of chat and other community services you agree not to upload, post, or otherwise transmit any matter or views, which are, defamatory, abusive, pervasive, obscene, invasive of another’s privacy, hateful, or racially, ethnically or otherwise objectionable. You may also not indulge in cyber stalking, become or create a nuisance for any visitor / user of the Site. You may not send, submit, post, or otherwise transmit, material or messages that contain software virus, or any other files that are designed to interrupt, destroy, and negatively affect in any manner whatsoever, any electronic equipment in connection with the use of this Site, or other user’s ability to engage in real time exchanges.
-              </Text>
-              <Text style={ContactStyles.title}>
-                Prohibited Activities
-              </Text>
-              <Text style={ContactStyles.content}>
-                You agree that you shall not host, display, upload, modify, publish, transmit, update or share any information on the Site, that — belongs to another person and to which you do not have any right to; is grossly harmful, harassing, blasphemous, defamatory, obscene, pornographic, paedophilic, libellous, invasive of another’s privacy, hateful, or racially, ethnically objectionable, disparaging, relating or encouraging money laundering or gambling, or otherwise unlawful in any manner whatever; harm minors in any way; infringes any patent, trademark, copyright or other proprietary rights; violates any law for the time being in force; deceives or misleads the addressee about the origin of such messages or communicates any information which is grossly offensive or menacing in nature; impersonate another person contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer resource; threatens the unity, integrity, defence, security or sovereignty of India, friendly relations with foreign states, or public order or causes incitement to the commission of any cognisable offence or prevents investigation of any offence or is insulting any other nation. Any Content and or comment uploaded by you, shall be subject to relevant Indian laws and may be disabled, or and may be subject to investigation under appropriate laws. Furthermore, if you are found to be in non-compliance with the laws and regulations, these terms, or the privacy policy of the Site, the Company shall have the right to immediately terminate/block your access and usage of the Site and the Company shall have the right to immediately remove any non-compliant Content and or comment, uploaded by you and shall further have the right to take recourse to such remedies as would be available to the Company under the applicable laws.
-              </Text>
-              <Text style={ContactStyles.title}>
-                Limitation of Liabilities              </Text>
-              <Text style={ContactStyles.content}>
-                Any transactions relating to sale/purchase of goods or services not directly offered by DNNPL are to be settled inter-se between the parties to such transaction and all warranties express or implied of any kind, regarding any matter pertaining thereto, including without limitation the implied warranties of merchantability, fitness for a particular purpose, and non-infringement are disclaimed by DNNPL. DNNPL merely endeavors to provide a platform where you and other party may interact, exchange information or carry out sale/purchase transactions on such terms and in the manner mutually agreed between you and the other party. DNNPL does not have any involvement in the actual transactions between the buyers and sellers in any way. It is only you, who is entirely responsible for all the activities, arising out of the transactions of sale/purchase of goods or services offered by any other party and not DNNPL. DNNPL will not be liable for any loss that you may incur, while selling or purchasing goods /services of the third party. Under No circumstances will DNNPL be held responsible or liable, in any way, for any content which in Legal opinion is derogatory, threatening, defamatory, obscene or offensive or offends public sensibilities or morals and shall also not assume liability for any errors or omissions in any content, or for any loss or damage of any kind incurred as a result of the use of any content posted or uploaded on the Site, or any infringement of another’s rights, including intellectual property rights. You specifically agree that DNNPL is not responsible for any content sent using and/or included in DNNPL’s site/service by any third party.              </Text>
-              <Text style={ContactStyles.title}>
-                Termination of Account
-              </Text>
-              <Text style={ContactStyles.content}>
-                DNNPL reserves its right to refuse service, restrict, suspend, terminate your account; (Terminate this Agreement; Terminate or suspend your access to the DNNPL’s Web Sites; Refuse, move or remove for any reason any Content / Image that you submit on or through the Services; Refuse, move, or remove any Content / Image that is available on or through the Services; Deactivate or delete your accounts and all related information and files in your account; Establish general practices and limits concerning use of the Services) at any time and, remove or edit contents or cancel orders (entered by you) in its sole discretion with or without cause, and with or without any prior notice for any violation of the Terms of Use. Upon such termination or suspension, your right to use the DNNPL’s Websites will immediately cease.
-                {"\n"}You can also terminate your account at any time but your information may remain stored in archive on our servers even after the deletion or the termination of your account.
-              </Text>
-              <Text style={ContactStyles.title}>
-                User Conduct and Obligations
-              </Text>
-              <Text style={ContactStyles.content}>
-                You hereby agree and assure DNNPL that the Site/Services shall be used for lawful purposes only and that you will not violate laws, regulations, ordinances or other such requirements of any applicable Central, State or local government or any other international laws. You further concur that you will not, through Site/Service: post, distribute, or otherwise make available or transmit any software or other computer files that contain a virus trojan horses, time bombs, bots, botnets, malicious content, content theft, data manipulation, threats or any other harmful programs or elements or component; delete from the Site any legal notices, disclaimers, or proprietary notices such as copyright or trademark symbols, or modify any logos that you do not own or have express permission to modify; not use the Site / Service in any manner that could damage, disable, overburden, or impair and not to undertake any action which is harmful or potentially harmful to any DNNPL’s server, or the network(s), computer systems / resource connected to any DNNPL server, or interfere with any other party’s use and enjoyment of the Site/Service; obtain or attempt to obtain any materials or information through any means not intentionally made available through the Site/Service; engage in any activity that causes / may harm minors; or perform any activity which is likely to cause such harm; impersonate any person or entity, including, but not limited to, DNNPL’s official, forum leader, guide or host, or falsely state or otherwise misrepresent your affiliation with a person or entity; take any action which encourages or consists of any threat of harm of any kind to any person or property; carry out any “denial of service” (DoS, DDoS) or any other harmful attacks on application or internet service or; make any inappropriate, illegal or otherwise prohibited communication to any Newsgroup, Mailing List, Chat Facility, or other Internet Forum; use the Site/Service for illegal purposes; disrupt, place unreasonable burdens or excessive loads on, interfere with or attempt to make or attempt any unauthorized access to any DNNPL website or the website of any DNNPL’s customer; transmit through the Site, any unlawful, harassing, libelous, abusive, threatening, harmful, vulgar, obscene, libelous, hateful, or racially, ethnically or otherwise objectionable material of any kind or nature. This includes text, graphics, video, programs or audio, etc.; collect or attempt to collect personally identifiable information of any person or entity without their express written consent and you shall maintain records of any such written consent throughout the terms of this agreement and for a period of 2 years thereafter; engage in antisocial, disruptive, or destructive acts, including “flaming,” “spamming,” “flooding,” “trolling,” and “griefing” as those terms are commonly understood and used on the Internet forge headers or otherwise manipulate identifiers in order to disguise the origin of any content transmitted through the Site. upload, post, email, transmit or otherwise make available any unsolicited or unauthorised advertising, promotional materials, “junk mail,” “spam,” “chain letters,” “pyramid schemes,” duplicative messages or any other form of solicitation, encumber or suffer to exist any lien or security interest on the subject matter of this Agreement; or make any representation or warranty on behalf of DNNPL. You agree not to post, distribute, transmit or otherwise make available any data, text, message, computer file, or other material that infringes and/or violates any right of a third party or any domestic or international law, rule, or regulation, including but not limited to: infringement of any copyright, trademark, patent, trade secret, or other proprietary rights of any third party, including, but not limited to, the unauthorized copying of copyrighted material, the digitization and distribution of photographs from magazines, books, or other copyrighted sources, and the unauthorized transmittal of copyrighted software; right of privacy (specifically, you must not distribute another person’s personal information of any kind without their express permission) or publicity; any confidentiality obligation. Unless otherwise permitted, you will: (i) display the Service on your Site in the exact form received by you, and not modify or edit any of the foregoing without DNNPL’s prior written consent; (ii) ensure that the fundamental meaning of the Service is not changed or distorted; (iii) comply with all applicable laws and all limitations and restrictions (if any) placed by DNNPL on the use, display or distribution of any Service and (iv) not archive any of the Service for access by users at any future date after the Service has been removed from your Web site. You acknowledge that the service must link and redirect to the appropriate DNNPL’s Web page when a user clicks on the Service (e.g. a headline). You shall not display the Service in such a manner that does not allow for successful linking and redirection to, and delivery of, DNNPL’s Web page, nor may you frame any DNNPL’s Web page.
-              </Text>
-            </View>
+const Terms = ({navigation}) => {
+  const {t} = useTranslation();
+  return (
+    <SafeAreaView styles={commonstyles.container}>
+      <SubHeader
+        title={t('termsandconditions')}
+        leftBtnClick={() => navigation.goBack()}
+        isBook={false}
+      />
+      <ScrollView>
+        <View style={ContactStyles.mainView}>
+          <View style={ContactStyles.subView}>
+            <Text style={ContactStyles.content}>
+              These Terms of Use govern your use of the websites, content and
+              community services offered through https://www.dynamitenews.com
+              (“Website / Site / Service”). You (the user) agree to access the
+              Site, subject to the terms and conditions of use as set out here.
+              {'\n'}These terms of use (Terms) constitute a legally binding
+              agreement between you and DYNAMITE NEWS NETWORK PRIVATE LIMITED
+              (hereinafter referred to as “DNNPL” or “the Company”) regarding
+              your use of the website i.e http://www.dynamitenews.com (“the
+              Website/Site”) and any services offered by the company including
+              but not limited to delivery of content via the Site, any mobile or
+              internet connected device or otherwise (“the Service”). “User” or
+              “You” means any person who access or avail this Site/Service of
+              the Company for the purpose of hosting, publishing, sharing,
+              transacting, displaying or uploading information or views and
+              includes other persons jointly participating in using the
+              Site/Service of the Company. By accessing the Site or Service, you
+              agree to be legally bound by these Terms, which shall take effect
+              immediately on your first use of the Site/Service. If you do not
+              agree to be legally bound by all the following terms please do not
+              access and/or use.
+              {'\n'}You hereby represent and warrant to the Company that you are
+              at least eighteen (18) years of age or above and are capable of
+              entering, performing and adhering to these Terms and that you
+              agree to be bound by the following terms and conditions. While
+              individuals under the age of 18 may utilize the Service of the
+              site, they shall do so only with the involvement, guidance and
+              approval of their parents and / or legal guardians. If required by
+              the Company, you agree to register prior to uploading any content
+              and / or comment and any other use of this Site/Service and
+              provide your details including but not limited to complete name,
+              age, email address, residential address, contact number.
+              {'\n'}DNNPL may add to or change or update these Terms of Use,
+              from time to time entirely at its own discretion. You are
+              responsible for checking these Terms of Use periodically to remain
+              in compliance with these terms. Your use of the Site after any
+              amendment to the Terms of Use shall constitute your acceptance of
+              these terms and you also agree to be bound by any such
+              changes/revisions. DNNPL reserves the right to suspend / cancel,
+              or discontinue any or all channels, products or service at any
+              time without notice , make modifications and alterations in any or
+              all of the content, products and services contained on the site
+              without prior notice. DNNPL reserves the right to charge
+              subscription and / or membership fees from a user, by giving
+              reasonable prior notice, in respect of any product, service or any
+              other aspect of this Site.
+            </Text>
+            <Text style={ContactStyles.title}>Copyright and Trademarks</Text>
+            <Text style={ContactStyles.content}>
+              Unless otherwise stated, copyright and all intellectual property
+              rights in all material presented on the Site (including but not
+              limited to text, audio, video or graphical images), trademarks and
+              logos appearing on this Site are the property of DYNAMITE NEWS
+              NETWORK PRIVATE LIMITED, its parent, affiliates and associates and
+              are protected under applicable Indian laws. You agree not to use
+              any framing techniques to enclose any trademark or logo or other
+              proprietary information of DNNPL; or remove, conceal or obliterate
+              any copyright or other proprietary notice or any credit-line or
+              date-line on other mark or source identifier included on the Site
+              / Service, including without limitation, the size, color, location
+              or style of all proprietary marks. Any infringement shall be
+              vigorously defended and pursued to the fullest extent permitted by
+              law.
+            </Text>
+            <Text style={ContactStyles.title}>Limited Permission to Copy</Text>
+            <Text style={ContactStyles.content}>
+              DNNPL grants you permission to only access and make personal use
+              of the Site and You agree not to, directly or indirectly download
+              or modify / alter / change / amend / vary / transform / revise /
+              translate / copy / publish / distribute or otherwise disseminate
+              any content on DNNPL’s Site / Service, or any portion of it; or
+              delete or fail to display any promotional taglines included in the
+              Site / Service either directly or indirectly, except with the
+              express consent of DNNPL. However, you may print or download
+              extracts from these pages for your personal / individual,
+              non-commercial use only. You must not retain any copies of these
+              pages saved to disk or to any other storage medium except for the
+              purposes of using the same for subsequent viewing purposes or to
+              print extracts for personal / individual use.
+              {'\n'}DNNPL forbids you from any attempts to resell or put to
+              commercial use any part of the Site; any collection and use of any
+              product listings, descriptions, or prices; any derivative use of
+              the Site or its contents; any downloading or copying of account
+              information for the benefit of any other merchant; any renting,
+              leasing, or otherwise transferring rights to the Site / Service;
+              displaying the name, logo, trademark or other identifier of
+              another person (except for dynamitenews.com or you) in such a
+              manner as to give the viewer the impression that such other person
+              is a publisher or distributor of the Service on the Site, or any
+              data gathering or extraction tools; or any use of meta tags. You
+              may not (whether directly or through the use of any software
+              program) create a database in electronic or structured manual form
+              by regularly or systematically downloading and storing all or any
+              part of the pages from this site. No part of the Site may be
+              reproduced or transmitted to or stored in any other web site, nor
+              may any of its pages or part thereof be disseminated in any
+              electronic or non-electronic form, nor included in any public or
+              private electronic retrieval system or service without prior
+              written permission.
+            </Text>
+            <Text style={ContactStyles.title}>
+              Individual Registration, Access and Exchange of Information
+            </Text>
+            <Text style={ContactStyles.content}>
+              For certain services, registration by the visitor may be required.
+              To register for these services you have to open an account by
+              completing the registration process (i.e. by providing us with
+              current, complete and accurate information as prompted by the
+              applicable registration form). You also will choose a password and
+              a user name. You are entirely responsible for maintaining the
+              confidentiality of your password and account. By registering, you
+              agree to the following terms in addition to any other specific
+              terms which shall be posted at an appropriate location of the
+              Site. Each registration is for a single individual user only.{' '}
+              {'\n'}
+              {'\n'}To access these services, you will be asked to enter your
+              individual User Name and Password, as chosen by you during your
+              registration. Therefore, we do not permit any of the following: –
+              Any other person sharing your account and Password; Any part of
+              the Site being cached in proxy servers and accessed by individuals
+              who have not registered with DNNPL as users of the Site; or Access
+              through a single account and Password being made available to
+              multiple users on a network. If DNNPL reasonably believe that an
+              account and Password is being used / misused in any manner, DNNPL
+              shall reserve the right to cancel access rights immediately
+              without notice, and block access to all users from that IP
+              address.
+              {'\n'}Furthermore, you are entirely responsible for any and all
+              activities that occur under your account. You agree to notify
+              DNNPL immediately of any unauthorized use of your account or any
+              other breach of security. DNNPL will not be liable for any loss
+              that you may incur as a result of someone else using your password
+              or account. However, you could be held liable for losses incurred
+              by DNNPL or another party due to someone else using your account
+              or password.
+            </Text>
+            <Text style={ContactStyles.title}>
+              No unlawful or prohibited use{' '}
+            </Text>
+            <Text style={ContactStyles.content}>
+              As a condition of your use of the Services, you will not use the
+              Services for any purpose that is unlawful or prohibited by these
+              terms, conditions, and notices. You may not use the Services in
+              any manner that could damage, disable, overburden, or impair any
+              DNNPL’s server, or the network(s) connected to any DNNPL server,
+              or interfere with any other party’s use and enjoyment of any
+              Services. You may not attempt to gain unauthorized access to any
+              Services, other accounts, computer systems or to any of the
+              Services, through hacking, password mining or any other means. You
+              may not obtain or attempt to obtain any materials or information
+              through any means not intentionally made available through the
+              Services.
+            </Text>
+            <Text style={ContactStyles.title}>
+              Material Posted/transmitted on DNNPL’s Site{' '}
+            </Text>
+            <Text style={ContactStyles.content}>
+              All information, data, text, software, music, sound, photographs,
+              graphics, video, messages or other materials (“Content”), whether
+              publicly or privately transmitted / posted, is the sole
+              responsibility of the person from where such content is originated
+              (the Originator). By Posting any material which contain images,
+              photographs, pictures or that are otherwise graphical in whole or
+              in part (“Images”), you warrant and represent that (a) you are the
+              copyright owner of such Images, or that the copyright owner of
+              such Images has granted you permission to use such Images or any
+              content and/or images contained in such Images consistent with the
+              manner and purpose of your use and as otherwise permitted by these
+              Terms of Use and the Services, (b) you have the rights necessary
+              to grant the licenses and sublicenses described in these Terms of
+              Use, and (c) that each person depicted in such Images, if any, has
+              provided consent to the use of the Images as set forth in these
+              Terms of Use, including, by way of limitation, the distribution,
+              public display and reproduction of such Images. You represent that
+              you have valid rights and title in any and all Content/Images that
+              you submit on the Site, that you have not infringed on any IPR
+              belonging to any party and further that you will indemnify DNNPL
+              or its affiliates for all claims arising out of any content that
+              you post on the Site. DNNPL accepts no responsibility for the said
+              Content / Images. However, you understand that all Content /
+              Images posted by you becomes the property of DNNPL and you agree
+              to grant/assign to DNNPL and its affiliates, a non-exclusive,
+              royalty free, perpetual, irrevocable and sub-licenseable right to
+              use, reproduce, modify, adapt, publish, translate, create
+              derivative works from, distribute, perform and display such
+              Content / Images (in whole or part) worldwide and/or to
+              incorporate it in other works in any form, media, or technology
+              now known or later developed throughout the world”. Exchange of
+              Information qua CHAT & other Community Services You represent that
+              you are a responsible adult (18 years or above) and you shall be
+              solely responsible for all Content/Images that you upload post or
+              otherwise transmit.. DNNPL endeavours to provide a web platform
+              for various community interactions for persons to interact and
+              exchange views with each other. The content posted on such
+              services is by general public therefore the accuracy, integrity or
+              quality of such content cannot be guaranteed. You understand that
+              by using such services, you may be exposed to objectionable
+              matter. By using the facility of chat and other community services
+              you agree not to upload, post, or otherwise transmit any matter or
+              views, which are, defamatory, abusive, pervasive, obscene,
+              invasive of another’s privacy, hateful, or racially, ethnically or
+              otherwise objectionable. You may also not indulge in cyber
+              stalking, become or create a nuisance for any visitor / user of
+              the Site. You may not send, submit, post, or otherwise transmit,
+              material or messages that contain software virus, or any other
+              files that are designed to interrupt, destroy, and negatively
+              affect in any manner whatsoever, any electronic equipment in
+              connection with the use of this Site, or other user’s ability to
+              engage in real time exchanges.
+            </Text>
+            <Text style={ContactStyles.title}>Prohibited Activities</Text>
+            <Text style={ContactStyles.content}>
+              You agree that you shall not host, display, upload, modify,
+              publish, transmit, update or share any information on the Site,
+              that — belongs to another person and to which you do not have any
+              right to; is grossly harmful, harassing, blasphemous, defamatory,
+              obscene, pornographic, paedophilic, libellous, invasive of
+              another’s privacy, hateful, or racially, ethnically objectionable,
+              disparaging, relating or encouraging money laundering or gambling,
+              or otherwise unlawful in any manner whatever; harm minors in any
+              way; infringes any patent, trademark, copyright or other
+              proprietary rights; violates any law for the time being in force;
+              deceives or misleads the addressee about the origin of such
+              messages or communicates any information which is grossly
+              offensive or menacing in nature; impersonate another person
+              contains software viruses or any other computer code, files or
+              programs designed to interrupt, destroy or limit the functionality
+              of any computer resource; threatens the unity, integrity, defence,
+              security or sovereignty of India, friendly relations with foreign
+              states, or public order or causes incitement to the commission of
+              any cognisable offence or prevents investigation of any offence or
+              is insulting any other nation. Any Content and or comment uploaded
+              by you, shall be subject to relevant Indian laws and may be
+              disabled, or and may be subject to investigation under appropriate
+              laws. Furthermore, if you are found to be in non-compliance with
+              the laws and regulations, these terms, or the privacy policy of
+              the Site, the Company shall have the right to immediately
+              terminate/block your access and usage of the Site and the Company
+              shall have the right to immediately remove any non-compliant
+              Content and or comment, uploaded by you and shall further have the
+              right to take recourse to such remedies as would be available to
+              the Company under the applicable laws.
+            </Text>
+            <Text style={ContactStyles.title}>Limitation of Liabilities </Text>
+            <Text style={ContactStyles.content}>
+              Any transactions relating to sale/purchase of goods or services
+              not directly offered by DNNPL are to be settled inter-se between
+              the parties to such transaction and all warranties express or
+              implied of any kind, regarding any matter pertaining thereto,
+              including without limitation the implied warranties of
+              merchantability, fitness for a particular purpose, and
+              non-infringement are disclaimed by DNNPL. DNNPL merely endeavors
+              to provide a platform where you and other party may interact,
+              exchange information or carry out sale/purchase transactions on
+              such terms and in the manner mutually agreed between you and the
+              other party. DNNPL does not have any involvement in the actual
+              transactions between the buyers and sellers in any way. It is only
+              you, who is entirely responsible for all the activities, arising
+              out of the transactions of sale/purchase of goods or services
+              offered by any other party and not DNNPL. DNNPL will not be liable
+              for any loss that you may incur, while selling or purchasing goods
+              /services of the third party. Under No circumstances will DNNPL be
+              held responsible or liable, in any way, for any content which in
+              Legal opinion is derogatory, threatening, defamatory, obscene or
+              offensive or offends public sensibilities or morals and shall also
+              not assume liability for any errors or omissions in any content,
+              or for any loss or damage of any kind incurred as a result of the
+              use of any content posted or uploaded on the Site, or any
+              infringement of another’s rights, including intellectual property
+              rights. You specifically agree that DNNPL is not responsible for
+              any content sent using and/or included in DNNPL’s site/service by
+              any third party.{' '}
+            </Text>
+            <Text style={ContactStyles.title}>Termination of Account</Text>
+            <Text style={ContactStyles.content}>
+              DNNPL reserves its right to refuse service, restrict, suspend,
+              terminate your account; (Terminate this Agreement; Terminate or
+              suspend your access to the DNNPL’s Web Sites; Refuse, move or
+              remove for any reason any Content / Image that you submit on or
+              through the Services; Refuse, move, or remove any Content / Image
+              that is available on or through the Services; Deactivate or delete
+              your accounts and all related information and files in your
+              account; Establish general practices and limits concerning use of
+              the Services) at any time and, remove or edit contents or cancel
+              orders (entered by you) in its sole discretion with or without
+              cause, and with or without any prior notice for any violation of
+              the Terms of Use. Upon such termination or suspension, your right
+              to use the DNNPL’s Websites will immediately cease.
+              {'\n'}You can also terminate your account at any time but your
+              information may remain stored in archive on our servers even after
+              the deletion or the termination of your account.
+            </Text>
+            <Text style={ContactStyles.title}>
+              User Conduct and Obligations
+            </Text>
+            <Text style={ContactStyles.content}>
+              You hereby agree and assure DNNPL that the Site/Services shall be
+              used for lawful purposes only and that you will not violate laws,
+              regulations, ordinances or other such requirements of any
+              applicable Central, State or local government or any other
+              international laws. You further concur that you will not, through
+              Site/Service: post, distribute, or otherwise make available or
+              transmit any software or other computer files that contain a virus
+              trojan horses, time bombs, bots, botnets, malicious content,
+              content theft, data manipulation, threats or any other harmful
+              programs or elements or component; delete from the Site any legal
+              notices, disclaimers, or proprietary notices such as copyright or
+              trademark symbols, or modify any logos that you do not own or have
+              express permission to modify; not use the Site / Service in any
+              manner that could damage, disable, overburden, or impair and not
+              to undertake any action which is harmful or potentially harmful to
+              any DNNPL’s server, or the network(s), computer systems / resource
+              connected to any DNNPL server, or interfere with any other party’s
+              use and enjoyment of the Site/Service; obtain or attempt to obtain
+              any materials or information through any means not intentionally
+              made available through the Site/Service; engage in any activity
+              that causes / may harm minors; or perform any activity which is
+              likely to cause such harm; impersonate any person or entity,
+              including, but not limited to, DNNPL’s official, forum leader,
+              guide or host, or falsely state or otherwise misrepresent your
+              affiliation with a person or entity; take any action which
+              encourages or consists of any threat of harm of any kind to any
+              person or property; carry out any “denial of service” (DoS, DDoS)
+              or any other harmful attacks on application or internet service
+              or; make any inappropriate, illegal or otherwise prohibited
+              communication to any Newsgroup, Mailing List, Chat Facility, or
+              other Internet Forum; use the Site/Service for illegal purposes;
+              disrupt, place unreasonable burdens or excessive loads on,
+              interfere with or attempt to make or attempt any unauthorized
+              access to any DNNPL website or the website of any DNNPL’s
+              customer; transmit through the Site, any unlawful, harassing,
+              libelous, abusive, threatening, harmful, vulgar, obscene,
+              libelous, hateful, or racially, ethnically or otherwise
+              objectionable material of any kind or nature. This includes text,
+              graphics, video, programs or audio, etc.; collect or attempt to
+              collect personally identifiable information of any person or
+              entity without their express written consent and you shall
+              maintain records of any such written consent throughout the terms
+              of this agreement and for a period of 2 years thereafter; engage
+              in antisocial, disruptive, or destructive acts, including
+              “flaming,” “spamming,” “flooding,” “trolling,” and “griefing” as
+              those terms are commonly understood and used on the Internet forge
+              headers or otherwise manipulate identifiers in order to disguise
+              the origin of any content transmitted through the Site. upload,
+              post, email, transmit or otherwise make available any unsolicited
+              or unauthorised advertising, promotional materials, “junk mail,”
+              “spam,” “chain letters,” “pyramid schemes,” duplicative messages
+              or any other form of solicitation, encumber or suffer to exist any
+              lien or security interest on the subject matter of this Agreement;
+              or make any representation or warranty on behalf of DNNPL. You
+              agree not to post, distribute, transmit or otherwise make
+              available any data, text, message, computer file, or other
+              material that infringes and/or violates any right of a third party
+              or any domestic or international law, rule, or regulation,
+              including but not limited to: infringement of any copyright,
+              trademark, patent, trade secret, or other proprietary rights of
+              any third party, including, but not limited to, the unauthorized
+              copying of copyrighted material, the digitization and distribution
+              of photographs from magazines, books, or other copyrighted
+              sources, and the unauthorized transmittal of copyrighted software;
+              right of privacy (specifically, you must not distribute another
+              person’s personal information of any kind without their express
+              permission) or publicity; any confidentiality obligation. Unless
+              otherwise permitted, you will: (i) display the Service on your
+              Site in the exact form received by you, and not modify or edit any
+              of the foregoing without DNNPL’s prior written consent; (ii)
+              ensure that the fundamental meaning of the Service is not changed
+              or distorted; (iii) comply with all applicable laws and all
+              limitations and restrictions (if any) placed by DNNPL on the use,
+              display or distribution of any Service and (iv) not archive any of
+              the Service for access by users at any future date after the
+              Service has been removed from your Web site. You acknowledge that
+              the service must link and redirect to the appropriate DNNPL’s Web
+              page when a user clicks on the Service (e.g. a headline). You
+              shall not display the Service in such a manner that does not allow
+              for successful linking and redirection to, and delivery of,
+              DNNPL’s Web page, nor may you frame any DNNPL’s Web page.
+            </Text>
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
-}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+export default Terms;

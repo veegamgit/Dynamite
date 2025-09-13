@@ -1,12 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import * as React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, View, Text, Platform, StyleSheet } from 'react-native';
-import { blackcolor, redcolor, whitecolor, bluecolor } from '../styles/commonstyles';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Image, View, Text, Platform, StyleSheet} from 'react-native';
+import {
+  blackcolor,
+  redcolor,
+  whitecolor,
+  bluecolor,
+} from '../styles/commonstyles';
 import HomeStackNavigator from './stack-navigators/HomeStackNavigator';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useMergedMenuData } from '../utilities/menuHelper';
+import {createStackNavigator} from '@react-navigation/stack';
+import {useMergedMenuData} from '../utilities/menuHelper';
 import ShortsScreen from '../screens/Shorts';
 import PhotoGallery from '../screens/PhotoGallery';
 import Videos from '../screens/Videos';
@@ -28,12 +33,12 @@ const LNStack = createStackNavigator();
 const PTStack = createStackNavigator();
 const VDStack = createStackNavigator();
 
-
 function LNStackScreen() {
   const mergedArray = useMergedMenuData();
-  console.log(mergedArray)
   return (
-    <LNStack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Latest'>
+    <LNStack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName="Latest">
       {mergedArray.length > 0 &&
         mergedArray.map(item => (
           <LNStack.Screen key={item.title} name={item.title}>
@@ -57,7 +62,9 @@ function LNStackScreen() {
 function PhotoStackScreen() {
   const mergedArray = useMergedMenuData();
   return (
-    <PTStack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Photos'>
+    <PTStack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName="Photos">
       {mergedArray.length > 0 &&
         mergedArray.map(item => (
           <PTStack.Screen key={item.title} name={item.title}>
@@ -81,9 +88,11 @@ function PhotoStackScreen() {
 
 function VideoStackScreen() {
   const mergedArray = useMergedMenuData();
-  
+
   return (
-    <VDStack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Videos'>
+    <VDStack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName="Videos">
       {mergedArray.length > 0 &&
         mergedArray.map(item => (
           <VDStack.Screen key={item.title} name={item.title}>
@@ -111,13 +120,13 @@ const BottomTabNavigator = () => {
       screenOptions={() => ({
         tabBarActiveTintColor: redcolor,
         tabBarInactiveTintColor: whitecolor,
-        style: { backgroundColor: 'rgba(52, 52, 52, 0.8)' },
+        style: {backgroundColor: 'rgba(52, 52, 52, 0.8)'},
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: '700',
           fontFamily: 'TTLogo',
         },
-        tabBarItemStyle: { width: 100, height: Platform.OS === 'ios' ? 68 : 60 },
+        tabBarItemStyle: {width: 100, height: Platform.OS === 'ios' ? 68 : 60},
         tabBarStyle: {
           backgroundColor: blackcolor,
           height: Platform.OS === 'ios' ? 88 : 60,
@@ -125,17 +134,16 @@ const BottomTabNavigator = () => {
         tabBarOptions: {
           showLabel: true,
         },
-      })}
-    >
+      })}>
       <Tab.Screen
         name="TopTabs"
         component={HomeStackNavigator}
-        listeners={({ navigation }) => ({
-          tabPress: (e) => {
+        listeners={({navigation}) => ({
+          tabPress: e => {
             e.preventDefault();
             navigation.reset({
               index: 0,
-              routes: [{ name: 'TopTabs', params: { screen: 'Home' } }],
+              routes: [{name: 'TopTabs', params: {screen: 'Home'}}],
             });
           },
         })}
@@ -143,11 +151,14 @@ const BottomTabNavigator = () => {
           headerShown: false,
           tabBarLabel: 'HOME',
           tabBarLabelStyle: styles.tabBottomItemText,
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <Image
-            style={[styles.tabBarIcon, {
-              tintColor: focused ? bluecolor : whitecolor,
-            }]}
+              style={[
+                styles.tabBarIcon,
+                {
+                  tintColor: focused ? bluecolor : whitecolor,
+                },
+              ]}
               source={require('../Assets/Images/home.png')}
             />
           ),
@@ -192,32 +203,37 @@ const BottomTabNavigator = () => {
           tabBarLabel: () => null,
           tabBarIcon: () => (
             <View
-            style={{
-              width: 50,
-              height: 50,
-              borderRadius: 25,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: bluecolor
-            }}
-          >
-            <View
               style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
                 alignItems: 'center',
-              }}
-            >
-              <Image
+                justifyContent: 'center',
+                backgroundColor: bluecolor,
+              }}>
+              <View
                 style={{
-                  height: 20,
-                  width: 20,
-                  tintColor: whitecolor,
-                }}
-                source={require('../Assets/Images/favicon.png')}
-              />
-              <Text style={{ color: whitecolor, fontSize: 8.5, fontFamily: 'Mukta-Bold' }}>SHORTS</Text>
+                  alignItems: 'center',
+                }}>
+                <Image
+                  style={{
+                    height: 20,
+                    width: 20,
+                    tintColor: whitecolor,
+                  }}
+                  source={require('../Assets/Images/favicon.png')}
+                />
+                <Text
+                  style={{
+                    color: whitecolor,
+                    fontSize: 8.5,
+                    fontFamily: 'Mukta-Bold',
+                  }}>
+                  SHORTS
+                </Text>
+              </View>
             </View>
-          </View>
-          )
+          ),
         }}
       />
       {/* <Tab.Screen
@@ -251,12 +267,12 @@ const BottomTabNavigator = () => {
       <Tab.Screen
         name="VDStack"
         component={VideoStackScreen}
-        listeners={({ navigation }) => ({
-          tabPress: (e) => {
+        listeners={({navigation}) => ({
+          tabPress: e => {
             e.preventDefault();
             navigation.reset({
               index: 0,
-              routes: [{ name: 'VDStack'}],
+              routes: [{name: 'VDStack'}],
             });
           },
         })}
@@ -264,11 +280,14 @@ const BottomTabNavigator = () => {
           headerShown: false,
           tabBarLabel: 'VIDEOS',
           tabBarLabelStyle: styles.tabBottomItemText,
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <Image
-              style={[styles.tabBarIcon, {
-                tintColor: focused ? bluecolor : whitecolor,
-              }]}
+              style={[
+                styles.tabBarIcon,
+                {
+                  tintColor: focused ? bluecolor : whitecolor,
+                },
+              ]}
               source={require('../Assets/Images/video.png')}
             />
           ),
@@ -285,11 +304,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Faustina',
     fontSize: 9,
     marginBottom: 12,
-  },tabBarIcon: {
+  },
+  tabBarIcon: {
     width: 18,
     height: 18,
-    marginTop: 6
-  }
-})
+    marginTop: 6,
+  },
+});
 
 export default BottomTabNavigator;
