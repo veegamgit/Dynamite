@@ -1,8 +1,8 @@
-import * as Localisation from 'react-native-localize';
 import i18next from 'i18next';
 import en from './locales/en.json';
 import hi from './locales/hi.json';
 import {initReactI18next} from 'react-i18next';
+import {store} from './src/redux/store';
 
 const resources = {
   en: {translation: en},
@@ -13,8 +13,11 @@ const languageDetector = {
   type: 'languageDetector',
   async: true,
   detect: callback => {
-    const locales = Localisation.findBestLanguageTag(Object.keys(resources));
-    callback(locales.languageTag || 'en');
+    const state = store.getState();
+    const currentLanguage = state.languageReducer.selectedLanguage;
+    // Map the Redux store language value to i18n language code
+    const langCode = currentLanguage === 'हिंदी' ? 'hi' : 'en';
+    callback(langCode);
   },
   init: () => {},
   cacheUserLanguage: () => {},
@@ -24,7 +27,7 @@ i18next
   .use(languageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'en',
+    fallbackLng: 'hi',
     resources,
     interpolation: {
       escapeValue: false,

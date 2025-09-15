@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 const initialState = {
-  selectedLanguage: 'hindi', // default language
+  selectedLanguage: 'हिंदी', // default language
   isChangingLanguage: false,
 };
 

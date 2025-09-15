@@ -6,9 +6,13 @@ import {Image} from 'react-native';
 import SubHeader from '../components/SubHeader';
 import HandlePressable from '../components/HandlePressable';
 import {useTranslation} from 'react-i18next';
+import {useSelector} from 'react-redux';
 
 const Settings = ({navigation}) => {
   const {t} = useTranslation();
+  const currentLanguage = useSelector(
+    state => state.languageReducer.selectedLanguage,
+  );
   const data = [
     {
       id: 1,
@@ -46,37 +50,55 @@ const Settings = ({navigation}) => {
       id: 1,
       text: `${t('whatsapp')}`,
       img: require('../Assets/Images/whatsapp.png'),
-      screen: 'https://www.whatsapp.com/channel/0029Va9En3XAzNbxkjED2S2k',
+      screen:
+        currentLanguage === 'English'
+          ? 'https://www.whatsapp.com/channel/0029Va9En3XAzNbxkjED2S2k'
+          : 'https://www.whatsapp.com/channel/0029Va9En3XAzNbxkjED2S2k',
     },
     {
       id: 2,
       text: `${t('facebook')}`,
       img: require('../Assets/Images/facebook.png'),
-      screen: 'https://www.facebook.com/DNHindi/',
+      screen:
+        currentLanguage === 'English'
+          ? 'https://www.facebook.com/DynamiteNewsEnglish'
+          : 'https://www.facebook.com/DNHindi/',
     },
     {
       id: 3,
       text: `${t('youtube')}`,
       img: require('../Assets/Images/youtube.png'),
-      screen: 'https://www.youtube.com/@DynamiteNews1',
+      screen:
+        currentLanguage === 'English'
+          ? 'https://www.youtube.com/@DynamiteNews1'
+          : 'https://www.youtube.com/@DynamiteNews1',
     },
     {
       id: 4,
       text: `${t('instagram')}`,
       img: require('../Assets/Images/instagram.png'),
-      screen: 'https://www.instagram.com/dynamitenews/',
+      screen:
+        currentLanguage === 'English'
+          ? 'https://www.instagram.com/dynamitenews/'
+          : 'https://www.instagram.com/dynamitenews/',
     },
     {
       id: 5,
       text: `${t('twitter')}`,
       img: require('../Assets/Images/twitter.png'),
-      screen: 'https://x.com/DNHindi',
+      screen:
+        currentLanguage === 'English'
+          ? 'https://x.com/DynamiteNews_'
+          : 'https://x.com/DNHindi',
     },
     {
       id: 5,
       text: `${t('linkedin')}`,
       img: require('../Assets/Images/linkedin.png'),
-      screen: 'https://www.linkedin.com/company/dynamitenews1',
+      screen:
+        currentLanguage === 'English'
+          ? 'https://www.linkedin.com/company/dynamitenews1'
+          : 'https://www.linkedin.com/company/dynamitenews1',
     },
   ];
   const navigateToScreen = async screenName => {

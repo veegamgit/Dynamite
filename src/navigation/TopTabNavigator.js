@@ -1,6 +1,6 @@
-import React, {lazy, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {ActivityIndicator, Image, View} from 'react-native';
+import {ActivityIndicator, Image, View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import CategoryScreen from '../screens/Category';
@@ -98,7 +98,21 @@ const TopTabNavigator = () => {
           component={item.title === 'वीडियो' ? VideosScreen : CategoryWrapper}
           initialParams={{item}}
           options={{
-            tabBarLabel: item.title,
+            tabBarLabel: () => (
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: '700',
+                  fontFamily: 'Mandali-Bold',
+                  color: blackcolor,
+                  paddingHorizontal: 4,
+                  textTransform: 'uppercase',
+                }}
+                numberOfLines={1}
+                ellipsizeMode="clip">
+                {item.title}
+              </Text>
+            ),
           }}
         />
       ))}

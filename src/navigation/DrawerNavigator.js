@@ -36,7 +36,6 @@ const DrawerNavigator = () => {
   const currentLanguage = useSelector(
     state => state.languageReducer.selectedLanguage,
   );
-
   const reloadAppData = useCallback(async () => {
     try {
       // Reload all main data
@@ -55,7 +54,7 @@ const DrawerNavigator = () => {
 
   // Set initial language and load data
   React.useEffect(() => {
-    dispatch(setLanguage('hindi'));
+    dispatch(setLanguage('हिंदी'));
     reloadAppData();
   }, [dispatch, reloadAppData]);
 

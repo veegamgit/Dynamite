@@ -42,6 +42,8 @@ const AboutUs = ({navigation}) => {
             <Text style={ContactStyles.content}>{t('aboutpara10')}</Text>
             <Text style={ContactStyles.title}>{t('abouthead9')}</Text>
             <Text style={ContactStyles.content}>{t('aboutpara11')}</Text>
+            <Text style={ContactStyles.title}>{t('abouthead10')}</Text>
+            <Text style={ContactStyles.content}>{t('aboutpara12')}</Text>
           </View>
         </View>
       </ScrollView>

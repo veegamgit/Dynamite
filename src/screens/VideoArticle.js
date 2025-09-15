@@ -23,6 +23,7 @@ import {TopicItems} from '../components/TopicItems';
 import Ripple from 'react-native-material-ripple';
 import HandlePressable from '../components/HandlePressable';
 import {useTranslation} from 'react-i18next';
+import {useSelector} from 'react-redux';
 
 const VideoArticle = ({navigation, route}) => {
   const [detailsData, setDetailsData] = useState([]);
@@ -131,11 +132,11 @@ const VideoArticle = ({navigation, route}) => {
   }, []);
 
   const goToTop = () => {
-    Scrollref.current.scrollTo({x: 0, y: 0, animated: true});
+    Scrollref.current?.scrollTo({x: 0, y: 0, animated: true});
   };
   useEffect(() => {
     goToTop();
-  });
+  }, []);
 
   useEffect(() => {
     if (route?.params?.detailsData) {
