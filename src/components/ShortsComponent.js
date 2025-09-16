@@ -90,7 +90,8 @@ const ShortsComponent = props => {
               fontFamily: 'Faustina-Bold',
               lineHeight: 26,
               fontWeight: 'bold',
-            }}>
+            }}
+            numberOfLines={3}>
             {decode(item?.title?.rendered)}
           </Text>
         </View>
@@ -114,7 +115,7 @@ const ShortsComponent = props => {
         {/* Description */}
         <View style={{padding: 12}}>
           <Text
-            numberOfLines={6}
+            numberOfLines={5}
             ellipsizeMode="tail"
             style={{
               color: blackcolor,
