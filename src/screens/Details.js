@@ -301,7 +301,7 @@ const Details = ({navigation, route}) => {
                 </Text>
               </Ripple>
               <Text style={commonstyles.detailTime}>
-                {t('updatedon')}: {formattedDate}
+                {t('updated')}: {formattedDate}
               </Text>
             </View>
           </View>
@@ -422,7 +422,7 @@ const Details = ({navigation, route}) => {
               flexDirection: 'row',
               marginTop: 10,
             }}>
-            <Text style={commonstyles.publishedtext}>{t('publishedon')}: </Text>
+            <Text style={commonstyles.publishedtext}>{t('published')}: </Text>
 
             <Text style={commonstyles.detailTime}>{formattedDate}</Text>
           </View>
