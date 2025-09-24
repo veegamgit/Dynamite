@@ -204,34 +204,26 @@ const BottomTabNavigator = () => {
           tabBarIcon: () => (
             <View
               style={{
-                width: 50,
-                height: 50,
-                borderRadius: 25,
                 alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: bluecolor,
               }}>
-              <View
+              <Image
                 style={{
-                  alignItems: 'center',
+                  height: 28,
+                  width: 28,
+                  marginBottom: 2,
+                  //tintColor: whitecolor,
+                }}
+                source={require('../Assets/Images/dynamite_short_logo.png')}
+              />
+              <Text
+                style={{
+                  color: whitecolor,
+                  fontSize: 9,
+                  fontFamily: 'Mukta-Bold',
+                  marginBottom: 4,
                 }}>
-                <Image
-                  style={{
-                    height: 20,
-                    width: 20,
-                    tintColor: whitecolor,
-                  }}
-                  source={require('../Assets/Images/favicon.png')}
-                />
-                <Text
-                  style={{
-                    color: whitecolor,
-                    fontSize: 8.5,
-                    fontFamily: 'Mukta-Bold',
-                  }}>
-                  SHORTS
-                </Text>
-              </View>
+                SHORTS
+              </Text>
             </View>
           ),
         }}
