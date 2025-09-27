@@ -23,6 +23,7 @@ export const commonstyles = StyleSheet.create({
   HomeThreeCategoryview: {
     borderBottomColor: graycolor,
     borderBottomWidth: 1,
+    paddingBottom: 10,
   },
   homecategoryView: {
     justifyContent: 'space-between',
@@ -676,11 +677,11 @@ export const commonstyles = StyleSheet.create({
   },
   detailTime: {
     color: Dark_graycolor,
-    fontSize: 11,
+    fontSize: 12,
   },
   publishedtext: {
     color: blackcolor,
-    fontSize: 11,
+    fontSize: 12,
     fontFamily: 'Mandali-Bold',
     fontWeight: '800',
   },

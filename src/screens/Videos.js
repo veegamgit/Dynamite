@@ -23,6 +23,7 @@ import {
 } from '../styles/commonstyles';
 import FastImage from 'react-native-fast-image';
 import getVideoAction from '../redux/actions/getVideoAction';
+import {useTranslation} from 'react-i18next';
 
 const Videos = ({
   navigation,
@@ -33,6 +34,7 @@ const Videos = ({
   videosLoadingMore,
 }) => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   useEffect(() => {
     dispatch(getVideoAction(false, 0));
@@ -56,7 +58,7 @@ const Videos = ({
       <SafeAreaView style={commonstyles.container}>
         <View style={[{marginLeft: 12, marginVertical: 8}]}>
           <Text style={commonstyles.galleryArticlecategorytext}>
-            वीडियो गैलरी
+            {t('videoGallery')}
           </Text>
         </View>
         <ScrollView style={commonstyles.scroll}>
@@ -117,13 +119,11 @@ const Videos = ({
                     </View>
                   ) : (
                     <Ripple style={styles.loadMoreBtn} onPress={handleLoadMore}>
-                      <Text style={styles.loreMoreBtnTxt}>Load More</Text>
+                      <Text style={styles.loreMoreBtnTxt}>{t('loadmore')}</Text>
                     </Ripple>
                   )
                 ) : videosData?.data?.length > 0 ? (
-                  <Text style={styles.noMoreDataText}>
-                    No more videos available
-                  </Text>
+                  <Text style={styles.noMoreDataText}>{t('nomoredata')}</Text>
                 ) : null}
               </View>
             )}

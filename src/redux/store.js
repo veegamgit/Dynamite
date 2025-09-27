@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import sliderReducer from '../redux/reducers/sliderReducer';
 import sportsReducer from '../redux/reducers/sportsReducer';
+import languageReducer from './reducers/languageReducer';
 import businessReducer from '../redux/reducers/businessReducer';
 import relatedReducer from '../redux/reducers/relatedReducer';
 import photosGalleryReducer from '../redux/reducers/photosGalleryReducer';
@@ -29,16 +30,33 @@ import trendingReducer from './reducers/trendingReducer';
 
 import nationalReducer from './reducers/nationalReducer';
 
-
-
 const rootReducer = combineReducers({
-    tab: tabReducer, sliderReducer,nationalReducer,
-    
-    automobileReducer,electionsReducer,worldReducer,
-    sportsReducer, businessReducer, relatedReducer,lifestyleReducer,travelReducer,
-    photosGalleryReducer, maharashtraReducer,careerReducer,
-    videoReducer, indiaReducer,religionReducer,technologyReducer,moviesReducer,
-    articleDetailReducer, webstoriesReducer,specialReducer,
-    topMenuDataReducer, categoryReducer,ganeshReducer, trendingReducer
+  tab: tabReducer,
+  sliderReducer,
+  nationalReducer,
+  automobileReducer,
+  electionsReducer,
+  worldReducer,
+  sportsReducer,
+  businessReducer,
+  relatedReducer,
+  lifestyleReducer,
+  travelReducer,
+  photosGalleryReducer,
+  maharashtraReducer,
+  careerReducer,
+  videoReducer,
+  indiaReducer,
+  religionReducer,
+  technologyReducer,
+  moviesReducer,
+  articleDetailReducer,
+  webstoriesReducer,
+  specialReducer,
+  topMenuDataReducer,
+  categoryReducer,
+  ganeshReducer,
+  trendingReducer,
+  languageReducer,
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));

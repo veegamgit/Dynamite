@@ -8,9 +8,12 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {commonstyles, graycolor, blackcolor} from '../styles/commonstyles';
+import {useTranslation} from 'react-i18next';
 
 export const TopicItems = ({navigation, tags, categoryName}) => {
   const [loading, setLoading] = useState(false);
+  const {t} = useTranslation();
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -31,7 +34,7 @@ export const TopicItems = ({navigation, tags, categoryName}) => {
   return (
     <View style={styles.tagContainer}>
       <View style={[commonstyles.sectionTitle]}>
-        <Text style={commonstyles.Category}>Topics</Text>
+        <Text style={commonstyles.Category}>{t('topics')}</Text>
       </View>
       {loading ? (
         <ActivityIndicator size="small" color={blackcolor} />
@@ -49,7 +52,7 @@ export const TopicItems = ({navigation, tags, categoryName}) => {
               />
             </View>
           ) : (
-            <Text style={styles.noTagsText}>No Tags</Text>
+            <Text style={styles.noTagsText}>{t('notags')}</Text>
           )}
         </>
       )}

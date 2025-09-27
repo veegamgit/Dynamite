@@ -9,7 +9,6 @@ export const LOADMORE_VIDEOS = 'LOADMORE_VIDEOS';
 export const LOAD_MORE_VIDEOS_SUCCESS = 'LOAD_MORE_VIDEOS_SUCCESS';
 
 const getVideoAction = (isLoadMore = false, offset = 0) => {
-  console.log('getVideoAction called with offset:', isLoadMore, offset);
   return async dispatch => {
     try {
       if (!isLoadMore) {

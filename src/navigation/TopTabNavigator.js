@@ -1,19 +1,25 @@
-import React, { lazy, useEffect } from 'react';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { ActivityIndicator, Image, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect} from 'react';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {ActivityIndicator, Image, View, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import CategoryScreen from '../screens/Category';
 import EmptyScreen from '../components/EmptyScreen';
 import VideosScreen from '../screens/Videos';
 import Home from '../screens/Home';
-import { blackcolor, commonstyles, whitecolor, bluecolor } from '../styles/commonstyles';
+import {
+  blackcolor,
+  commonstyles,
+  whitecolor,
+  bluecolor,
+} from '../styles/commonstyles';
 
 const TopTab = createMaterialTopTabNavigator();
 
 const TopTabNavigator = () => {
   const dispatch = useDispatch();
-  const menuData = useSelector((state) => state.topMenuDataReducer.topMenuData) || [];
+  const menuData =
+    useSelector(state => state.topMenuDataReducer.topMenuData) || [];
 
   useEffect(() => {
     dispatch(getTopMenuDataAction());
@@ -28,11 +34,9 @@ const TopTabNavigator = () => {
     return acc;
   }, []);
 
-  function CategoryWrapper({ route }) {
-    const { item } = route.params;
-    return (
-      <CategoryScreen isTopNavigation={true} item={item} />
-    )
+  function CategoryWrapper({route}) {
+    const {item} = route.params;
+    return <CategoryScreen isTopNavigation={true} item={item} />;
   }
 
   if (mergedArray.length === 0) {
@@ -45,16 +49,21 @@ const TopTabNavigator = () => {
       detachInactiveScreens={false}
       screenOptions={{
         lazy: true,
-        lazyPlaceholder: () => 
-        <View style={commonstyles.spinnerView}>
-          <ActivityIndicator size={'small'} color={blackcolor} />
-          </View>,
+        lazyPlaceholder: () => (
+          <View style={commonstyles.spinnerView}>
+            <ActivityIndicator size={'small'} color={blackcolor} />
+          </View>
+        ),
         lazyPreloadDistance: 0,
         tabBarScrollEnabled: true,
-        tabBarIndicatorStyle: { backgroundColor: bluecolor },
+        tabBarIndicatorStyle: {backgroundColor: bluecolor},
         tabBarActiveTintColor: bluecolor,
         tabBarInactiveTintColor: 'black',
-        tabBarLabelStyle: { fontSize: 16, fontFamily: 'Mandali-Bold', fontWeight: '700' },
+        tabBarLabelStyle: {
+          fontSize: 14,
+          fontFamily: 'Mandali-Bold',
+          fontWeight: '700',
+        },
         tabBarStyle: {
           backgroundColor: whitecolor,
           height: 50,
@@ -62,10 +71,9 @@ const TopTabNavigator = () => {
         tabBarItemStyle: {
           width: 'auto',
           paddingHorizontal: 5,
-          alignItems: 'center', 
+          alignItems: 'center',
         },
-      }}
-    >
+      }}>
       {/* Home Tab */}
       <TopTab.Screen
         key="Home"
@@ -76,7 +84,7 @@ const TopTabNavigator = () => {
           tabBarIcon: () => (
             <Image
               source={require('../Assets/Images/home.png')}
-              style={{ width: 20, height: 20 }}
+              style={{width: 20, height: 20}}
             />
           ),
         }}
@@ -88,14 +96,27 @@ const TopTabNavigator = () => {
           key={`${item.title}-${index}`}
           name={item.title}
           component={item.title === 'वीडियो' ? VideosScreen : CategoryWrapper}
-          initialParams={{ item }}
+          initialParams={{item}}
           options={{
-            tabBarLabel: item.title
+            tabBarLabel: () => (
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: '700',
+                  fontFamily: 'Mandali-Bold',
+                  color: blackcolor,
+                  paddingHorizontal: 4,
+                  textTransform: 'uppercase',
+                }}
+                numberOfLines={1}
+                ellipsizeMode="clip">
+                {item.title}
+              </Text>
+            ),
           }}
         />
       ))}
     </TopTab.Navigator>
-
   );
 };
 

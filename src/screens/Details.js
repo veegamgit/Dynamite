@@ -7,11 +7,10 @@ import {
   FlatList,
   Platform,
   Dimensions,
-  StyleSheet,
   Linking,
 } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
-import {blackcolor, commonstyles, graycolor} from '../styles/commonstyles';
+import {commonstyles, graycolor} from '../styles/commonstyles';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import {HeaderStyle} from '../styles/Header.Styles';
 import moment from 'moment';
@@ -24,8 +23,11 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {TopicItems} from '../components/TopicItems';
 import Ripple from 'react-native-material-ripple';
 import HandlePressable from '../components/HandlePressable';
+import {useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 
 const Details = ({navigation, route}) => {
+  const {t} = useTranslation();
   const [detailsData, setDetailsData] = useState([]);
   const Scrollref = useRef();
   const [fontSize, setFontSize] = useState(18);
@@ -35,21 +37,38 @@ const Details = ({navigation, route}) => {
   const [firstArticle, setFirstArticle] = useState(null);
   const [articleId, setArticleId] = useState(route.params?.item?.id);
   const [tags, setTags] = useState([]);
-
+  const currentLanguage = useSelector(
+    state => state.languageReducer.selectedLanguage,
+  );
   useFocusEffect(
     useCallback(() => {
       Scrollref.current.scrollTo({x: 0, y: 0, animated: true});
     }, []),
   );
 
-  useEffect(() => {
-    getDetailArticleAction(articleId);
-    getRelatedAction(articleId);
-  }, [articleId]);
+  // Store initial language when component mounts
+  const initialLanguageRef = useRef(currentLanguage);
 
   useEffect(() => {
+    // If language has changed from initial language, navigate back
+    if (initialLanguageRef.current !== currentLanguage) {
+      navigation.goBack();
+      return;
+    }
+
+    getDetailArticleAction(articleId);
+    getRelatedAction(articleId);
+  }, [articleId, currentLanguage, navigation]);
+
+  useEffect(() => {
+    // If language has changed from initial language, navigate back
+    if (initialLanguageRef.current !== currentLanguage) {
+      navigation.goBack();
+      return;
+    }
+
     fetchSingleArticleObj();
-  }, [route]);
+  }, [route, currentLanguage]);
 
   useEffect(() => {
     if (
@@ -73,6 +92,11 @@ const Details = ({navigation, route}) => {
 
   // Function to fetch the details of the article
   const getDetailArticleAction = async artId => {
+    // Don't fetch if language has changed
+    if (initialLanguageRef.current !== currentLanguage) {
+      return;
+    }
+
     try {
       const response = await fetch(BaseUrl + DetailsUrl + '?id=' + artId);
       const responseJson = await response.json();
@@ -81,7 +105,13 @@ const Details = ({navigation, route}) => {
       console.error('Error fetching article details:', error);
     }
   };
+
   const getRelatedAction = async artId => {
+    // Don't fetch if language has changed
+    if (initialLanguageRef.current !== currentLanguage) {
+      return;
+    }
+
     try {
       const response = await fetch(BaseUrl + RelatedUrl + '?id=' + artId);
       const responseJson = await response.json();
@@ -147,7 +177,6 @@ const Details = ({navigation, route}) => {
 
   const handleWebViewRequest = request => {
     const url = request?.url;
-    console.log('WebView URL:', url);
 
     if (url.includes('post_id=')) {
       let postId = url.split('post_id=')[1];
@@ -218,6 +247,12 @@ const Details = ({navigation, route}) => {
   const handleTouchStart = e => {
     e.preventDefault();
   };
+
+  // If language has changed, don't render anything
+  if (initialLanguageRef.current !== currentLanguage) {
+    return null;
+  }
+
   return (
     <View style={commonstyles.container}>
       <View style={HeaderStyle.DetailsHeader}>
@@ -266,7 +301,7 @@ const Details = ({navigation, route}) => {
                 </Text>
               </Ripple>
               <Text style={commonstyles.detailTime}>
-                Updated on: {formattedDate}
+                {t('updated')}: {formattedDate}
               </Text>
             </View>
           </View>
@@ -387,7 +422,7 @@ const Details = ({navigation, route}) => {
               flexDirection: 'row',
               marginTop: 10,
             }}>
-            <Text style={commonstyles.publishedtext}>Published on: </Text>
+            <Text style={commonstyles.publishedtext}>{t('published')}: </Text>
 
             <Text style={commonstyles.detailTime}>{formattedDate}</Text>
           </View>
@@ -434,7 +469,7 @@ const Details = ({navigation, route}) => {
         {/* Related News */}
         <View>
           <View style={[commonstyles.sectionTitle]}>
-            <Text style={commonstyles.Category}>Related News</Text>
+            <Text style={commonstyles.Category}>{t('relatednews')}</Text>
           </View>
           <View style={{paddingHorizontal: 12}}>
             <FlatList
