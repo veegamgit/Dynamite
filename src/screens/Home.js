@@ -235,6 +235,7 @@ const Home = ({navigation}) => {
     getSportsAction();
     getTechnologyAction();
     dispatch(getTopMenuDataAction());
+    dispatch(getSliderAction());
   }, [language]);
 
   const videoGalleryitemOne = ({item, index}) => (

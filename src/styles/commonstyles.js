@@ -204,7 +204,7 @@ export const commonstyles = StyleSheet.create({
   shareimage: {height: 18, width: 18, color: Dark_Gray, resizeMode: 'contain'},
   shareview: {marginRight: 15},
   sharetext: {color: Dark_Gray, fontSize: 16, fontWeight: '500'},
-  settingimg: {width: 20, height: 20, color: blackcolor},
+  settingimg: {width: 20, height: 20},
   settingtext: {
     color: blackcolor,
     fontSize: 16,

@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {View, Image, ActivityIndicator, Modal} from 'react-native';
 import {HeaderStyle} from '../styles/Header.Styles';
@@ -24,27 +24,43 @@ import getVideoAction from '../redux/actions/getVideoAction';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
 import getTopMenuDataAction from '../redux/actions/getTopMenuDataAction';
 import i18next from 'i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   const dispatch = useDispatch();
-  const [selectedLanguage, setSelectedLanguage] = useState('हिंदी');
-  const isChangingLanguage = useSelector(
-    state => state.languageReducer.isChangingLanguage,
-  );
   const currentLanguage = useSelector(
     state => state.languageReducer.selectedLanguage,
   );
+  const [selectedLanguage, setSelectedLanguage] = useState(currentLanguage);
+  const isChangingLanguage = useSelector(
+    state => state.languageReducer.isChangingLanguage,
+  );
+
+  useEffect(() => {
+    const fetchLang = async () => {
+      try {
+        const storedLang = await AsyncStorage.getItem('selectedLang');
+        if (storedLang) {
+          setSelectedLanguage(JSON.parse(storedLang));
+        }
+      } catch (e) {
+        console.error('Error loading language:', e);
+      }
+    };
+    fetchLang();
+  }, []);
+
   const reloadAppData = useCallback(async () => {
     try {
       // Reload all main data
       await Promise.all([
+        dispatch(getTopMenuDataAction()),
         dispatch(getSliderAction()),
         dispatch(getLatestNewsAction()),
         dispatch(getVideoAction()),
         dispatch(getPhotoGalleryAction()),
-        dispatch(getTopMenuDataAction()),
       ]);
     } finally {
       // Complete the language change process
@@ -54,20 +70,23 @@ const DrawerNavigator = () => {
 
   // Set initial language and load data
   React.useEffect(() => {
-    dispatch(setLanguage('हिंदी'));
+    dispatch(setLanguage(selectedLanguage));
     reloadAppData();
-  }, [dispatch, reloadAppData]);
+  }, [dispatch, reloadAppData, selectedLanguage]);
 
   const handleLanguageSelect = async lang => {
     setSelectedLanguage(lang);
+    i18next.changeLanguage(lang === 'हिंदी' ? 'hi' : 'en');
     // Set the language in Redux store and update BaseUrl
-    await dispatch(setLanguage(lang === 'हिंदी' ? 'हिंदी' : 'English'));
+    await dispatch(setLanguage(lang));
+    await AsyncStorage.setItem('selectedLang', JSON.stringify(lang));
+
     // Reload all data with new language
     reloadAppData();
   };
 
   const companyLogo =
-    currentLanguage === 'हिंदी'
+    selectedLanguage == 'हिंदी'
       ? require('../Assets/Images/logo_hn.png')
       : require('../Assets/Images/logo_en.png');
 
@@ -132,9 +151,6 @@ const DrawerNavigator = () => {
                   valueField="value"
                   value={selectedLanguage}
                   onChange={item => {
-                    i18next.changeLanguage(
-                      item.value === 'हिंदी' ? 'hi' : 'en',
-                    );
                     handleLanguageSelect(item.label);
                   }}
                   iconColor={whitecolor}
@@ -155,8 +171,6 @@ const DrawerNavigator = () => {
   );
 };
 
-export default DrawerNavigator;
-
 const styles = StyleSheet.create({
   dropdown: {
     width: 100,
@@ -171,7 +185,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(225, 225, 225, 0.95)',
   },
   loaderContainer: {
     backgroundColor: whitecolor,
@@ -180,3 +194,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default DrawerNavigator;

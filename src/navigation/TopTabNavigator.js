@@ -18,8 +18,7 @@ const TopTab = createMaterialTopTabNavigator();
 
 const TopTabNavigator = () => {
   const dispatch = useDispatch();
-  const menuData =
-    useSelector(state => state.topMenuDataReducer.topMenuData) || [];
+  const menuData = useSelector(state => state.topMenuDataReducer.topMenuData);
 
   useEffect(() => {
     dispatch(getTopMenuDataAction());

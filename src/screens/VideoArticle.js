@@ -43,7 +43,7 @@ const VideoArticle = ({navigation, route}) => {
 
   useEffect(() => {
     if (initialLanguageRef.current !== currentLanguage) {
-      navigation.goBack();
+      navigation.navigate({name: 'TopTabs', params: {screen: 'Home'}});
       return;
     }
     getDetailArticleAction(articleId);
@@ -52,7 +52,7 @@ const VideoArticle = ({navigation, route}) => {
 
   useEffect(() => {
     if (initialLanguageRef.current !== currentLanguage) {
-      navigation.goBack();
+      navigation.navigate({name: 'TopTabs', params: {screen: 'Home'}});
       return;
     }
     fetchSingleArticleObj();

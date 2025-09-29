@@ -183,7 +183,10 @@ export const NewWebStories = React.memo(() => {
           style={styles.storyItemIcon}
         />
         <FastImage
-          source={{uri: item?.user_image}}
+          source={{
+            uri: item?.user_image,
+            priority: FastImage.priority.low,
+          }}
           resizeMode={FastImage.resizeMode.stretch}
           style={styles.storyItemImage}
         />
@@ -288,7 +291,7 @@ export const NewWebStories = React.memo(() => {
                 source={{
                   uri: storiesData[currentUserIndex]?.stories[currentSlideIndex]
                     ?.story_image,
-                  priority: FastImage.priority.high,
+                  priority: FastImage.priority.normal,
                 }}
                 style={styles.storyImage}
                 resizeMode={FastImage.resizeMode.cover}

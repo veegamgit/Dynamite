@@ -1,16 +1,20 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, StatusBar} from 'react-native';
-import {Provider} from 'react-redux';
-import {NavigationContainer} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {StatusBar} from 'react-native';
+import {Provider, useDispatch} from 'react-redux';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {store} from './src/redux/store';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
+import SplashScreen from 'react-native-splash-screen';
+import {whitecolor} from './src/styles/commonstyles';
+import {createStackNavigator} from '@react-navigation/stack';
+import LanguageComponent from './src/screens/Language';
+import {loadLanguage} from './src/redux/actions/languageActions';
+
 import getSliderAction from './src/redux/actions/getSliderAction';
 import getLatestNewsAction from './src/redux/actions/getLatestNewsAction';
 import getVideoAction from './src/redux/actions/getVideoAction';
 import getPhotoGalleryAction from './src/redux/actions/getPhotoGalleryAction';
 import getTopMenuDataAction from './src/redux/actions/getTopMenuDataAction';
-import SplashScreen from 'react-native-splash-screen';
-import {whitecolor} from './src/styles/commonstyles';
 import getAutomobileAction from './src/redux/actions/getAutomobileAction';
 import getIndiaAction from './src/redux/actions/getIndiaAction';
 import getMaharashtraAction from './src/redux/actions/getUttarpradeshAction';
@@ -28,66 +32,94 @@ import getTravelAction from './src/redux/actions/getTravelAction';
 import getGaneshAction from './src/redux/actions/getGaneshAction';
 import {getNationalAction} from './src/redux/actions/getNationalAction';
 import './i18n';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const App = () => {
+const Stack = createStackNavigator();
+
+const AppContent = () => {
+  const dispatch = useDispatch();
+  const [isReady, setIsReady] = useState(false);
+  const [isLangAlreadySelected, setIsLangAlreadySelected] = useState(false);
+
   useEffect(() => {
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 3000);
+    const fetchLang = async () => {
+      try {
+        const lang = await AsyncStorage.getItem('selectedLang');
+        if (lang === null) {
+          setIsLangAlreadySelected(false);
+        } else {
+          setIsLangAlreadySelected(true);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchLang();
   }, []);
 
   useEffect(() => {
-    store.dispatch(getSliderAction());
-    store.dispatch(getLatestNewsAction());
-    store.dispatch(getNationalAction());
+    // Load saved language from AsyncStorage → Redux
+    const init = async () => {
+      await dispatch(loadLanguage());
+      dispatch(getTopMenuDataAction());
+      dispatch(getSliderAction());
+      dispatch(getLatestNewsAction());
+      dispatch(getNationalAction());
+      dispatch(getVideoAction());
+      dispatch(getPhotoGalleryAction());
+      dispatch(getIndiaAction());
+      dispatch(getMaharashtraAction());
+      dispatch(getElectionsAction());
+      dispatch(getWorldAction());
+      dispatch(getSportsAction());
+      dispatch(getLifestyleAction());
+      dispatch(getSpecialAction());
+      dispatch(getMoviesAction());
+      dispatch(getBusinessAction());
+      dispatch(getAutomobileAction());
+      dispatch(getTechnologyAction());
+      dispatch(getReligionAction());
+      dispatch(getCareerAction());
+      dispatch(getTravelAction());
+      dispatch(getGaneshAction());
 
-    store.dispatch(getVideoAction());
-    store.dispatch(getPhotoGalleryAction());
-    store.dispatch(getTopMenuDataAction());
-    store.dispatch(getIndiaAction());
-    store.dispatch(getMaharashtraAction());
-    store.dispatch(getElectionsAction());
-    store.dispatch(getWorldAction());
-    store.dispatch(getSportsAction());
-    store.dispatch(getLifestyleAction());
-    store.dispatch(getSpecialAction());
-    store.dispatch(getMoviesAction());
-    store.dispatch(getBusinessAction());
-    store.dispatch(getAutomobileAction());
-    store.dispatch(getTechnologyAction());
-    store.dispatch(getReligionAction());
-    store.dispatch(getCareerAction());
-    store.dispatch(getTravelAction());
-    store.dispatch(getGaneshAction());
-  }, []);
+      setTimeout(() => {
+        SplashScreen.hide();
+        setIsReady(true);
+      }, 3000);
+    };
+
+    init();
+  }, [dispatch]);
+
+  if (!isReady) return null; // optionally show splash until ready
 
   return (
-    <Provider store={store}>
-      <StatusBar barStyle="dark-content" backgroundColor={whitecolor} />
-      <NavigationContainer>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </Provider>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName={isLangAlreadySelected ? 'homeScreen' : 'language'}>
+        <Stack.Screen
+          name="language"
+          key={'language'}
+          component={LanguageComponent}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          key={'homeScreen'}
+          name="homeScreen"
+          component={DrawerNavigator}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+const App = () => (
+  <Provider store={store}>
+    <StatusBar barStyle="dark-content" backgroundColor={whitecolor} />
+    <AppContent />
+  </Provider>
+);
 
 export default App;

@@ -28,9 +28,19 @@ export const setLanguage = language => {
       // Update i18next language
       const i18nLang = language === 'हिंदी' ? 'hi' : 'en';
       await i18next.changeLanguage(i18nLang);
-
     } catch (error) {
       console.error('Error changing language:', error);
     }
   };
+};
+
+export const loadLanguage = () => async dispatch => {
+  try {
+    const storedLang = (await AsyncStorage.getItem('selectedLang')) || '';
+    if (storedLang) {
+      await dispatch({type: 'SET_LANGUAGE', payload: JSON.parse(storedLang)});
+    }
+  } catch (e) {
+    console.error('Error loading language:', e);
+  }
 };

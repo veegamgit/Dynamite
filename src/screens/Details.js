@@ -52,7 +52,7 @@ const Details = ({navigation, route}) => {
   useEffect(() => {
     // If language has changed from initial language, navigate back
     if (initialLanguageRef.current !== currentLanguage) {
-      navigation.goBack();
+      navigation.navigate('Home');
       return;
     }
 
@@ -63,7 +63,7 @@ const Details = ({navigation, route}) => {
   useEffect(() => {
     // If language has changed from initial language, navigate back
     if (initialLanguageRef.current !== currentLanguage) {
-      navigation.goBack();
+      navigation.navigate('Home');
       return;
     }
 

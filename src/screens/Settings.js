@@ -92,7 +92,7 @@ const Settings = ({navigation}) => {
           : 'https://x.com/DNHindi',
     },
     {
-      id: 5,
+      id: 6,
       text: `${t('linkedin')}`,
       img: require('../Assets/Images/linkedin.png'),
       screen:
