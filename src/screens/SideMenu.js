@@ -105,7 +105,7 @@ const SideMenu = ({navigation}) => {
             />
             <DrawerItem
               style={sideMenuStyle.item}
-              label={t('appversion') + ' 1.0.0'}
+              label={t('appversion') + ' 14.0.0'}
               labelStyle={{
                 color: blackcolor,
                 fontSize: 12,

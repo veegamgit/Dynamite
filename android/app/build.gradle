@@ -79,15 +79,15 @@ android {
         applicationId "com.altware.dynamitenews"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 15
+        versionName "1.0.1"
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            storeFile file('dynamite-key.keystore')
+            storePassword 'Abes@123'
+            keyAlias 'dnkey'
+            keyPassword 'Abes@123'
         }
     }
     buildTypes {

@@ -32,7 +32,7 @@ local.properties
 *.hprof
 .cxx/
 *.keystore
-!debug.keystore
+!dynamite-key.keystore
 
 # node.js
 #
