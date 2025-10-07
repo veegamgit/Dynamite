@@ -26,8 +26,8 @@ export const commonstyles = StyleSheet.create({
     paddingBottom: 10,
   },
   homecategoryView: {
-    justifyContent: 'space-between',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 10,
   },
@@ -454,9 +454,8 @@ export const commonstyles = StyleSheet.create({
     color: bluecolor,
     fontFamily: 'Mukta-Bold',
     fontSize: 20,
-    // marginLeft: 12,
-    lineHeight: 32,
     fontWeight: '700',
+    flex: 1,
   },
   homeNextImage: {
     right: 4,
