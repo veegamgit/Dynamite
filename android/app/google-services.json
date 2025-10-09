@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "507465261323",
+    "firebase_url": "https://dynamite-news-live-prod.firebaseio.com",
+    "project_id": "dynamite-news-live-prod",
+    "storage_bucket": "dynamite-news-live-prod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507465261323:android:36a5d8e77559b922",
+        "android_client_info": {
+          "package_name": "com.altware.dynamitenews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507465261323-5juudsjur1m2rca67k20b0jfaiqcp1f6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADi4ZZGm_zlgY-QHeyodnHSmVoCzzIV8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507465261323-5juudsjur1m2rca67k20b0jfaiqcp1f6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "507465261323-t47mbjl0q08214hkoo7ijt1hb6bu8rs3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.altware.dynamitenews"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
