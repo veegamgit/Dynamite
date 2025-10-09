@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, Platform, PermissionsAndroid} from 'react-native';
 import {Provider, useDispatch} from 'react-redux';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {store} from './src/redux/store';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import SplashScreen from 'react-native-splash-screen';
@@ -33,13 +33,75 @@ import getGaneshAction from './src/redux/actions/getGaneshAction';
 import {getNationalAction} from './src/redux/actions/getNationalAction';
 import './i18n';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import iZooto from 'react-native-izooto';
+import {request, RESULTS} from 'react-native-permissions';
+import navigationRef from './src/navigation/NavigationService';
 
 const Stack = createStackNavigator();
 
 const AppContent = () => {
+  console.log('appContent');
   const dispatch = useDispatch();
   const [isReady, setIsReady] = useState(false);
   const [isLangAlreadySelected, setIsLangAlreadySelected] = useState(false);
+  const checkNotificationPermission = async () => {
+    try {
+      if (Platform.OS === 'android') {
+        if (Platform.Version >= 33) {
+          const permission = PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS;
+          const status = await PermissionsAndroid.request(permission, {
+            title: 'Notification Permission',
+            message:
+              'This app needs notification permission to send you updates.',
+            buttonNeutral: 'Ask Me Later',
+            buttonNegative: 'Cancel',
+            buttonPositive: 'OK',
+          });
+
+          if (status === PermissionsAndroid.RESULTS.GRANTED) {
+            console.log('Notifications permission granted');
+          } else {
+            console.log('Notifications permission denied');
+            Alert.alert(
+              'Permission Required',
+              'Please enable notifications from settings.',
+            );
+          }
+        } else {
+          console.log('Android version < 13, no permission needed');
+        }
+      } else {
+        // iOS permission handling
+        const status = await request('ios.permission.NOTIFICATION');
+        console.log('iOS notification permission status:', status);
+        if (status === RESULTS.GRANTED) {
+          console.log('Notifications enabled for iOS');
+        } else {
+          Alert.alert(
+            'Notifications Disabled',
+            'You have disabled notifications. Please enable them in settings.',
+            [
+              {text: 'Cancel', style: 'cancel'},
+              {
+                text: 'Go to Settings',
+                onPress: () => Linking.openSettings(),
+              },
+            ],
+          );
+        }
+      }
+    } catch (error) {
+      console.error('Error checking notification permission:', error);
+    }
+  };
+  const linking = {
+    prefixes: ['https://app'],
+    config: {
+      screens: {
+        Details: 'Details',
+      },
+    },
+  };
 
   useEffect(() => {
     const fetchLang = async () => {
@@ -55,6 +117,40 @@ const AppContent = () => {
       }
     };
     fetchLang();
+  }, []);
+
+  useEffect(() => {
+    checkNotificationPermission();
+    iZooto.initAndroid(false);
+    iZooto.setSubscription(true);
+    iZooto.onTokenReceivedListener(token => {
+      console.log('Token Received', token); // THIS CAN BE CHANGED AS PER REQUIREMENT
+    });
+    iZooto.onNotificationReceivedListener(payload => {
+      console.log('Notification Payload', payload); // THIS CAN BE CHANGED AS PER REQUIREMENT
+    });
+    iZooto.onNotificationOpenedListener(async data => {
+      const jsonString = `${data}`;
+      const outerObject = JSON.parse(jsonString);
+      const additionalData = JSON.parse(outerObject.additionalData);
+      console.log('Parsed additionalData:', additionalData);
+
+      if (additionalData.id) {
+        try {
+          navigationRef.current?.navigate('Details', {
+            item: {
+              id: additionalData.id,
+              isNotification: true,
+            },
+          });
+        } catch (err) {
+          console.error('❌ Failed to parse additionalData:', err);
+        }
+      } else {
+        console.log('⚠️ No additionalData present in payload');
+      }
+    });
+    console.log('iZooto Initialized');
   }, []);
 
   useEffect(() => {
@@ -95,7 +191,7 @@ const AppContent = () => {
   if (!isReady) return null; // optionally show splash until ready
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef} linking={linking}>
       <Stack.Navigator
         initialRouteName={isLangAlreadySelected ? 'homeScreen' : 'language'}>
         <Stack.Screen
