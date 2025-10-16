@@ -35,12 +35,11 @@ import './i18n';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import iZooto from 'react-native-izooto';
 import {request, RESULTS} from 'react-native-permissions';
-import navigationRef from './src/navigation/NavigationService';
+import {navigationRef} from './src/navigation/NavigationService';
 
 const Stack = createStackNavigator();
 
 const AppContent = () => {
-  console.log('appContent');
   const dispatch = useDispatch();
   const [isReady, setIsReady] = useState(false);
   const [isLangAlreadySelected, setIsLangAlreadySelected] = useState(false);

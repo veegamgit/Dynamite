@@ -61,6 +61,11 @@ const Details = ({navigation, route}) => {
   }, [articleId, currentLanguage, navigation]);
 
   useEffect(() => {
+    getDetailArticleAction(route.params?.item?.id);
+    getRelatedAction(route.params?.item?.id);
+  }, [route]);
+
+  useEffect(() => {
     // If language has changed from initial language, navigate back
     if (initialLanguageRef.current !== currentLanguage) {
       navigation.navigate('Home');
