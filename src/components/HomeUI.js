@@ -42,9 +42,9 @@ function HomeUI(props) {
     <SafeAreaView styles={commonstyles.container}>
       <View style={{paddingHorizontal: 12, marginTop: 16}}>
         <View style={commonstyles.homecategoryView}>
-          <View style={{}}>
-            <Text style={commonstyles.Category}>{props?.categoryName}</Text>
-          </View>
+          <Text style={commonstyles.Category} numberOfLines={1}>
+            {props?.categoryName}
+          </Text>
           <Ripple
             onPress={() => {
               navigation.navigate(props?.categoryName, {

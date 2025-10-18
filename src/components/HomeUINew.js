@@ -45,7 +45,9 @@ function HomeUINew(props) {
       <View style={{paddingHorizontal: 12, marginTop: 16}}>
         {/* Category text */}
         <View style={commonstyles.homecategoryView}>
-          <Text style={commonstyles.Category}>{props?.categoryName}</Text>
+          <Text style={commonstyles.Category} numberOfLines={1}>
+            {props?.categoryName}
+          </Text>
           <Ripple
             onPress={() => {
               navigation.navigate(props?.categoryName, {
@@ -54,13 +56,7 @@ function HomeUINew(props) {
                 isCategoryClicked: true,
               });
             }}>
-            {/* <Image
-                style={commonstyles.actionIconSize}
-                source={require('../Assets/Images/next.png')}
-              /> */}
-            {/* <View style={{}}> */}
             <Text style={commonstyles.seealltext}>{t('seeall')}</Text>
-            {/* </View> */}
           </Ripple>
         </View>
         {newdata.length > 0 ? (
